@@ -8,8 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FoodCourt.jar" size="33378" download="eager" />
+    <jar href="FoodCourt.jar" size="17871" download="eager" />
   </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="Shahrier.MainApplicationClass"  name="FoodCourt" />
+  <jfx:javafx-desc  width="800" height="600" main-class="mainpkg.MainApplicationClass"  name="FoodCourt" />
   <update check="always"/>
 </jnlp>
