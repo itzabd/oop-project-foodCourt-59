@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FoodCourtManagerController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abdullah.FoodCourtManagerController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -118,10 +118,10 @@
                         <AnchorPane layoutX="80.0" layoutY="173.0" prefHeight="504.0" prefWidth="536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <TableView layoutX="57.0" layoutY="52.0" prefHeight="306.0" prefWidth="536.0" AnchorPane.bottomAnchor="198.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <columns>
-                                  <TableColumn prefWidth="106.0" text="C1" />
-                                  <TableColumn prefWidth="82.0" text="C2" />
-                                </columns>
+                                 <columns>
+                                    <TableColumn prefWidth="106.0" text="C1" />
+                                    <TableColumn prefWidth="82.0" text="C2" />
+                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
@@ -130,29 +130,29 @@
                </center>
                <top>
                   <MenuBar prefHeight="25.0" prefWidth="782.0" BorderPane.alignment="CENTER">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="File">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Edit">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Settings">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                              <MenuItem mnemonicParsing="false" text="Change Password" />
-                        </items>
-                      </Menu>
-                        <Menu mnemonicParsing="false" text="Logout">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                          </items>
+                     <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Close" />
+                           </items>
                         </Menu>
-                    </menus>
+                        <Menu mnemonicParsing="false" text="Edit">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Delete" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Settings">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="About" />
+                              <MenuItem mnemonicParsing="false" text="Change Password" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Logout">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Action 1" />
+                           </items>
+                        </Menu>
+                     </menus>
                   </MenuBar>
                </top>
             </BorderPane>
