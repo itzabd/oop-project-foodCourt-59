@@ -203,7 +203,7 @@
                               <TextField layoutX="44.0" layoutY="441.0" prefHeight="45.0" prefWidth="337.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="reviewApplication_scene1" layoutX="10.0" layoutY="10.0" prefHeight="524.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="reviewApplication_scene1" layoutX="10.0" layoutY="10.0" prefHeight="524.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="14.0" prefHeight="38.0" prefWidth="301.0" text="Sales Report" textAlignment="CENTER" wrapText="true">
                                  <font>
