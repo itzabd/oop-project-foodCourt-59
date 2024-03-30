@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -12,6 +16,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -203,11 +209,149 @@
                               <TextField layoutX="44.0" layoutY="441.0" prefHeight="45.0" prefWidth="337.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="reviewApplication_scene1" layoutX="10.0" layoutY="10.0" prefHeight="524.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="salesReportScene" layoutX="10.0" layoutY="10.0" prefHeight="524.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="14.0" prefHeight="38.0" prefWidth="301.0" text="Sales Report" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <AreaChart layoutX="35.0" layoutY="184.0" prefHeight="288.0" prefWidth="466.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </AreaChart>
+                              <Label layoutX="70.0" layoutY="86.0" text="Chart Type:" />
+                              <ComboBox layoutX="170.0" layoutY="82.0" prefHeight="25.0" prefWidth="129.0" />
+                              <Button layoutX="309.0" layoutY="84.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="55.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Load" />
+                              <Label layoutX="70.0" layoutY="118.0" text="Report Type:" />
+                              <ComboBox layoutX="170.0" layoutY="114.0" prefHeight="25.0" prefWidth="129.0" />
+                              <Label layoutX="70.0" layoutY="149.0" text="Sales Report of:" />
+                              <ComboBox layoutX="170.0" layoutY="145.0" prefHeight="25.0" prefWidth="129.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="complaintsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="13.0" prefHeight="38.0" prefWidth="301.0" text="Complaints" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TreeTableView layoutX="48.0" layoutY="83.0" prefHeight="152.0" prefWidth="424.0">
+                                <columns>
+                                  <TreeTableColumn prefWidth="91.0" text="Complaint ID" />
+                                  <TreeTableColumn prefWidth="117.0" text="From" />
+                                    <TreeTableColumn prefWidth="215.0" text="Details" />
+                                </columns>
+                              </TreeTableView>
+                              <TextArea layoutX="47.0" layoutY="289.0" prefHeight="146.0" prefWidth="426.0" />
+                              <Button layoutX="111.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Delete" />
+                              <Button layoutX="215.0" layoutY="448.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Response" />
+                              <Button layoutX="47.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Load" />
+                              <Button layoutX="178.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Clear" />
+                              <ComboBox layoutX="47.0" layoutY="449.0" prefWidth="150.0" promptText="Select Complain ID" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="resolvePaymentDisputeScene" prefHeight="504.0" prefWidth="536.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TreeTableView layoutX="13.0" layoutY="72.0" prefHeight="157.0" prefWidth="512.0">
+                                <columns>
+                                  <TreeTableColumn prefWidth="107.0" text="Stall ID" />
+                                  <TreeTableColumn prefWidth="184.0" text="Stall Name" />
+                                    <TreeTableColumn prefWidth="131.0" text="Payment Status" />
+                                    <TreeTableColumn prefWidth="95.0" text="Due" />
+                                </columns>
+                              </TreeTableView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Resolve Payment Dispute" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox layoutX="164.0" layoutY="244.0" mnemonicParsing="false" text="Unpaid" />
+                              <CheckBox layoutX="241.0" layoutY="244.0" mnemonicParsing="false" text="Paid" />
+                              <CheckBox layoutX="305.0" layoutY="244.0" mnemonicParsing="false" text="Show All" />
+                              <Button layoutX="115.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Show details" />
+                              <Button layoutX="225.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Edit Status" />
+                              <Button layoutX="321.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Send Warning" />
+                              <TextArea layoutX="15.0" layoutY="321.0" prefHeight="102.0" prefWidth="508.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Send User Notice" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TextArea layoutX="85.0" layoutY="196.0" prefHeight="168.0" prefWidth="330.0" promptText="Send user notice" />
+                              <ComboBox layoutX="148.0" layoutY="105.0" prefHeight="25.0" prefWidth="141.0" promptText="User Type" />
+                              <Button layoutX="86.0" layoutY="427.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="329.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Clear" />
+                              <Label layoutX="87.0" layoutY="148.0" text="User ID" />
+                              <TextField layoutX="147.0" layoutY="144.0" prefHeight="25.0" prefWidth="143.0" promptText="USER ID\" />
+                              <Button layoutX="86.0" layoutY="387.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="329.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Send" />
+                              <Label layoutX="91.0" layoutY="109.0" text="Select" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Add new Policy" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="206.0" layoutY="294.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Download as PDF" />
+                              <Button layoutX="260.0" layoutY="375.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Load" />
+                              <TextArea layoutX="51.0" layoutY="182.0" prefHeight="100.0" prefWidth="453.0" />
+                              <Label layoutX="52.0" layoutY="69.0" text="Policy and Guideline:">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="52.0" layoutY="106.0" text="Policy name:">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="132.0" layoutY="103.0" prefHeight="25.0" prefWidth="109.0" />
+                              <Label layoutX="268.0" layoutY="106.0" text="Creation Date:">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker layoutX="365.0" layoutY="103.0" prefHeight="25.0" prefWidth="138.0" />
+                              <Label layoutX="52.0" layoutY="155.0" text="Policy Description:">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="52.0" layoutY="379.0" text="Policy name:">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="141.0" layoutY="376.0" prefHeight="25.0" prefWidth="109.0" />
+                              <Label layoutX="52.0" layoutY="356.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextArea layoutX="50.0" layoutY="412.0" prefHeight="58.0" prefWidth="384.0" />
+                              <Button layoutX="444.0" layoutY="412.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="59.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Delete" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="347.0" prefHeight="4.0" prefWidth="68.0" text="Delete" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="130.0" layoutY="167.0" prefHeight="170.0" prefWidth="276.0" text="Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
                                  </font>
                               </Label>
                            </children>
