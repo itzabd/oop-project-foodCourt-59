@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Saif.FoodDeliveryPartnerUserDashBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Saif.StallManagerUserDashBoardController">
    <left>
       <VBox alignment="CENTER" prefHeight="524.0" prefWidth="156.0" spacing="10.0" style="-fx-background-color: #2d6791cc;" BorderPane.alignment="TOP_LEFT">
          <children>
@@ -19,18 +19,19 @@
               <menus>
                   <Menu mnemonicParsing="false" style="-fx-background-color: #2d9bb7;" text="User Profile">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#editProfileMenuItem" text="Edit Profile" />
-                        <MenuItem mnemonicParsing="false" onAction="#logOutMenuItem" text="Log Out" />
+                      <MenuItem mnemonicParsing="false" onAction="#EditProfileMenuItem" text="Edit Profile" />
+                        <MenuItem mnemonicParsing="false" onAction="#logOutMenuItem" text="log Out" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" style="-fx-background-color: #2d9bb7;" text="Contract">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" onAction="#contractOfFoodDeliveryPartner" text="Contract of Food Delivery Partner" />
+                        <MenuItem mnemonicParsing="false" onAction="#contractOfFoodCourtManager" text="Contract of Food Court Manager" />
                      </items>
                   </Menu>
               </menus>
             </MenuBar>
-            <Button mnemonicParsing="false" onAction="#reviewContractButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Renew Contract " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#reviewContractButton" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="REVIEW CONTRACT" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -41,7 +42,7 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#checkDeliveryButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Check Delivery " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#addDeliveryButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="ADD DELIVERY / menu" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -52,7 +53,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#shareDeliveryPartnerButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Cancel /  Share Current Delivery" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#addOfferButton" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="ADD OFFER" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -63,7 +64,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#notifyCustomerButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Notify Customer" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#reviewApplicationButton" prefHeight="61.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="REVIEW APPLICATION" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -74,7 +75,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#applyForEquipmentButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Apply For Equipment" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#prepareBillButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="PREPARE BILL" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -85,7 +86,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#generateIncomeButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Generate Income Report" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#GenerateReportButton" prefHeight="62.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Generate Income Report" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -96,7 +97,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#applicationButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Application For Unavailability" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#reviewRatingButton" prefHeight="65.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="REVIEW CUSTOMER RATINGS" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -107,7 +108,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#reportButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Report To Stall Manager" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#reportButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Report " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -128,12 +129,12 @@
       <Insets />
    </opaqueInsets>
    <center>
-      <AnchorPane prefHeight="239.0" prefWidth="844.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="478.0" prefWidth="613.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <AnchorPane prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="481.0" layoutY="7.0" prefHeight="31.0" prefWidth="414.0" text="Food Delivery Partner's User DashBoard" textAlignment="CENTER" textFill="#193a6b" underline="true" wrapText="true">
+            <Label layoutX="481.0" layoutY="7.0" prefHeight="31.0" prefWidth="468.0" text="Stall / Restaurant Manager's User DashBoard" textAlignment="CENTER" textFill="#193a6b" underline="true" wrapText="true">
                <font>
                   <Font name="Calisto MT Bold Italic" size="25.0" />
                </font>
