@@ -106,12 +106,12 @@
                            <bottom>
                               <AnchorPane prefHeight="88.0" prefWidth="217.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button layoutX="14.0" layoutY="35.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="&lt; Back" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button layoutX="14.0" layoutY="35.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="&lt; Back" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="123.0" layoutY="35.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Home" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button layoutX="123.0" layoutY="35.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Home" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -295,7 +295,7 @@
                               <Label layoutX="91.0" layoutY="109.0" text="Select" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Add new Policy" textAlignment="CENTER" wrapText="true">
                                  <font>
