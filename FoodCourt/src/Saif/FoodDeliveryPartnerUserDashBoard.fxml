@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="900" prefHeight="453.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Saif.FoodDeliveryPartnerUserDashBoardController">
+<BorderPane maxHeight="900" prefHeight="597.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Saif.FoodDeliveryPartnerUserDashBoardController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <center>
-      <AnchorPane prefHeight="100.0" prefWidth="9" style="-fx-background-color: #98b8d0;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="562.0" prefWidth="225.0" style="-fx-background-color: #98b8d0;" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="660.0" prefWidth="173.0" BorderPane.alignment="CENTER">
          <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #2d6791cc;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="392.0" prefWidth="227.0" spacing="10.0" style="-fx-background-color: #2d6791cc;" BorderPane.alignment="CENTER">
                <children>
                   <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="219.0" style="-fx-background-color: #a7bfe4;">
                     <menus>
@@ -38,7 +38,7 @@
                         </Menu>
                     </menus>
                   </MenuBar>
-                  <Button mnemonicParsing="false" onAction="#reviewContractButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Renew Contract " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="reviewContractButtonId" mnemonicParsing="false" onAction="#reviewContractButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Renew Contract " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -49,7 +49,7 @@
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#checkDeliveryButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Check Delivery " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="checkDeliveryButtonId" mnemonicParsing="false" onAction="#checkDeliveryButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Check Delivery " textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#shareDeliveryPartnerButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Cancel /  Share Current Delivery" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="shareDeliveryPartnerButtonId" mnemonicParsing="false" onAction="#shareDeliveryPartnerButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Cancel /  Share Current Delivery" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -71,7 +71,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#notifyCustomerButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Notify Customer" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="notifyCustomerButtonId" mnemonicParsing="false" onAction="#notifyCustomerButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Notify Customer" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#applyForEquipmentButton" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Apply For Equipment" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="applyForEquipmentButtonId" mnemonicParsing="false" onAction="#applyForEquipmentButton" prefHeight="62.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Request Equipment" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -93,7 +93,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#generateIncomeButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Generate Income Report" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="generateIncomeButtonId" mnemonicParsing="false" onAction="#generateIncomeButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Generate Income Report" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -104,7 +104,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#applicationButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Application For Unavailability" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="applicationButtonId" mnemonicParsing="false" onAction="#applicationButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Application For Unavailability" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -115,7 +115,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#reportButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Report To Stall Manager" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="reportButtonId" mnemonicParsing="false" onAction="#reportButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Report To Stall Manager" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -143,8 +143,25 @@
                </children></AnchorPane>
          </top>
          <bottom>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </left>
+   <bottom>
+      <AnchorPane prefHeight="80.0" prefWidth="645.0" style="-fx-background-color: #98b8d0;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="562.0" prefWidth="126.0" style="-fx-background-color: #98b8d0;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutY="516.0" mnemonicParsing="false" onAction="#backButton" prefHeight="32.0" prefWidth="107.0" style="-fx-background-color: #244b81;" text="Back" textAlignment="CENTER" textFill="#90baf2" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </Button>
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>
