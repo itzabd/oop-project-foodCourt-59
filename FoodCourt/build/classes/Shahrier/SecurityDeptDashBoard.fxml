@@ -15,11 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< Updated upstream
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Shahrier.SecurityDeptDashBoardController">
-=======
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.SecurityDeptDashBoardController">
->>>>>>> Stashed changes
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -30,35 +26,43 @@
                         <Button fx:id="empManageBtn" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Employee Management">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="empReportBtn" layoutX="9.0" layoutY="156.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Report For Daily Employee" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="newVehicleRgBtn" layoutX="9.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Register New Vehicle">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="vehicleInfoTakingBtn" layoutX="8.0" layoutY="294.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Take Vehicle Info">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="reportForVechilebtn" layoutX="8.0" layoutY="340.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Daily Report For All Vehicle" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="emgAlertSendingBtn" layoutX="8.0" layoutY="386.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Sent Emergency Alert ">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="responseToOtherUsersBtn" layoutX="8.0" layoutY="432.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Resnonse To Other User">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Button fx:id="empSessionManageBtn" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Session Management " textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="14.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <Label layoutX="28.0" layoutY="17.0" text="Security Depertmet" textFill="#dddddd">
                            <font>
                               <Font name="System Bold" size="18.0" />
