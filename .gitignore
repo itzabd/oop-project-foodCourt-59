@@ -9,3 +9,5 @@
 /FoodCourt/dist/
 FoodCourt/dist/FoodCourt.jar
 *.jar
+*.jar.properties
+*.jnlp
