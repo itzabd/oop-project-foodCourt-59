@@ -8,14 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< Updated upstream
-    <jar href="FoodCourt.jar" size="17867" download="eager" />
-  </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="mainpkg.MainApplicationClass"  name="FoodCourt" />
-=======
-    <jar href="FoodCourt.jar" size="20404" download="eager" />
+    <jar href="FoodCourt.jar" size="18398" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="Main.mainpkg"  name="FoodCourt" />
->>>>>>> Stashed changes
   <update check="always"/>
 </jnlp>
