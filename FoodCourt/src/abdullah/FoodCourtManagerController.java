@@ -23,9 +23,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FoodCourtManagerController implements Initializable {
 
-    @FXML    private Label userNameAfterLogin;
+    @FXML   private Label userNameAfterLogin;
     @FXML    private Button saleReport_btn;
-    @FXML    private Button back_btn;
     @FXML    private Button home_btn;
     @FXML    private Button stallDetails_btn;
     @FXML    private Button sendUserNotice_btn;
@@ -43,6 +42,8 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private AnchorPane resolvePaymentDisputeScene;
     @FXML    private AnchorPane complaintsScene;
     @FXML    private AnchorPane addNewPolicy_scene;
+    
+    
 
 
     /**
