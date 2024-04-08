@@ -20,44 +20,25 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FoodSupplierDashboardController implements Initializable {
 
-    @FXML
-    private Button contractManagementBtn;
-    @FXML
-    private Button invoiceGenerationBtn;
-    @FXML
-    private Button paymentProcessingBtn;
-    @FXML
-    private Button ratingAndFeedbackBtn;
-    @FXML
-    private Button viewInventoryStallBtn;
-    @FXML
-    private Button orderTakingBtn;
-    @FXML
-    private Button monthlyReportGenerateBtn;
-    @FXML
-    private Button productManagementBtn;
-    @FXML
-    private Label securityDeptDashboardUserNameLabel;
-    @FXML
-    private Button homeReturnBtn;
-    @FXML
-    private AnchorPane productManagementFrame;
-    @FXML
-    private AnchorPane orderTakingFrame;
-    @FXML
-    private AnchorPane paymentProcessingFrame;
-    @FXML
-    private AnchorPane invoiceGenerationFrame;
-    @FXML
-    private AnchorPane contractManagementFrame;
-    @FXML
-    private AnchorPane viewInventoryFrame;
-    @FXML
-    private AnchorPane generateMonthlyReportBtn;
-    @FXML
-    private AnchorPane ratingAndFeedbackFrame;
-    @FXML
-    private AnchorPane homePageFoodsupplier;
+    @FXML private Button contractManagementBtn;
+    @FXML private Button invoiceGenerationBtn;
+    @FXML private Button paymentProcessingBtn;
+    @FXML private Button ratingAndFeedbackBtn;
+    @FXML private Button viewInventoryStallBtn;
+    @FXML private Button orderTakingBtn;
+    @FXML private Button monthlyReportGenerateBtn;
+    @FXML private Button productManagementBtn;
+    @FXML private Label securityDeptDashboardUserNameLabel;
+    @FXML private Button homeReturnBtn;
+    @FXML private AnchorPane productManagementFrame;
+    @FXML private AnchorPane orderTakingFrame;
+    @FXML private AnchorPane paymentProcessingFrame;
+    @FXML private AnchorPane invoiceGenerationFrame;
+    @FXML private AnchorPane contractManagementFrame;
+    @FXML private AnchorPane viewInventoryFrame;
+    @FXML private AnchorPane generateMonthlyReportBtn;
+    @FXML private AnchorPane ratingAndFeedbackFrame;
+    @FXML private AnchorPane homePageFoodsupplier;
 
     /**
      * Initializes the controller class.
