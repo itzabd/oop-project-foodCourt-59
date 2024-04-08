@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -38,6 +39,16 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     @FXML  private Button forgotPassTologinPage;
     @FXML  private AnchorPane createNewUserFrame;
     @FXML  private Button createUserPageToLoginPage;
+    @FXML
+    private ComboBox<?> selectAuserForCreateAccComBox;
+    @FXML
+    private TextField createUserNameTextField;
+    @FXML
+    private PasswordField newUserPassField;
+    @FXML
+    private PasswordField newUserConfirmPassField;
+    @FXML
+    private DatePicker createAccDatePicker;
 
     /**
      * Initializes the controller class.
@@ -96,6 +107,10 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    @FXML
+    private void newUserConfirmBtn(ActionEvent event) {
     }
     
 }
