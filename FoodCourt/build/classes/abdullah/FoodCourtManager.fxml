@@ -44,7 +44,7 @@
                            <center>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="stallManagement_btn" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Stall Management" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button fx:id="regStall_btn" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Register Stall" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -64,7 +64,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="complaint_btn" layoutX="9.0" layoutY="182.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Complaints" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button fx:id="complaint_btn" layoutX="9.0" layoutY="182.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Check Complaints" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
