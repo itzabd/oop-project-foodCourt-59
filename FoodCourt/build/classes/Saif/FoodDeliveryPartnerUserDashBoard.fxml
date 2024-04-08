@@ -222,7 +222,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="applyForEquipmentButtonId" mnemonicParsing="false" onAction="#applyForEquipmentButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Request Equipment" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="applyForEquipmentButtonId" mnemonicParsing="false" onAction="#applyForEquipmentButton" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Request Equipment" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -233,7 +233,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="generateIncomeButtonId" mnemonicParsing="false" onAction="#generateIncomeButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Income Report" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="generateIncomeButtonId" mnemonicParsing="false" onAction="#generateIncomeButton" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Income Report" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -244,7 +244,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="applicationButtonId" mnemonicParsing="false" onAction="#applicationButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Application For Unavailability" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="applicationButtonId" mnemonicParsing="false" onAction="#applicationButton" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Application For Unavailability" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -255,7 +255,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="reportButtonId" mnemonicParsing="false" onAction="#reportButton" prefHeight="49.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Feed Back" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button fx:id="reportButtonId" mnemonicParsing="false" onAction="#reportButton" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Feed Back" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
