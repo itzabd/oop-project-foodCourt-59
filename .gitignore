@@ -7,3 +7,9 @@
 /Abd/nbproject/private/
 /FoodCourt_abd/nbproject/private/
 /FoodCourt/dist/
+FoodCourt/dist/FoodCourt.jnlp
+FoodCourt/dist/FoodCourt.jar
+FoodCourt/dist/FoodCourt.jnlp
+*.jar
+FoodCourt/dist/FoodCourt.html
+FoodCourt/build/built-jar.properties
