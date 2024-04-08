@@ -75,6 +75,7 @@ public class FoodSupplierDashboardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("TEST");
         supplierItems = new ArrayList<>();
         ObjectInputStream ois = null;
         pieChart.getData().clear();
