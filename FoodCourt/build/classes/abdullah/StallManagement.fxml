@@ -15,7 +15,7 @@
       <Button layoutX="61.0" layoutY="261.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="413.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
       <Button layoutX="165.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
       <Button layoutX="286.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Update" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Stall Management" textAlignment="CENTER" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="6.0" prefHeight="38.0" prefWidth="216.0" text="Register Stall" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

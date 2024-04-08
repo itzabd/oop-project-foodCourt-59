@@ -44,7 +44,8 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        logInPageUserTypeCombox.getItems().addAll("Security Depertment","Food Supplier");
+        logInPageUserTypeCombox.getItems().addAll("Security Depertment","Food Supplier"
+                                                     ,"Food Court Manager", "Online Customer");
     }    
 
     @FXML
@@ -91,6 +92,20 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         
         else if(logInPageUserTypeCombox.getValue()=="Food Supplier"){
             Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/FoodSupplierDashboard.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        else if(logInPageUserTypeCombox.getValue()=="Food Court Manager"){
+            Parent root = FXMLLoader.load(getClass().getResource("/abdullah/FoodCourtManager.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        else if(logInPageUserTypeCombox.getValue()=="Online Customer"){
+            Parent root = FXMLLoader.load(getClass().getResource("/abdullah/OnlineCustomer.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
