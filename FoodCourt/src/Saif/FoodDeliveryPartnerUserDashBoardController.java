@@ -13,7 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -49,16 +52,23 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
     @FXML
     private ComboBox<String> contractFDPComboBDeliveryShift;
     @FXML
-    private DatePicker contractFDPDatePStart;
+    private DatePicker contractFDPDateStart;
     @FXML
-    private DatePicker contractFDPDatePEnd;
+    private DatePicker contractFDPDateEnd;
     @FXML
     private Button renewContractButtonId;
     @FXML
     private Button loadInTableButtonId;
     @FXML
     private Button submitButtonId;
+    @FXML
+    private TableView<Contract> contractTableView;
+    @FXML
+    private TableColumn<Contract, String> contractSelectedFieldColumn;
+    @FXML
+    private TableColumn<Contract, String> contractDataInputColumn;
     
+    private ObservableList<Contract> contract;
 
     /**
      * Initializes the controller class.
@@ -73,7 +83,10 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
         
         ObservableList deliveryShift = FXCollections.observableArrayList("Morning","Noon","Evening","Night");
         contractFDPComboBDeliveryShift.setItems(deliveryShift);
-    
+                
+        
+        
+        
     }    
 
     @FXML
@@ -214,6 +227,41 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
     @FXML
     private void loadInTableButton(ActionEvent event) {
         loadInTableButtonId.setStyle("-fx-background-color : #98a2b0;" );
+        
+        contract = FXCollections.observableArrayList();
+        contractTableView.setItems(contract);
+        String FDPName = contractFDPName.getText();
+        contract.add(new Contract("Name",FDPName));
+        contractSelectedFieldColumn.setCellValueFactory(new PropertyValueFactory("selectedField"));
+        contractDataInputColumn.setCellValueFactory(new PropertyValueFactory("dataInput"));
+        
+        
+        
+        
+//        String dataInputname = contractFDPName.getText();
+//        String selectedFieldnumber = "Phone Number";
+//        String dataInputnumber = contractFDPNumber.getText();
+//        String selectedFieldemail = "Email";
+//        String dataInputemail = contractFDPEmail.getText();
+//        String selectedFieldDeliverytype = "Delivery Type";
+//        String dataInputDeliverytype = contractFDPComboBDeliveryType.getValue();
+//        String selectedFieldDeliveryshift = "Shift Type";
+//        String dataInputDeliveryshift = contractFDPComboBDeliveryShift.getValue();
+//        String selectedFieldStartdate = "Starting Date";
+//        String dataInputStartdate = contractFDPDateStart.getValue().toString();
+//        String selectedFieldEnddate = "Ending Date";
+//        String dataInputEnddate = contractFDPDateEnd.getValue().toString();
+
+
+//        contract.add(new Contract(selectedFieldname,dataInputname,selectedFieldnumber,dataInputnumber,selectedFieldemail,dataInputemail,selectedFieldDeliverytype,dataInputDeliverytype,selectedFieldDeliveryshift,dataInputDeliveryshift,selectedFieldStartdate,dataInputStartdate,selectedFieldEnddate,dataInputEnddate));
+//        contractSelectedFieldColumn.setCellValueFactory(new PropertyValueFactory<> ("selectedFieldName"));
+//        contractDataInputColumn.setCellValueFactory(new PropertyValueFactory<>("dataInputName"));
+//        contractSelectedFieldColumn.setCellValueFactory(new PropertyValueFactory<> ("selectedFieldNumber"));
+//        contractDataInputColumn.setCellValueFactory(new PropertyValueFactory<>("dataInputNumber"));
+//        contractSelectedFieldColumn.setCellValueFactory(new PropertyValueFactory<> ("selectedFieldEmail"));
+//        contractDataInputColumn.setCellValueFactory(new PropertyValueFactory<>("dataInputEmail"));
+//        
+    
     }
 
     @FXML
@@ -224,3 +272,5 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
 
     
 }
+
+
