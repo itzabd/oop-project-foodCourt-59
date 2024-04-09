@@ -24,6 +24,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -87,10 +89,6 @@ public class FoodCourtManagerController implements Initializable {
     private TableColumn<Stall, String> stallType_TC;
     @FXML
     private ComboBox<String> stallTypeCB;
-    @FXML
-    private TextArea testTextArea;
-    
-    //private ObservableList<Stall> StallList = FXCollections.observableArrayList();
 
 
     /**
@@ -99,6 +97,7 @@ public class FoodCourtManagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
+  
         stallTypeCB.getItems().addAll("Fast Food", "Restaurant",
                 "Pizza and Italian Cuisine","Coffee and Tea");
         StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
@@ -106,6 +105,33 @@ public class FoodCourtManagerController implements Initializable {
         stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
         
+        ObjectInputStream ois = null;
+        {
+            ObservableList<Stall> stalllist = FXCollections.observableArrayList();
+            try {
+                Stall s;
+
+                ois = new ObjectInputStream(new FileInputStream("StallObjects.bin"));
+
+                while (true) {
+                    s = (Stall) ois.readObject();
+                    stalllist.add(s);
+                    tableView.setItems(stalllist);
+                }
+
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+
+            } catch (Exception ex) {
+                try {
+                    if (ois != null) {
+                        ois.close();
+                    }
+                } catch (IOException ex1) {
+                }
+            }
+
+        }
 //        tableView.setItems(this.StallList());
     }    
 
@@ -214,53 +240,24 @@ public class FoodCourtManagerController implements Initializable {
 
     @FXML
     private void addButton_regStallOnClick(ActionEvent event) {
-        File f = null;
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
-        ObservableList<Stall> stalllist = FXCollections.observableArrayList();
-        try {
-            f = new File("StallObjects.bin");
-            if (f.exists()) {
-                fos = new FileOutputStream(f, true);
-                oos = new AppendableObjectOutputStream(fos);
-            } else {
-                fos = new FileOutputStream(f);
-                oos = new ObjectOutputStream(fos);
-            }
-            Stall s = new Stall(stallNameTF.getText(),
-                    stallManagerNameTF.getText(), stallTypeCB.getValue(),
-                    RentFromTF.getValue(), RentTToTF.getValue(),
-                    Integer.parseInt(contactNumberTF.getText())
-            );
-            stalllist.add(s);
-            tableView.setItems(stalllist);
-            oos.writeObject(s);
-            stallNameTF.clear();
-            stallManagerNameTF.clear();
-            stallTypeCB.setValue(null);
-            RentFromTF.setValue(null);
-            RentTToTF.setValue(null);
-            contactNumberTF.clear();
-        } catch (IOException ex) {
-            Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.close();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        // Check if all data fields are entered or not
+        if (stallNameTF.getText().isEmpty() || stallManagerNameTF.getText().isEmpty()
+                || stallTypeCB.getValue() == null || RentFromTF.getValue() == null
+                || RentTToTF.getValue() == null || contactNumberTF.getText().isEmpty()) {
+
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Incomplete Data");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter all required fields");
+            alert.showAndWait();
+            return;
         }
 
-    }
-
-    private Stall stall;
-    @FXML
-    private void loadTableOnClick(ActionEvent event) {
+        ObservableList<Stall> stalllist = FXCollections.observableArrayList();
         ObjectInputStream ois = null;
         {
-            ObservableList<Stall> stalllist = FXCollections.observableArrayList();
+
             try {
                 Stall s;
 
@@ -285,5 +282,47 @@ public class FoodCourtManagerController implements Initializable {
             }
 
         }
+        File f = null;
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+
+        try {
+            f = new File("StallObjects.bin");
+            if (f.exists()) {
+                fos = new FileOutputStream(f, true);
+                oos = new AppendableObjectOutputStream(fos);
+            } else {
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);
+            }
+            Stall s = new Stall(stallNameTF.getText(),
+                    stallManagerNameTF.getText(), stallTypeCB.getValue(),
+                    RentFromTF.getValue(), RentTToTF.getValue(),
+                    Integer.parseInt(contactNumberTF.getText())
+            );
+
+            oos.writeObject(s);
+            stalllist.add(s);
+            tableView.setItems(stalllist);
+
+            stallNameTF.clear();
+            stallManagerNameTF.clear();
+            stallTypeCB.setValue(null);
+            RentFromTF.setValue(null);
+            RentTToTF.setValue(null);
+            contactNumberTF.clear();
+        } catch (IOException ex) {
+            Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (oos != null) {
+                    oos.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
+
 }
