@@ -28,6 +28,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -38,6 +39,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
+import java.io.EOFException;
+
 
 /**
  * FXML Controller class
@@ -100,32 +103,59 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private TableColumn<Stall, String> StallName_TC;
     @FXML
-    private TableColumn<Stall, Integer> contactNo_TC;
+    private TableColumn<Stall, String> contactNo_TC;
     @FXML
     private TableColumn<Stall, String> stallManagerName_TC;
     @FXML
     private TableColumn<Stall, String> stallType_TC;
     @FXML
     private ComboBox<String> stallTypeCB;
+    @FXML
+    private TableView<Stall> tableView1;
+    @FXML
+    private TableColumn<Stall, String> S2_StallName_TC;
+    @FXML
+    private TableColumn<Stall, String> S2_contactNo_TC;
+    @FXML
+    private TableColumn<Stall, String> S2_stallManagerName_TC;
+    @FXML
+    private TableColumn<Stall, String> S2_stallType_TC;
+    @FXML
+    private TextField S2_searchTF;
+    @FXML
+    private AnchorPane stall_detailsScene1;
+    @FXML
+    private TextField S2_searchTF1;
+    @FXML
+    private TableView<Stall> tableView11;
+    @FXML
+    private TableColumn<Stall, String> S2_StallName_TC1;
+    @FXML
+    private TableColumn<Stall, String> S2_contactNo_TC1;
+    @FXML
+    private TableColumn<Stall, String> S2_stallManagerName_TC1;
+    @FXML
+    private TableColumn<Stall, String> S2_stallType_TC1;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        //#for Scene 1 Start
         stallTypeCB.getItems().addAll("Fast Food", "Restaurant",
                 "Pizza and Italian Cuisine", "Coffee and Tea");
         StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
-        contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, Integer>("contactNo"));
+        contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("contactNo"));
         stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
         //This part allows to edit in Table
-        tableView.setEditable(true);
-        StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
-        stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
-        contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        tableView1.setEditable(true);
+        S2_StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+        S2_stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+        S2_contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn());
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tableView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         ObjectInputStream ois = null;
         {
@@ -139,6 +169,7 @@ public class FoodCourtManagerController implements Initializable {
                     s = (Stall) ois.readObject();
                     stalllist.add(s);
                     tableView.setItems(stalllist);
+                    tableView1.setItems(stalllist);
                 }
 
             } catch (RuntimeException e) {
@@ -153,9 +184,21 @@ public class FoodCourtManagerController implements Initializable {
                 }
             }
 
+        }//#for Scene 1 END
+     //#for Scene 2 Start
+        S2_StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
+        S2_contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("contactNo"));
+        S2_stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
+        S2_stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
+    
+    tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if (newSelection != null) {
+            tableView.getSelectionModel().clearSelection();
+            tableView.getSelectionModel().select(newSelection);
         }
-//        tableView.setItems(this.StallList());
+    });
     }
+    
 
     @FXML
     private void sceneSwitch(ActionEvent event) {
@@ -312,7 +355,7 @@ public class FoodCourtManagerController implements Initializable {
             Stall s = new Stall(stallNameTF.getText(),
                     stallManagerNameTF.getText(), stallTypeCB.getValue(),
                     RentFromTF.getValue(), RentTToTF.getValue(),
-                    Integer.parseInt(contactNumberTF.getText())
+                    contactNumberTF.getText()
             );
 
             oos.writeObject(s);
@@ -338,15 +381,12 @@ public class FoodCourtManagerController implements Initializable {
         }
 
     }
-//        public ObservableList<Stall> getStall(){
-//        ObservableList<Stall> stl = FXCollections.observableArrayList();
-//        return stl;
-//        }
+
 
     @FXML
     private void ChangeContactNumberTC(CellEditEvent edittedCell) {
         Stall stallSelected = tableView.getSelectionModel().getSelectedItem();
-        stallSelected.setContactNo(Integer.parseInt(edittedCell.getNewValue().toString()));
+        stallSelected.setContactNo((edittedCell.getNewValue().toString()));
         updateFile();
 
     }
@@ -369,6 +409,7 @@ public class FoodCourtManagerController implements Initializable {
     private void updateFile() {
         try (FileOutputStream fos = new FileOutputStream("StallObjects.bin"); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             ObservableList<Stall> stallList = tableView.getItems();
+            
             for (Stall stall : stallList) {
                 oos.writeObject(stall);
             }
@@ -399,6 +440,74 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private void back_btn(ActionEvent event) {
     }
+private ObservableList<Stall> filteredItems = FXCollections.observableArrayList();
+    @FXML
+    private void S2_searchButton(ActionEvent event) {
+       String X = S2_searchTF.getText().toLowerCase();
+    ObservableList<Stall> allItems = tableView.getItems();
+    filteredItems.clear();
 
+    for (Stall stall : allItems) {
+        if (stall.getStallName().toLowerCase().contains(X)
+                || stall.getStallManagerName().toLowerCase().contains(X)
+                || stall.getContactNo().toLowerCase().contains(X)
+                || stall.getStallType().toLowerCase().contains(X)) {
+            filteredItems.add(stall);
+        }
+    }
+    tableView1.setItems(filteredItems);
+    }
+
+    @FXML
+    private void S2_confirmButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void S2_stallName_TC(CellEditEvent edittedCell) {
+        Stall stallSelected = tableView1.getSelectionModel().getSelectedItem();
+        stallSelected.setStallName((edittedCell.getNewValue().toString()));
+        updateFile();
+        tableView.refresh();
+    }
+
+    @FXML
+    private void S2_CoontactNumber_TC(CellEditEvent edittedCell) {
+        Stall stallSelected = tableView1.getSelectionModel().getSelectedItem();
+        stallSelected.setContactNo((edittedCell.getNewValue().toString()));
+        updateFile();
+        tableView.refresh();
+    }
+
+    @FXML
+    private void S2_StallManagerName_TC(CellEditEvent edittedCell) {
+        Stall stallSelected = tableView1.getSelectionModel().getSelectedItem();
+        stallSelected.setStallManagerName((edittedCell.getNewValue().toString()));
+        updateFile();
+        tableView.refresh();
+    }
+    private void updateFile1() {
+        try (FileOutputStream fos = new FileOutputStream("StallObjects.bin", true); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        ObservableList<Stall> stallList = tableView1.getItems();
+        
+        for (Stall stall : stallList) {
+            oos.writeObject(stall);
+        }
+    } catch (IOException ex) {
+        Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+
+    @FXML
+    private void S2_StallType_TC(CellEditEvent event) {
+    }
+
+    @FXML
+    private void S2_loadButton(ActionEvent event) {
+
+        tableView1.setItems(tableView.getItems());
+    }
+
+
+    }
     
-}
+

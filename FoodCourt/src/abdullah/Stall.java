@@ -19,9 +19,9 @@ import javafx.collections.ObservableList;
 public class Stall implements Serializable {
     public String StallName,StallManagerName,StallType;
     public LocalDate RentFrom,RentTo;
-    public int contactNo;
+    public String contactNo;
 
-    public Stall(String StallName, String StallManagerName, String StallType, LocalDate RentFrom, LocalDate RentTo, int contactNo) {
+    public Stall(String StallName, String StallManagerName, String StallType, LocalDate RentFrom, LocalDate RentTo, String contactNo) {
         this.StallName = StallName;
         this.StallManagerName = StallManagerName;
         this.StallType = StallType;
@@ -85,11 +85,11 @@ public class Stall implements Serializable {
         this.RentTo = RentTo;
     }
 
-    public int getContactNo() {
+    public String getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(int contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 
