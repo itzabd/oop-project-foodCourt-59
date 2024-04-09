@@ -1,12 +1,9 @@
-
 package abdullah;
 
-import Shahrier.SupplierItem;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -37,6 +35,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 
 /**
  * FXML Controller class
@@ -45,27 +46,44 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FoodCourtManagerController implements Initializable {
 
-    @FXML   private Label userNameAfterLogin;
-    @FXML    private Button saleReport_btn;
-    @FXML    private Button home_btn;
-    @FXML    private Button stallDetails_btn;
-    @FXML    private Button sendUserNotice_btn;
-    @FXML    private Button complaint_btn;
-    @FXML    private Button ResolvePaymentDispute_btn;
-    @FXML    private Button addNewPolicy_btn;
-    @FXML    private Button reviewApplication_Btn;
-    @FXML    private Button regStall_btn;
-    @FXML    private AnchorPane dashboard;
-    @FXML    private AnchorPane stall_managementScene;
-    @FXML    private AnchorPane stall_detailsScene;
-    @FXML    private AnchorPane reviewApplication_scene;
-    @FXML    private AnchorPane salesReportScene;
-    @FXML    private AnchorPane sendUserNotice_scene;
-    @FXML    private AnchorPane resolvePaymentDisputeScene;
-    @FXML    private AnchorPane complaintsScene;
-    @FXML    private AnchorPane addNewPolicy_scene;
     @FXML
-    private Button back_btn;
+    private Label userNameAfterLogin;
+    @FXML
+    private Button saleReport_btn;
+    @FXML
+    private Button home_btn;
+    @FXML
+    private Button stallDetails_btn;
+    @FXML
+    private Button sendUserNotice_btn;
+    @FXML
+    private Button complaint_btn;
+    @FXML
+    private Button ResolvePaymentDispute_btn;
+    @FXML
+    private Button addNewPolicy_btn;
+    @FXML
+    private Button reviewApplication_Btn;
+    @FXML
+    private Button regStall_btn;
+    @FXML
+    private AnchorPane dashboard;
+    @FXML
+    private AnchorPane stall_managementScene;
+    @FXML
+    private AnchorPane stall_detailsScene;
+    @FXML
+    private AnchorPane reviewApplication_scene;
+    @FXML
+    private AnchorPane salesReportScene;
+    @FXML
+    private AnchorPane sendUserNotice_scene;
+    @FXML
+    private AnchorPane resolvePaymentDisputeScene;
+    @FXML
+    private AnchorPane complaintsScene;
+    @FXML
+    private AnchorPane addNewPolicy_scene;
     private ArrayList<Stall> StallArr;
     @FXML
     private TextField stallNameTF;
@@ -90,21 +108,25 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private ComboBox<String> stallTypeCB;
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
-  
+
         stallTypeCB.getItems().addAll("Fast Food", "Restaurant",
-                "Pizza and Italian Cuisine","Coffee and Tea");
+                "Pizza and Italian Cuisine", "Coffee and Tea");
         StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
         contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, Integer>("contactNo"));
         stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
-        
+        //This part allows to edit in Table
+        tableView.setEditable(true);
+        StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+        stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+        contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         ObjectInputStream ois = null;
         {
             ObservableList<Stall> stalllist = FXCollections.observableArrayList();
@@ -133,7 +155,7 @@ public class FoodCourtManagerController implements Initializable {
 
         }
 //        tableView.setItems(this.StallList());
-    }    
+    }
 
     @FXML
     private void sceneSwitch(ActionEvent event) {
@@ -147,8 +169,7 @@ public class FoodCourtManagerController implements Initializable {
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(false);
             addNewPolicy_scene.setVisible(false);
-        }
-        else if(event.getSource()==regStall_btn){
+        } else if (event.getSource() == regStall_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(true);
             stall_detailsScene.setVisible(false);
@@ -157,9 +178,8 @@ public class FoodCourtManagerController implements Initializable {
             sendUserNotice_scene.setVisible(false);
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(false);
-            addNewPolicy_scene.setVisible(false);    
-        }
-        else if(event.getSource()==stallDetails_btn){
+            addNewPolicy_scene.setVisible(false);
+        } else if (event.getSource() == stallDetails_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(true);
@@ -168,9 +188,8 @@ public class FoodCourtManagerController implements Initializable {
             sendUserNotice_scene.setVisible(false);
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(false);
-            addNewPolicy_scene.setVisible(false);    
-        }
-        else if(event.getSource()==reviewApplication_Btn){
+            addNewPolicy_scene.setVisible(false);
+        } else if (event.getSource() == reviewApplication_Btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(false);
@@ -179,9 +198,8 @@ public class FoodCourtManagerController implements Initializable {
             sendUserNotice_scene.setVisible(false);
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(false);
-            addNewPolicy_scene.setVisible(false);    
-        }
-        else if(event.getSource()==saleReport_btn){
+            addNewPolicy_scene.setVisible(false);
+        } else if (event.getSource() == saleReport_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(false);
@@ -190,9 +208,8 @@ public class FoodCourtManagerController implements Initializable {
             sendUserNotice_scene.setVisible(false);
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(false);
-            addNewPolicy_scene.setVisible(false);    
-        }
-        else if(event.getSource()==complaint_btn){
+            addNewPolicy_scene.setVisible(false);
+        } else if (event.getSource() == complaint_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(false);
@@ -202,8 +219,7 @@ public class FoodCourtManagerController implements Initializable {
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(true);
             addNewPolicy_scene.setVisible(false);    //ResolvePaymentDispute_btn
-        }
-        else if(event.getSource()==addNewPolicy_btn){
+        } else if (event.getSource() == addNewPolicy_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(false);
@@ -212,9 +228,8 @@ public class FoodCourtManagerController implements Initializable {
             sendUserNotice_scene.setVisible(false);
             resolvePaymentDisputeScene.setVisible(false);
             complaintsScene.setVisible(false);
-            addNewPolicy_scene.setVisible(true);    
-        }
-        else if(event.getSource()==ResolvePaymentDispute_btn){
+            addNewPolicy_scene.setVisible(true);
+        } else if (event.getSource() == ResolvePaymentDispute_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(false);
@@ -223,9 +238,8 @@ public class FoodCourtManagerController implements Initializable {
             sendUserNotice_scene.setVisible(false);
             resolvePaymentDisputeScene.setVisible(true);
             complaintsScene.setVisible(false);
-            addNewPolicy_scene.setVisible(false);    
-        }
-        else if(event.getSource()==sendUserNotice_btn){
+            addNewPolicy_scene.setVisible(false);
+        } else if (event.getSource() == sendUserNotice_btn) {
             dashboard.setVisible(false);
             stall_managementScene.setVisible(false);
             stall_detailsScene.setVisible(false);
@@ -324,5 +338,67 @@ public class FoodCourtManagerController implements Initializable {
         }
 
     }
+//        public ObservableList<Stall> getStall(){
+//        ObservableList<Stall> stl = FXCollections.observableArrayList();
+//        return stl;
+//        }
 
+    @FXML
+    private void ChangeContactNumberTC(CellEditEvent edittedCell) {
+        Stall stallSelected = tableView.getSelectionModel().getSelectedItem();
+        stallSelected.setContactNo(Integer.parseInt(edittedCell.getNewValue().toString()));
+        updateFile();
+
+    }
+
+    @FXML
+    private void ChangeStallManagerName(CellEditEvent edittedCell) {
+        Stall stallSelected = tableView.getSelectionModel().getSelectedItem();
+        stallSelected.setStallManagerName((edittedCell.getNewValue().toString()));
+        updateFile();
+    }
+
+    @FXML
+    private void ChangeStallNameCellEvent(CellEditEvent edittedCell) {
+        Stall stallSelected = tableView.getSelectionModel().getSelectedItem();
+        stallSelected.setStallName((edittedCell.getNewValue().toString()));
+        updateFile();
+
+    }
+
+    private void updateFile() {
+        try (FileOutputStream fos = new FileOutputStream("StallObjects.bin"); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            ObservableList<Stall> stallList = tableView.getItems();
+            for (Stall stall : stallList) {
+                oos.writeObject(stall);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void removeButtonOnclick(ActionEvent event) {
+        ObservableList<Stall> selectedStalls, allStalls;
+        allStalls = tableView.getItems();
+        selectedStalls = tableView.getSelectionModel().getSelectedItems();
+        if (selectedStalls.isEmpty()) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select an item to remove.");
+            alert.showAndWait();
+            return;
+        }
+        for (Stall stall : selectedStalls) {
+            allStalls.remove(stall);
+        }
+        updateFile();
+    }
+
+    @FXML
+    private void back_btn(ActionEvent event) {
+    }
+
+    
 }

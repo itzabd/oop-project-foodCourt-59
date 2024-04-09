@@ -106,7 +106,7 @@
                            <bottom>
                               <AnchorPane prefHeight="88.0" prefWidth="217.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="back_btn" layoutX="130.0" layoutY="35.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Back" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button layoutX="130.0" layoutY="35.0" mnemonicParsing="false" onAction="#back_btn" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Back" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -127,11 +127,10 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
+                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
                            <children>
                               <Button layoutX="62.0" layoutY="225.0" mnemonicParsing="false" onAction="#addButton_regStallOnClick" prefHeight="27.0" prefWidth="413.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
-                              <Button layoutX="185.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
-                              <Button layoutX="269.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Update" />
+                              <Button layoutX="228.0" layoutY="454.0" mnemonicParsing="false" onAction="#removeButtonOnclick" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="6.0" prefHeight="38.0" prefWidth="216.0" text="Register Stall" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
@@ -151,9 +150,9 @@
                               <Label alignment="CENTER" layoutX="40.0" layoutY="193.0" prefHeight="28.0" prefWidth="106.0" text="Stall Type:" textAlignment="CENTER" />
                               <TableView fx:id="tableView" layoutX="25.0" layoutY="299.0" prefHeight="146.0" prefWidth="491.0">
                                  <columns>
-                                    <TableColumn fx:id="StallName_TC" prefWidth="92.0" text="Stall Name" />
-                                    <TableColumn fx:id="contactNo_TC" prefWidth="142.0" text="Contact Number" />
-                                    <TableColumn fx:id="stallManagerName_TC" prefWidth="149.0" text="Stall Manager Name" />
+                                    <TableColumn fx:id="StallName_TC" onEditCommit="#ChangeStallNameCellEvent" prefWidth="92.0" text="Stall Name" />
+                                    <TableColumn fx:id="contactNo_TC" onEditCommit="#ChangeContactNumberTC" prefWidth="142.0" text="Contact Number" />
+                                    <TableColumn fx:id="stallManagerName_TC" onEditCommit="#ChangeStallManagerName" prefWidth="149.0" text="Stall Manager Name" />
                                     <TableColumn fx:id="stallType_TC" prefWidth="88.0" text="Stall Type" />
                                  </columns>
                               </TableView>
@@ -185,7 +184,7 @@
                               <Line endX="397.0" layoutX="107.0" layoutY="290.0" startX="-75.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="dashboard" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="130.0" layoutY="167.0" prefHeight="170.0" prefWidth="276.0" text="Dashboard">
                                  <font>
