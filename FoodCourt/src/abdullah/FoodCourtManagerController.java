@@ -2,17 +2,37 @@
 package abdullah;
 
 import Shahrier.SupplierItem;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.Month;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -42,8 +62,35 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private AnchorPane resolvePaymentDisputeScene;
     @FXML    private AnchorPane complaintsScene;
     @FXML    private AnchorPane addNewPolicy_scene;
+    @FXML
+    private Button back_btn;
+    private ArrayList<Stall> StallArr;
+    @FXML
+    private TextField stallNameTF;
+    @FXML
+    private DatePicker RentFromTF;
+    @FXML
+    private DatePicker RentTToTF;
+    @FXML
+    private TextField stallManagerNameTF;
+    @FXML
+    private TextField contactNumberTF;
+    @FXML
+    private TableView<Stall> tableView;
+    @FXML
+    private TableColumn<Stall, String> StallName_TC;
+    @FXML
+    private TableColumn<Stall, Integer> contactNo_TC;
+    @FXML
+    private TableColumn<Stall, String> stallManagerName_TC;
+    @FXML
+    private TableColumn<Stall, String> stallType_TC;
+    @FXML
+    private ComboBox<String> stallTypeCB;
+    @FXML
+    private TextArea testTextArea;
     
-    
+    //private ObservableList<Stall> StallList = FXCollections.observableArrayList();
 
 
     /**
@@ -51,7 +98,15 @@ public class FoodCourtManagerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      
+        stallTypeCB.getItems().addAll("Fast Food", "Restaurant",
+                "Pizza and Italian Cuisine","Coffee and Tea");
+        StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
+        contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, Integer>("contactNo"));
+        stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
+        stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
+        
+//        tableView.setItems(this.StallList());
     }    
 
     @FXML
@@ -156,7 +211,79 @@ public class FoodCourtManagerController implements Initializable {
             addNewPolicy_scene.setVisible(false);    //ResolvePaymentDispute_btn
         }
     }
+
+    @FXML
+    private void addButton_regStallOnClick(ActionEvent event) {
+        File f = null;
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        ObservableList<Stall> stalllist = FXCollections.observableArrayList();
+        try {
+            f = new File("StallObjects.bin");
+            if (f.exists()) {
+                fos = new FileOutputStream(f, true);
+                oos = new AppendableObjectOutputStream(fos);
+            } else {
+                fos = new FileOutputStream(f);
+                oos = new ObjectOutputStream(fos);
+            }
+            Stall s = new Stall(stallNameTF.getText(),
+                    stallManagerNameTF.getText(), stallTypeCB.getValue(),
+                    RentFromTF.getValue(), RentTToTF.getValue(),
+                    Integer.parseInt(contactNumberTF.getText())
+            );
+            stalllist.add(s);
+            tableView.setItems(stalllist);
+            oos.writeObject(s);
+            stallNameTF.clear();
+            stallManagerNameTF.clear();
+            stallTypeCB.setValue(null);
+            RentFromTF.setValue(null);
+            RentTToTF.setValue(null);
+            contactNumberTF.clear();
+        } catch (IOException ex) {
+            Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (oos != null) {
+                    oos.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    private Stall stall;
+    @FXML
+    private void loadTableOnClick(ActionEvent event) {
+        ObjectInputStream ois = null;
+        {
+            ObservableList<Stall> stalllist = FXCollections.observableArrayList();
+            try {
+                Stall s;
+
+                ois = new ObjectInputStream(new FileInputStream("StallObjects.bin"));
+
+                while (true) {
+                    s = (Stall) ois.readObject();
+                    stalllist.add(s);
+                    tableView.setItems(stalllist);
+                }
+
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+
+            } catch (Exception ex) {
+                try {
+                    if (ois != null) {
+                        ois.close();
+                    }
+                } catch (IOException ex1) {
+                }
+            }
+
+        }
+    }
 }
-    
-        
-  

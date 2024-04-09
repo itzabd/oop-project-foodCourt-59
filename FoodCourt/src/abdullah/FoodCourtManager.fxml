@@ -116,6 +116,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
+                                    <Line endX="102.0" layoutX="115.0" layoutY="6.0" startX="-115.0" />
                                  </children>
                               </AnchorPane>
                            </bottom>
@@ -126,11 +127,11 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
+                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
                            <children>
-                              <Button layoutX="61.0" layoutY="261.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="413.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
-                              <Button layoutX="165.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
-                              <Button layoutX="286.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Update" />
+                              <Button layoutX="62.0" layoutY="225.0" mnemonicParsing="false" onAction="#addButton_regStallOnClick" prefHeight="27.0" prefWidth="413.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
+                              <Button layoutX="235.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
+                              <Button layoutX="313.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Update" />
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="6.0" prefHeight="38.0" prefWidth="216.0" text="Register Stall" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
@@ -139,27 +140,26 @@
                               <Label alignment="CENTER" layoutX="61.0" layoutY="69.0" prefHeight="28.0" prefWidth="62.0" text="Stall Name:" textAlignment="CENTER" />
                               <Label alignment="CENTER" layoutX="53.0" layoutY="97.0" prefHeight="28.0" prefWidth="128.0" text="Stall Manager Name:" textAlignment="CENTER" />
                               <Label alignment="CENTER" layoutX="60.0" layoutY="130.0" prefHeight="28.0" prefWidth="108.0" text="Rental Agreement :" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="56.0" layoutY="197.0" prefHeight="28.0" prefWidth="106.0" text="Contact Number:" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="60.0" layoutY="163.0" prefHeight="28.0" prefWidth="115.0" text="Space Requirement:" textAlignment="CENTER" />
-                              <TextField layoutX="216.0" layoutY="70.0" prefHeight="25.0" prefWidth="259.0" />
+                              <Label alignment="CENTER" layoutX="57.0" layoutY="161.0" prefHeight="28.0" prefWidth="106.0" text="Contact Number:" textAlignment="CENTER" />
+                              <TextField fx:id="stallNameTF" layoutX="216.0" layoutY="70.0" prefHeight="25.0" prefWidth="259.0" promptText="Stall Name" />
                               <Label alignment="CENTER" layoutX="166.0" layoutY="130.0" prefHeight="28.0" prefWidth="62.0" text="From -" textAlignment="CENTER" />
-                              <DatePicker layoutX="218.0" layoutY="132.0" prefHeight="25.0" prefWidth="113.0" />
-                              <DatePicker layoutX="362.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-                              <Label alignment="CENTER" layoutX="314.0" layoutY="131.0" prefHeight="28.0" prefWidth="62.0" text="To -" textAlignment="CENTER" />
-                              <TextField layoutX="216.0" layoutY="99.0" prefHeight="25.0" prefWidth="259.0" />
-                              <TextField layoutX="216.0" layoutY="199.0" prefHeight="25.0" prefWidth="259.0" />
-                              <ComboBox layoutX="217.0" layoutY="165.0" prefHeight="25.0" prefWidth="259.0" />
-                              <TextField layoutX="216.0" layoutY="230.0" prefHeight="25.0" prefWidth="259.0" />
-                              <Label alignment="CENTER" layoutX="39.0" layoutY="229.0" prefHeight="28.0" prefWidth="106.0" text="Stall Type:" textAlignment="CENTER" />
-                              <TableView layoutX="29.0" layoutY="304.0" prefHeight="138.0" prefWidth="477.0">
+                              <DatePicker fx:id="RentFromTF" layoutX="218.0" layoutY="132.0" prefHeight="25.0" prefWidth="118.0" promptText="DD/MM/YYYYY" />
+                              <DatePicker fx:id="RentTToTF" layoutX="367.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" promptText="DD/MM/YYYYY" />
+                              <Label alignment="CENTER" layoutX="336.0" layoutY="131.0" prefHeight="28.0" prefWidth="30.0" text="To -" textAlignment="CENTER" />
+                              <TextField fx:id="stallManagerNameTF" layoutX="216.0" layoutY="99.0" prefHeight="25.0" prefWidth="259.0" promptText="Manager Name" />
+                              <TextField fx:id="contactNumberTF" layoutX="217.0" layoutY="163.0" prefHeight="25.0" prefWidth="259.0" promptText="01X-XXXX-XXXX" />
+                              <Label alignment="CENTER" layoutX="40.0" layoutY="193.0" prefHeight="28.0" prefWidth="106.0" text="Stall Type:" textAlignment="CENTER" />
+                              <TableView fx:id="tableView" layoutX="39.0" layoutY="299.0" prefHeight="138.0" prefWidth="477.0">
                                  <columns>
-                                    <TableColumn prefWidth="65.0" text="Stall ID" />
-                                    <TableColumn prefWidth="85.0" text="Stall Name" />
-                                    <TableColumn prefWidth="111.0" text="Contact Number" />
-                                    <TableColumn prefWidth="129.0" text="Stall Manager Name" />
-                                    <TableColumn prefWidth="86.0" text="Stall Type" />
+                                    <TableColumn fx:id="StallName_TC" prefWidth="92.0" text="Stall Name" />
+                                    <TableColumn fx:id="contactNo_TC" prefWidth="142.0" text="Contact Number" />
+                                    <TableColumn fx:id="stallManagerName_TC" prefWidth="149.0" text="Stall Manager Name" />
+                                    <TableColumn fx:id="stallType_TC" prefWidth="93.0" text="Stall Type" />
                                  </columns>
                               </TableView>
+                              <ComboBox fx:id="stallTypeCB" layoutX="217.0" layoutY="192.0" prefHeight="25.0" prefWidth="259.0" promptText="Select Type" />
+                              <Line endX="406.0" layoutX="130.0" layoutY="283.0" startX="-130.0" />
+                              <Button layoutX="156.0" layoutY="456.0" mnemonicParsing="false" onAction="#loadTableOnClick" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Load" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="stall_detailsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
@@ -186,7 +186,7 @@
                               <Line endX="397.0" layoutX="107.0" layoutY="290.0" startX="-75.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="dashboard" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="130.0" layoutY="167.0" prefHeight="170.0" prefWidth="276.0" text="Dashboard">
                                  <font>
