@@ -40,6 +40,18 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.EOFException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -135,6 +147,11 @@ public class FoodCourtManagerController implements Initializable {
     private TableColumn<Stall, String> S2_stallManagerName_TC1;
     @FXML
     private TableColumn<Stall, String> S2_stallType_TC1;
+    @FXML
+    private TextArea S2_OutTextArea;
+    private TableColumn<Stall, LocalDate> S2_stallType_TC2;
+    @FXML
+    private TableColumn<Stall, LocalDate> S2_rentExpired;
 
     /**
      * Initializes the controller class.
@@ -153,6 +170,17 @@ public class FoodCourtManagerController implements Initializable {
         S2_StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
         S2_stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
         S2_contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+//        S2_rentExpired.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+//            @Override
+//            public String toString(LocalDate object) {
+//                return object != null ? object.toString() : "";
+//            }
+//
+//            @Override
+//            public LocalDate fromString(String string) {
+//                return string != null && !string.isEmpty() ? LocalDate.parse(string) : null;
+//            }
+//        }));
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -189,7 +217,8 @@ public class FoodCourtManagerController implements Initializable {
         S2_contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("contactNo"));
         S2_stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         S2_stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
-
+        S2_rentExpired.setCellValueFactory(new PropertyValueFactory<Stall, LocalDate>("RentTo"));  
+        //Sync both tableView cell
         tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 tableView.getSelectionModel().clearSelection();
@@ -405,14 +434,14 @@ public class FoodCourtManagerController implements Initializable {
 
     private void updateFile() {
         try (FileOutputStream fos = new FileOutputStream("StallObjects.bin"); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            ObservableList<Stall> stallList = tableView.getItems();
+        ObservableList<Stall> stallList = tableView.getItems();
 
-            for (Stall stall : stallList) {
-                oos.writeObject(stall);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        for (Stall stall : stallList) {
+            oos.writeObject(stall);
         }
+    } catch (IOException ex) {
+        Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     @FXML
@@ -506,4 +535,109 @@ public class FoodCourtManagerController implements Initializable {
         tableView1.setItems(tableView.getItems());
     }
 
+    @FXML
+    private void S2_viewDetailsbuttonOnClick(ActionEvent event) {
+        Stall selectedStall = tableView1.getSelectionModel().getSelectedItem();
+    if (selectedStall != null) {
+        LocalDate rentFrom = selectedStall.getRentFrom();
+        LocalDate rentTo = selectedStall.getRentTo();
+
+        if (rentFrom != null && rentTo != null) {
+            // Calculate the remaining days
+            long remainingDays = java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), rentTo);
+
+            // Display the remaining days in the S2_OutTextArea
+            S2_OutTextArea.setText("Remaining Rental Days: " + remainingDays);
+
+            if (remainingDays < 0) {
+                // Alert to remove from database
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Alert");
+                alert.setHeaderText(null);
+                alert.setContentText("Rental period has expired. Remove this stall from the database.");
+                alert.showAndWait();
+            } else if (remainingDays < 7) {
+                // Alert for re-agreement
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Alert");
+                alert.setHeaderText(null);
+                alert.setContentText("Remaining rental days are less than 7. Consider re-agreement.");
+                alert.showAndWait();
+            }
+        } else {
+            S2_OutTextArea.setText("Rent dates are not set for this stall.");
+        }
+    } else {
+        S2_OutTextArea.setText("Please select a stall from the table.");
+    }
+    }
+
+    @FXML
+    private void S2_rentExpiredDate_TC(CellEditEvent edittedCell) {
+        
+    }
+
+    @FXML
+    private void S2_extendRentAgreementButton(ActionEvent event) throws IOException {
+            
+  FXMLLoader loader = new FXMLLoader(getClass().getResource("ExtentRentAgreement.fxml"));
+    Parent root = loader.load();
+
+    // Access the controller of the ExtentRentAgreement.fxml
+    ExtentRentAgreementController controller = loader.getController();
+
+    // Get the selected stall from tableView1
+    Stall selectedStall = tableView1.getSelectionModel().getSelectedItem();
+
+    if (selectedStall != null) {
+        // Pass the selected stall to the controller
+        controller.setSelectedStall(selectedStall);
+
+        // Create a new stage for the ExtentRentAgreement.fxml
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Extend Rent Agreement");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+
+        // Update the table view after extending the rent agreement
+        tableView1.refresh();
+    } else {
+        // Show an alert if no stall is selected
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText(null);
+        alert.setContentText("Please select a stall to extend the rent agreement.");
+        alert.showAndWait();
+    }
+
+}
+
+    @FXML
+    private void S2_ssaveButton(ActionEvent event) {
+        try (FileOutputStream fos = new FileOutputStream("StallObjects.bin"); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        ObservableList<Stall> stallList = tableView1.getItems();
+
+        for (Stall stall : stallList) {
+            oos.writeObject(stall);
+        }
+
+        // Show a success message or perform any other necessary actions
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Data saved successfully.");
+        alert.showAndWait();
+    } catch (IOException ex) {
+        Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+
+        // Show an error message if data saving fails
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Failed to save data.");
+        alert.showAndWait();
+        tableView1.refresh();
+    }
+    }
 }
