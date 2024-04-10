@@ -1,3 +1,11 @@
 /FoodCourt/nbproject/private/
 /FoodCourt/build/
 /FoodCourt/dist/
+FoodCourt/dist/FoodCourt.jar
+*.jar
+*.jar.properties
+*.jnlp
+FoodCourt/dist/FoodCourt.html
+FoodCourt/dist/FoodCourt.jnlp
+FoodCourt/dist/FoodCourt.html
+*.class
