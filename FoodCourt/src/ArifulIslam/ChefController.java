@@ -47,8 +47,6 @@ public class ChefController implements Initializable {
     @FXML
     private TextField MenuCreationPriceTextField;
     @FXML
-    private Button MenuCreationSaveButton;
-    @FXML
     private TableView<?> MenuCreationTableView;
     @FXML
     private TableColumn<?, ?> ItemNameTableColumn;
@@ -60,8 +58,6 @@ public class ChefController implements Initializable {
     private TextField SpecailAndPromotionsPriceTextField;
     @FXML
     private TextField SpecailAndPromotionsOfferTextField;
-    @FXML
-    private Button SpecailAndPromotionsSaveButton;
     @FXML
     private TableView<?> SpecailAndPromotionsTableView;
     @FXML
@@ -76,6 +72,18 @@ public class ChefController implements Initializable {
     private TableColumn<?, ?> StallNameTableColumnOfSpecialAndPromotion;
     @FXML
     private TableColumn<?, ?> PriceTableColumnOfSpecialAndPromotion;
+    @FXML
+    private ComboBox<?> SeasonalMenuSelectAStallComboBox;
+    @FXML
+    private TextField NewSeasonalItemTextField;
+    @FXML
+    private TextField NewSeasonalItemPriceTextField;
+    @FXML
+    private TableColumn<?, ?> SpecailAndPromotionsStallNameTableColumn;
+    @FXML
+    private TableColumn<?, ?> SpecailAndPromotionsNewSeasonalItemTableColumn;
+    @FXML
+    private TableColumn<?, ?> SpecailAndPromotionsNewSeasonalItemPriceTableColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -195,5 +203,17 @@ public class ChefController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void MenuCreationSaveButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SpecailAndPromotionsSaveButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SeasonalMenuUpdatesSaveButton(ActionEvent event) {
     }
 }
