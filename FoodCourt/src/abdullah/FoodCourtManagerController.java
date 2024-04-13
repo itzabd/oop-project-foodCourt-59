@@ -293,7 +293,7 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private void addButton_regStallOnClick(ActionEvent event) {
 
-        // Check if all data fields are entered or not
+        //check if all data fields are entered or not
         if (stallNameTF.getText().isEmpty() || stallManagerNameTF.getText().isEmpty()
                 || stallTypeCB.getValue() == null || RentFromTF.getValue() == null
                 || RentTToTF.getValue() == null || contactNumberTF.getText().isEmpty()) {
@@ -583,7 +583,7 @@ public class FoodCourtManagerController implements Initializable {
             oos.writeObject(stall);
         }
 
-        // Show a success message or perform any other necessary actions
+        //success message or perform any other necessary actions
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText(null);
@@ -592,7 +592,7 @@ public class FoodCourtManagerController implements Initializable {
     } catch (IOException ex) {
         Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
 
-        // Show an error message if data saving fails
+        //error message if data saving fails
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
@@ -644,21 +644,21 @@ public class FoodCourtManagerController implements Initializable {
             }
         }
 
-        // Clear all fields after successfully sending the notice
+        
         userTypeComboBox_SendNotice.setValue(null);
         Date_SendNotice.setValue(null);
         NoticeNameTF_SendNotice.clear();
         NoticeAboutTF_SendNotice.clear();
         Notice_des_SendNotice.clear();
 
-        // Show success message
+        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Notice Sent");
         alert.setHeaderText(null);
         alert.setContentText("Notice has been sent successfully.");
         alert.showAndWait();
     } catch (IOException ex) {
-        // Log and show error message
+        
         Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

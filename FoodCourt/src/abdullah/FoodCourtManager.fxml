@@ -244,7 +244,7 @@
                               <ComboBox layoutX="170.0" layoutY="145.0" prefHeight="25.0" prefWidth="129.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
+                        <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Send User Notice" textAlignment="CENTER" wrapText="true">
                                  <font>
