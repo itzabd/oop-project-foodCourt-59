@@ -5,6 +5,7 @@
 package Shahrier;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,13 +14,15 @@ import java.io.Serializable;
 public class EmpManagementData implements Serializable{
     String empName,empId,empType;
     int empEntryTime,empSessionExpieryTime;
+    LocalDate mngEmpDate; 
 
-    public EmpManagementData(String empName, String empId, String empType, int empEntryTime, int empSessionExpieryTime) {
+    public EmpManagementData(String empName, String empId, String empType, int empEntryTime, int empSessionExpieryTime, LocalDate mngEmpDate) {
         this.empName = empName;
         this.empId = empId;
         this.empType = empType;
         this.empEntryTime = empEntryTime;
         this.empSessionExpieryTime = empSessionExpieryTime;
+        this.mngEmpDate = mngEmpDate;
     }
 
     public String getEmpName() {
@@ -61,6 +64,16 @@ public class EmpManagementData implements Serializable{
     public void setEmpSessionExpieryTime(int empSessionExpieryTime) {
         this.empSessionExpieryTime = empSessionExpieryTime;
     }
+
+    public LocalDate getMngEmpDate() {
+        return mngEmpDate;
+    }
+
+    public void setMngEmpDate(LocalDate mngEmpDate) {
+        this.mngEmpDate = mngEmpDate;
+    }
+
+    
 
     
     

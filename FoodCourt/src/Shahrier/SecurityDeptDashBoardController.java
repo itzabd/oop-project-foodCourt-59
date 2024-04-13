@@ -19,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -51,7 +52,7 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TextArea empManagementCommentTextArea;
     @FXML  private AnchorPane reportGenerateForDailyEmpFrame;
     @FXML  private TextArea empDailyReportGenerateShownArea;
-    @FXML  private Label dailyEmpReportShownAreaLabel;
+    private Label dailyEmpReportShownAreaLabel;
     @FXML  private AnchorPane empSessionManagementFrame;
     @FXML  private AnchorPane newVehcileRegisterFrame;
     @FXML  private AnchorPane vehicleInfoTakingFrame;
@@ -76,12 +77,21 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TextField sessionManagementSessionStartTextField;
     @FXML  private TextField sessionManagementSessionExpiryTextField;
     @FXML  private TextField sessionManagementEmpRoleTextField;
+    @FXML  private DatePicker selectDateforDailyEmpReport;
+    @FXML  private CheckBox grFoodSupplierCheckBox;
+    @FXML  private CheckBox grSecurityDeptCheckBox;
+    @FXML  private CheckBox grOnlineCustomerCheckBox;
+    @FXML  private CheckBox grFoodCourtManagerCheckBox;
+    @FXML  private TextField sessionManagementFeedbackBtn;
+    @FXML  private DatePicker sessionManagementDatePicker;
+    private ArrayList<ReportGeneratingData> reportGenerateDataArr;
      /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        empNameColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empName"));
+        reportGenerateDataArr = new ArrayList<>();
+        empNameColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("mngEmpDate"));
         empIDColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empId"));
         entryTimeColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empEntryTime"));
         sessionExpierColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empSessionExpieryTime"));
@@ -105,7 +115,21 @@ public class SecurityDeptDashBoardController implements Initializable {
             while(true){
                e =  (EmpManagementData) ois.readObject();
                empManagementDataArr.add(e);
-               sessionManagementSelectEmpComBox.getItems().add(e.getEmpName()); 
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        ObjectInputStream oInps = null;
+        try{
+            ReportGeneratingData r;
+            
+            oInps = new ObjectInputStream(new FileInputStream("reportGenerateDataobj.bin"));
+            while(true){
+               r =  (ReportGeneratingData) oInps.readObject();
+               reportGenerateDataArr.add(r);
             }   
             
         }
@@ -116,6 +140,8 @@ public class SecurityDeptDashBoardController implements Initializable {
         for(EmpManagementData e:empManagementDataArr){
             empManagementTableViewData.getItems().add(e);
         }
+        
+        
         
     }    
 
@@ -237,7 +263,8 @@ public class SecurityDeptDashBoardController implements Initializable {
                                             empManagementEmpIdTextFIeld.getText(),
                                         empManagementEmpTypeComBox.getValue(),
                                     empManagementEmpEntryTimeComBox.getValue(),
-                                    empManagementSessionExpierComBox.getValue());
+                                    empManagementSessionExpierComBox.getValue(),
+                                     empManagementDatePicker.getValue() );
         
         
         empManagementDataArr.add(empData);
@@ -266,23 +293,6 @@ public class SecurityDeptDashBoardController implements Initializable {
             System.out.println(ex);
         }
         
-        ObjectInputStream ois = null;
-        try{
-            EmpManagementData e;
-            ois = new ObjectInputStream(new FileInputStream("empManageDataobj.bin"));
-            while(true){
-                e = (EmpManagementData) ois.readObject();
-                if(sessionManagementSelectEmpComBox.getItems().contains(e.getEmpName())){
-                    System.out.println("Already Have");
-                }
-                else{
-                    sessionManagementSelectEmpComBox.getItems().add(e.getEmpName());
-                }
-            }
-        }
-        catch(Exception x){
-            System.out.println(x);
-        }
         empManagementEmpNameTextField.clear();
         empManagementEmpIdTextFIeld.clear();
     }
@@ -308,16 +318,146 @@ public class SecurityDeptDashBoardController implements Initializable {
         }
     }
 
-    @FXML
-    private void sessionManagementExitTimeComboxOnSelect(ActionEvent event) {
-    }
 
     @FXML
     private void sessionManagementConfirmBtn(ActionEvent event) {
+        ReportGeneratingData data = new ReportGeneratingData(sessionManagementDatePicker.getValue(),
+                Integer.parseInt(sessionManagementSessionStartTextField.getText()),
+                Integer.parseInt(sessionManagementSessionExpiryTextField.getText()),
+                sessionManagementExitTimeCombox.getValue(),
+                sessionManagementSelectEmpComBox.getValue(),
+                sessionManagementEmpRoleTextField.getText(),
+                sessionManagementFeedbackBtn.getText());
+        reportGenerateDataArr.add(data);
+        
+        try{
+            FileOutputStream fos = new FileOutputStream("reportGenerateDataobj.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(ReportGeneratingData r:reportGenerateDataArr){
+                oos.writeObject(r);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        ObjectInputStream oInps = null;
+        try{
+            ReportGeneratingData r;
+            
+            oInps = new ObjectInputStream(new FileInputStream("reportGenerateDataobj.bin"));
+            while(true){
+               r =  (ReportGeneratingData) oInps.readObject();
+               System.out.println(r.getSelectEmpID());
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 
     @FXML
     private void sessionManagementClearBtn(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void grFoodSupplierCheckBoxOnSelect(ActionEvent event) {
+        if (grFoodSupplierCheckBox.isSelected()){
+            empDailyReportGenerateShownArea.clear();
+            ObjectInputStream oInps = null;
+            try{
+                ReportGeneratingData r;
+                oInps = new ObjectInputStream(new FileInputStream("reportGenerateDataobj.bin"));
+                while(true){
+                   r =  (ReportGeneratingData) oInps.readObject();
+                   System.out.println("");
+                   if(r.getReportDate().equals(selectDateforDailyEmpReport.getValue()) && r.getEmpRole().equals("Food Supplier")){
+                       empDailyReportGenerateShownArea.appendText(r.toString());
+                   }
+                   else{
+
+                   }
+                }   
+
+            }
+            catch(Exception ex){
+                System.out.println(ex);
+            }
+        }
+        else{
+                
+        }
+        
+        
+    }
+
+    @FXML
+    private void grSecurityDeptCheckBoxOnSelect(ActionEvent event) {
+    }
+
+    @FXML
+    private void grOnlineCustomerCheckBoxOnSelect(ActionEvent event) {
+    }
+
+    @FXML
+    private void grFoodCourtManagerCheckBoxOnSelect(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void saveDailyEmpReportBtn(ActionEvent event) {
+    }
+
+    @FXML
+    private void clearDailyEmpReportBtn(ActionEvent event) {
+        empDailyReportGenerateShownArea.clear();
+    }
+
+    @FXML
+    private void sessionManagementDatePickerOnSelect(ActionEvent event) {
+        sessionManagementSelectEmpComBox.getItems().clear();
+        ObjectInputStream ois = null;
+        try{
+            EmpManagementData e;
+            ois = new ObjectInputStream(new FileInputStream("empManageDataobj.bin"));
+            while(true){
+                e = (EmpManagementData) ois.readObject();
+                if(e.getMngEmpDate().equals(sessionManagementDatePicker.getValue())){
+                    sessionManagementSelectEmpComBox.getItems().add(e.getEmpName());
+                }
+                else{
+                    System.out.println("");
+                }
+            }
+        }
+        catch(Exception x){
+            System.out.println(x);
+        }
+    }
+
+    @FXML
+    private void selectDateforDailyEmpReportOnSelect(ActionEvent event) {
+        empDailyReportGenerateShownArea.clear();
+        ObjectInputStream oInps = null;
+        try{
+            ReportGeneratingData r;
+            oInps = new ObjectInputStream(new FileInputStream("reportGenerateDataobj.bin"));
+            while(true){
+               r =  (ReportGeneratingData) oInps.readObject();
+               if(r.getReportDate().equals(selectDateforDailyEmpReport.getValue())){
+                   empDailyReportGenerateShownArea.appendText(r.toString());
+               }
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+
     }
     
 }
