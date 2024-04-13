@@ -171,7 +171,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="empSessionManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="549.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="empSessionManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="549.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="3" />
                               <Label layoutX="91.0" layoutY="40.0" text="Session Management For Employee" textFill="#344955">
@@ -501,7 +501,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="seqdeptFontFrame" layoutX="168.0" layoutY="136.0" prefHeight="529.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="seqdeptFontFrame" layoutX="168.0" layoutY="136.0" prefHeight="529.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="60.0" layoutY="213.0" lineSpacing="5.0" prefHeight="253.0" prefWidth="417.0" text="Simulating operations of a Large Food Court including Restaurant Operations" textAlignment="CENTER" wrapText="true">
                                  <font>
