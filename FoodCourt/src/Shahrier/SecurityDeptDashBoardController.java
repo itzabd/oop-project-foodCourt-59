@@ -85,6 +85,30 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TextField sessionManagementFeedbackBtn;
     @FXML  private DatePicker sessionManagementDatePicker;
     private ArrayList<ReportGeneratingData> reportGenerateDataArr;
+    @FXML
+    private DatePicker newVehicleRegDatePicker;
+    @FXML
+    private TextField newVehicleRegCarModelTextField;
+    @FXML
+    private TextField newVehicleRegLicenseNum;
+    @FXML
+    private TextField newVehicleRegOwnerNameTextField;
+    @FXML
+    private TextField newVehicleRegOwnerContactNum;
+    @FXML
+    private ComboBox<?> newVehicleRegDurationCombox;
+    @FXML
+    private TableView<?> newVehicleRegTableView;
+    @FXML
+    private TableColumn<?, ?> vPlateNumColumn;
+    @FXML
+    private TableColumn<?, ?> vRegDateColumn;
+    @FXML
+    private TableColumn<?, ?> vRegDurationColumn;
+    @FXML
+    private TableColumn<?, ?> vOwnersConColumn;
+    @FXML
+    private ComboBox<?> takeVechileInfoSelectLicenseNumCombox;
      /**
      * Initializes the controller class.
      */
@@ -458,6 +482,14 @@ public class SecurityDeptDashBoardController implements Initializable {
             System.out.println(ex);
         }
 
+    }
+
+    @FXML
+    private void newVehicleRegConfirmBtn(ActionEvent event) {
+    }
+
+    @FXML
+    private void newVehicleRegNextBtn(ActionEvent event) {
     }
     
 }
