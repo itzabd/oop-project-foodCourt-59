@@ -40,6 +40,9 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.EOFException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -60,98 +63,58 @@ import javafx.stage.Stage;
  */
 public class FoodCourtManagerController implements Initializable {
 
-    @FXML
-    private Label userNameAfterLogin;
-    @FXML
-    private Button saleReport_btn;
-    @FXML
-    private Button home_btn;
-    @FXML
-    private Button stallDetails_btn;
-    @FXML
-    private Button sendUserNotice_btn;
-    @FXML
-    private Button complaint_btn;
-    @FXML
-    private Button ResolvePaymentDispute_btn;
-    @FXML
-    private Button addNewPolicy_btn;
-    @FXML
-    private Button reviewApplication_Btn;
-    @FXML
-    private Button regStall_btn;
-    @FXML
-    private AnchorPane dashboard;
-    @FXML
-    private AnchorPane stall_managementScene;
-    @FXML
-    private AnchorPane stall_detailsScene;
-    @FXML
-    private AnchorPane reviewApplication_scene;
-    @FXML
-    private AnchorPane salesReportScene;
-    @FXML
-    private AnchorPane sendUserNotice_scene;
-    @FXML
-    private AnchorPane resolvePaymentDisputeScene;
-    @FXML
-    private AnchorPane complaintsScene;
-    @FXML
-    private AnchorPane addNewPolicy_scene;
-    private ArrayList<Stall> StallArr;
-    @FXML
-    private TextField stallNameTF;
-    @FXML
-    private DatePicker RentFromTF;
-    @FXML
-    private DatePicker RentTToTF;
-    @FXML
-    private TextField stallManagerNameTF;
-    @FXML
-    private TextField contactNumberTF;
-    @FXML
-    private TableView<Stall> tableView;
-    @FXML
-    private TableColumn<Stall, String> StallName_TC;
-    @FXML
-    private TableColumn<Stall, String> contactNo_TC;
-    @FXML
-    private TableColumn<Stall, String> stallManagerName_TC;
-    @FXML
-    private TableColumn<Stall, String> stallType_TC;
-    @FXML
-    private ComboBox<String> stallTypeCB;
-    @FXML
-    private TableView<Stall> tableView1;
-    @FXML
-    private TableColumn<Stall, String> S2_StallName_TC;
-    @FXML
-    private TableColumn<Stall, String> S2_contactNo_TC;
-    @FXML
-    private TableColumn<Stall, String> S2_stallManagerName_TC;
-    @FXML
-    private TableColumn<Stall, String> S2_stallType_TC;
-    @FXML
-    private TextField S2_searchTF;
-    @FXML
-    private AnchorPane stall_detailsScene1;
-    @FXML
-    private TextField S2_searchTF1;
-    @FXML
-    private TableView<Stall> tableView11;
-    @FXML
-    private TableColumn<Stall, String> S2_StallName_TC1;
-    @FXML
-    private TableColumn<Stall, String> S2_contactNo_TC1;
-    @FXML
-    private TableColumn<Stall, String> S2_stallManagerName_TC1;
-    @FXML
-    private TableColumn<Stall, String> S2_stallType_TC1;
-    @FXML
-    private TextArea S2_OutTextArea;
-    private TableColumn<Stall, LocalDate> S2_stallType_TC2;
-    @FXML
-    private TableColumn<Stall, LocalDate> S2_rentExpired;
+    @FXML    private Label userNameAfterLogin;
+    @FXML    private Button saleReport_btn;
+    @FXML    private Button home_btn;
+    @FXML    private Button stallDetails_btn;
+    @FXML    private Button sendUserNotice_btn;
+    @FXML    private Button complaint_btn;
+    @FXML    private Button ResolvePaymentDispute_btn;
+    @FXML    private Button addNewPolicy_btn;
+    @FXML    private Button reviewApplication_Btn;
+    @FXML    private Button regStall_btn;
+    @FXML    private AnchorPane dashboard;
+    @FXML    private AnchorPane stall_managementScene;
+    @FXML    private AnchorPane stall_detailsScene;
+    @FXML    private AnchorPane reviewApplication_scene;
+    @FXML    private AnchorPane salesReportScene;
+    @FXML    private AnchorPane sendUserNotice_scene;
+    @FXML    private AnchorPane resolvePaymentDisputeScene;
+    @FXML    private AnchorPane complaintsScene;
+    @FXML    private AnchorPane addNewPolicy_scene;
+             private ArrayList<Stall> StallArr;
+    @FXML    private TextField stallNameTF;
+    @FXML    private DatePicker RentFromTF;
+    @FXML    private DatePicker RentTToTF;
+    @FXML    private TextField stallManagerNameTF;
+    @FXML    private TextField contactNumberTF;
+    @FXML    private TableView<Stall> tableView;
+    @FXML    private TableColumn<Stall, String> StallName_TC;
+    @FXML    private TableColumn<Stall, String> contactNo_TC;
+    @FXML    private TableColumn<Stall, String> stallManagerName_TC;
+    @FXML    private TableColumn<Stall, String> stallType_TC;
+    @FXML    private ComboBox<String> stallTypeCB;
+    @FXML    private TableView<Stall> tableView1;
+    @FXML    private TableColumn<Stall, String> S2_StallName_TC;
+    @FXML    private TableColumn<Stall, String> S2_contactNo_TC;
+    @FXML    private TableColumn<Stall, String> S2_stallManagerName_TC;
+    @FXML    private TableColumn<Stall, String> S2_stallType_TC;
+    @FXML    private TextField S2_searchTF;
+    @FXML    private AnchorPane stall_detailsScene1;
+    @FXML    private TextField S2_searchTF1;
+    @FXML    private TableView<Stall> tableView11;
+    @FXML    private TableColumn<Stall, String> S2_StallName_TC1;
+    @FXML    private TableColumn<Stall, String> S2_contactNo_TC1;
+    @FXML    private TableColumn<Stall, String> S2_stallManagerName_TC1;
+    @FXML    private TableColumn<Stall, String> S2_stallType_TC1;
+    @FXML    private TextArea S2_OutTextArea;
+             private TableColumn<Stall, LocalDate> S2_stallType_TC2;
+    @FXML    private TableColumn<Stall, LocalDate> S2_rentExpired;
+    @FXML    private TextArea Notice_des_SendNotice;
+    @FXML    private ComboBox<String> userTypeComboBox_SendNotice;
+    @FXML    private TextField NoticeNameTF_SendNotice;
+    @FXML    private DatePicker Date_SendNotice;
+    @FXML    private TextField NoticeAboutTF_SendNotice;
 
     /**
      * Initializes the controller class.
@@ -166,21 +129,7 @@ public class FoodCourtManagerController implements Initializable {
         stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
         //This part allows to edit in Table
-        tableView1.setEditable(true);
-        S2_StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
-        S2_stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
-        S2_contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn());
-//        S2_rentExpired.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-//            @Override
-//            public String toString(LocalDate object) {
-//                return object != null ? object.toString() : "";
-//            }
-//
-//            @Override
-//            public LocalDate fromString(String string) {
-//                return string != null && !string.isEmpty() ? LocalDate.parse(string) : null;
-//            }
-//        }));
+       
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -213,18 +162,37 @@ public class FoodCourtManagerController implements Initializable {
 
         }//#for Scene 1 END
         //#for Scene 2 Start
+        //---------------------------------
+         tableView1.setEditable(true);
+        S2_StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+        S2_stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+        S2_contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn());
+//        S2_rentExpired.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+//            @Override
+//            public String toString(LocalDate object) {
+//                return object != null ? object.toString() : "";
+//            }
+//
+//            @Override
+//            public LocalDate fromString(String string) {
+//                return string != null && !string.isEmpty() ? LocalDate.parse(string) : null;
+//            }
+//        }));
         S2_StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
         S2_contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("contactNo"));
         S2_stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         S2_stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
-        S2_rentExpired.setCellValueFactory(new PropertyValueFactory<Stall, LocalDate>("RentTo"));  
-        //Sync both tableView cell
+        S2_rentExpired.setCellValueFactory(new PropertyValueFactory<Stall, LocalDate>("RentTo"));
         tableView1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 tableView.getSelectionModel().clearSelection();
                 tableView.getSelectionModel().select(newSelection);
             }
         });
+    //--------------Send Notice Initialz-------------------
+        userTypeComboBox_SendNotice.getItems().addAll("Online Customer","Stall Manager"
+                                                      ,"Security Department","Food Supplier");
+    
     }
 
     @FXML
@@ -396,6 +364,7 @@ public class FoodCourtManagerController implements Initializable {
             RentTToTF.setValue(null);
             contactNumberTF.clear();
         } catch (IOException ex) {
+            
             Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
@@ -543,21 +512,21 @@ public class FoodCourtManagerController implements Initializable {
         LocalDate rentTo = selectedStall.getRentTo();
 
         if (rentFrom != null && rentTo != null) {
-            // Calculate the remaining days
+            //remaining days
             long remainingDays = java.time.temporal.ChronoUnit.DAYS.between(LocalDate.now(), rentTo);
 
-            // Display the remaining days in the S2_OutTextArea
+          
             S2_OutTextArea.setText("Remaining Rental Days: " + remainingDays);
 
             if (remainingDays < 0) {
-                // Alert to remove from database
+                //alert to remove
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Alert");
                 alert.setHeaderText(null);
                 alert.setContentText("Rental period has expired. Remove this stall from the database.");
                 alert.showAndWait();
             } else if (remainingDays < 7) {
-                // Alert for re-agreement
+                //alert for re-agreement
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Alert");
                 alert.setHeaderText(null);
@@ -580,30 +549,22 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private void S2_extendRentAgreementButton(ActionEvent event) throws IOException {
             
-  FXMLLoader loader = new FXMLLoader(getClass().getResource("ExtentRentAgreement.fxml"));
-    Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ExtentRentAgreement.fxml"));
+        Parent root = loader.load();
 
-    // Access the controller of the ExtentRentAgreement.fxml
-    ExtentRentAgreementController controller = loader.getController();
-
-    // Get the selected stall from tableView1
-    Stall selectedStall = tableView1.getSelectionModel().getSelectedItem();
+        ExtentRentAgreementController controller = loader.getController();
+        Stall selectedStall = tableView1.getSelectionModel().getSelectedItem();
 
     if (selectedStall != null) {
-        // Pass the selected stall to the controller
         controller.setSelectedStall(selectedStall);
-
-        // Create a new stage for the ExtentRentAgreement.fxml
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Extend Rent Agreement");
         stage.setScene(new Scene(root));
         stage.showAndWait();
-
-        // Update the table view after extending the rent agreement
         tableView1.refresh();
+        
     } else {
-        // Show an alert if no stall is selected
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
         alert.setHeaderText(null);
@@ -638,6 +599,73 @@ public class FoodCourtManagerController implements Initializable {
         alert.setContentText("Failed to save data.");
         alert.showAndWait();
         tableView1.refresh();
+        
     }
     }
+
+    @FXML
+    private void ClearDescriptionButtonOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void SendNoticeButtonOnClick(ActionEvent event) {
+        String userType = userTypeComboBox_SendNotice.getValue();
+        LocalDate date = Date_SendNotice.getValue();
+        String noticeName = NoticeNameTF_SendNotice.getText();
+        String noticeAbout = NoticeAboutTF_SendNotice.getText();
+        String noticeDescription = Notice_des_SendNotice.getText();
+
+       
+         if (userType == null || date == null || noticeName.isEmpty() || noticeAbout.isEmpty() || noticeDescription.isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Incomplete Data");
+        alert.setHeaderText(null);
+        alert.setContentText("Please enter all required fields.");
+        alert.showAndWait();
+        return;
+    }
+
+    SendNotice notice = new SendNotice(noticeName, noticeAbout, userType, date, noticeDescription);
+
+    Path filePath = Paths.get("SendNotice.bin");
+
+    try {
+        if (Files.exists(filePath)) {
+            // File already exists, open in append mode
+            try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true);
+                 AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                oos.writeObject(notice);
+            }
+        } else {
+            // File does not exist, create new file
+            try (FileOutputStream fos = new FileOutputStream(filePath.toString());
+                 ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                oos.writeObject(notice);
+            }
+        }
+
+        // Clear all fields after successfully sending the notice
+        userTypeComboBox_SendNotice.setValue(null);
+        Date_SendNotice.setValue(null);
+        NoticeNameTF_SendNotice.clear();
+        NoticeAboutTF_SendNotice.clear();
+        Notice_des_SendNotice.clear();
+
+        // Show success message
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notice Sent");
+        alert.setHeaderText(null);
+        alert.setContentText("Notice has been sent successfully.");
+        alert.showAndWait();
+    } catch (IOException ex) {
+        // Log and show error message
+        Logger.getLogger(FoodCourtManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Failed to send notice.");
+        alert.showAndWait();
+    }
+    }
+        
 }

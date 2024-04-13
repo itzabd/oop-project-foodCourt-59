@@ -55,7 +55,7 @@
                               </AnchorPane>
                            </top>
                            <center>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <AnchorPane BorderPane.alignment="CENTER">
                                  <children>
                                     <Button fx:id="regStall_btn" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Register Stall" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
@@ -127,7 +127,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="130.0" layoutY="167.0" prefHeight="170.0" prefWidth="276.0" text="Dashboard">
                                  <font>
@@ -169,7 +169,7 @@
                               <Line endX="406.0" layoutX="130.0" layoutY="283.0" startX="-130.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="stall_detailsScene" layoutX="1.0" layoutY="6.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="stall_detailsScene" layoutX="1.0" layoutY="6.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Stall Details" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -244,20 +244,24 @@
                               <ComboBox layoutX="170.0" layoutY="145.0" prefHeight="25.0" prefWidth="129.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
+                        <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Send User Notice" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <TextArea layoutX="85.0" layoutY="196.0" prefHeight="168.0" prefWidth="330.0" promptText="Send user notice" />
-                              <ComboBox layoutX="148.0" layoutY="105.0" prefHeight="25.0" prefWidth="141.0" promptText="User Type" />
-                              <Button layoutX="86.0" layoutY="427.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="329.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Clear" />
-                              <Label layoutX="91.0" layoutY="148.0" text="User ID" />
-                              <TextField layoutX="147.0" layoutY="144.0" prefHeight="25.0" prefWidth="143.0" promptText="USER ID\" />
-                              <Button layoutX="86.0" layoutY="387.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="329.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Send" />
-                              <Label layoutX="91.0" layoutY="109.0" text="Select" />
+                              <TextArea fx:id="Notice_des_SendNotice" layoutX="31.0" layoutY="183.0" prefHeight="168.0" prefWidth="463.0" promptText="Notice Description" />
+                              <ComboBox fx:id="userTypeComboBox_SendNotice" layoutX="107.0" layoutY="102.0" prefHeight="25.0" prefWidth="141.0" promptText="User Type" visibleRowCount="3" />
+                              <Button layoutX="33.0" layoutY="403.0" mnemonicParsing="false" onAction="#ClearDescriptionButtonOnClick" prefHeight="27.0" prefWidth="462.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Clear" />
+                              <Label layoutX="27.0" layoutY="146.0" text="Notice Name" />
+                              <TextField fx:id="NoticeNameTF_SendNotice" layoutX="106.0" layoutY="141.0" prefHeight="25.0" prefWidth="143.0" promptText="Notice Name" />
+                              <Button layoutX="32.0" layoutY="366.0" mnemonicParsing="false" onAction="#SendNoticeButtonOnClick" prefHeight="27.0" prefWidth="464.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Send" />
+                              <Label layoutX="33.0" layoutY="105.0" text="User Type :" />
+                              <Label layoutX="269.0" layoutY="105.0" text="Date : " />
+                              <DatePicker fx:id="Date_SendNotice" layoutX="351.0" layoutY="102.0" prefHeight="25.0" prefWidth="140.0" promptText="DD /MM / YYYY" />
+                              <Label layoutX="269.0" layoutY="146.0" text="Notice About :" />
+                              <TextField fx:id="NoticeAboutTF_SendNotice" layoutX="351.0" layoutY="141.0" prefHeight="25.0" prefWidth="143.0" promptText="Notice About" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="resolvePaymentDisputeScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
@@ -364,7 +368,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="stall_detailsScene1" layoutX="10.0" layoutY="10.0" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
+                        <AnchorPane fx:id="stall_detailsScene1" layoutX="10.0" layoutY="10.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Stall Details" textAlignment="CENTER" wrapText="true">
                                  <font>

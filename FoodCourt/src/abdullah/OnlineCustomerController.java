@@ -4,13 +4,27 @@
  */
 package abdullah;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -41,14 +55,68 @@ public class OnlineCustomerController implements Initializable {
     @FXML    private AnchorPane customerAssistance_scene;
     @FXML    private Button backbtn;
     @FXML    private Button homeBtn;
+    @FXML
+    private TableView<SendNotice> NotificationTableView;
+    @FXML
+    private TableColumn<SendNotice, String> NoticeNameTC;
+    @FXML
+    private TableColumn<SendNotice, String> NoticeAboutTC;
+    @FXML
+    private TableColumn<SendNotice, LocalDate> NoticeDateTC;
+    @FXML
+    private TextArea NoticeViewDetailsTextArea;
+    @FXML
+    private AnchorPane ViewProfile_scene;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        NoticeNameTC.setCellValueFactory(new PropertyValueFactory<SendNotice, String>("noticeName"));
+        NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<SendNotice, String>("noticeSubject"));
+        NoticeDateTC.setCellValueFactory(new PropertyValueFactory<SendNotice, LocalDate>("noticeDate"));
+    // Set up table columns
+        NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
+        NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
+        NoticeDateTC.setCellValueFactory(new PropertyValueFactory<>("noticeDate"));
+        
+        
+        NotificationTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        ObjectInputStream ois = null;
+        {
+            ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
+            try {
+                SendNotice s;
+
+                ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
+
+                while (true) {
+                    s = (SendNotice) ois.readObject();
+                    sendnotice.add(s);
+                    NotificationTableView.setItems(sendnotice);
+                    
+                }
+
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+
+            } catch (Exception ex) {
+                try {
+                    if (ois != null) {
+                        ois.close();
+                    }
+                } catch (IOException ex1) {
+                }
+            }
+
+        }
+        
+    }
+
+    
+      
 
     @FXML
     private void sceneSwitch(ActionEvent event) {
@@ -145,4 +213,25 @@ public class OnlineCustomerController implements Initializable {
         }
 
     }
+
+    @FXML
+    private void ViewNoticeDetailsButtonOnCLick(ActionEvent event) {
+      
+        SendNotice selectedNotice = NotificationTableView.getSelectionModel().getSelectedItem();
+    
+    if (selectedNotice != null) {
+        // Join the list of description strings into a single string
+        String description = String.join("\n", selectedNotice.getNoticeDescription());
+        // Display the description of the selected notice in the text area
+        NoticeViewDetailsTextArea.setText(description);
+    } else {
+        // If no notice is selected, display an alert
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText("Please select a notice.");
+        alert.showAndWait();
+    }
+    }
+
 }
