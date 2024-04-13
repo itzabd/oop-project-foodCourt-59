@@ -99,7 +99,7 @@
                               <Label layoutX="61.0" layoutY="126.0" prefHeight="17.0" prefWidth="94.0" text="Item Name" />
                               <TextField fx:id="MenuCreationPriceTextField" layoutX="373.0" layoutY="118.0" />
                               <Label layoutX="335.0" layoutY="126.0" prefHeight="17.0" prefWidth="38.0" text="Price" />
-                              <Button layoutX="572.0" layoutY="122.0" mnemonicParsing="false" onAction="#MenuCreationSaveButton" text="Save" />
+                              <Button layoutX="572.0" layoutY="117.0" mnemonicParsing="false" onAction="#MenuCreationSaveButton" text="Save" />
                               <TableView fx:id="MenuCreationTableView" layoutY="182.0" prefHeight="421.0" prefWidth="716.0">
                                 <columns>
                                   <TableColumn fx:id="StallNameTableColumnOfMenuCreation" prefWidth="235.3333282470703" text="Stall Name" />
@@ -180,14 +180,22 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="ingredientManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="579.0" prefWidth="586.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="ingredientManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="579.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="515.0" layoutY="14.0" text="6" />
+                              <Label layoutX="622.0" layoutY="30.0" text="6" />
                               <Label layoutX="145.0" layoutY="23.0" text="Ingredient Management" textFill="#0e4916">
                                  <font>
                                     <Font name="Bell MT Bold" size="26.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="43.0" layoutY="104.0" prefHeight="17.0" prefWidth="88.0" text="Select a Stall" />
+                              <ComboBox fx:id="IngredientManagementSelectStallComboBox" layoutX="133.0" layoutY="100.0" onAction="#IngredientManagementSelectStallOnAction" prefWidth="150.0" />
+                              <TableView layoutX="1.0" layoutY="202.0" prefHeight="353.0" prefWidth="714.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="orderQueueFrame" layoutX="10.0" layoutY="10.0" prefHeight="589.0" prefWidth="596.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
