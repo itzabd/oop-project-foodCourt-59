@@ -29,7 +29,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="empReportBtn" layoutX="9.0" layoutY="156.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Report For Daily Employee" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="empReportBtn" layoutX="10.0" layoutY="203.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Report For Daily Employee" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -59,11 +59,6 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="empSessionManageBtn" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Session Management " textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
                         <Label layoutX="28.0" layoutY="17.0" text="Security Depertmet" textFill="#dddddd">
                            <font>
                               <Font name="System Bold" size="18.0" />
@@ -85,6 +80,11 @@
                            </font>
                         </Button>
                         <Button fx:id="seqdeptHomeBtn" layoutX="129.0" layoutY="483.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #c1c4c9;" text="Home">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="empSessionManageBtn" layoutX="10.0" layoutY="156.0" mnemonicParsing="false" onAction="#switchToOtherFrameBtnOnClick" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Session Management " textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -116,7 +116,7 @@
                               </Button>
                               <TableView fx:id="empManagementTableViewData" layoutX="59.0" layoutY="315.0" prefHeight="200.0" prefWidth="433.0">
                                 <columns>
-                                  <TableColumn fx:id="empNameColumn" prefWidth="87.0" text="Name" />
+                                  <TableColumn fx:id="empNameColumn" prefWidth="87.0" text="Date" />
                                   <TableColumn fx:id="empIDColumn" prefWidth="72.0" text="ID" />
                                     <TableColumn fx:id="entryTimeColumn" prefWidth="125.0" text="Entry Time(O'Clock)" />
                                     <TableColumn fx:id="sessionExpierColumn" prefWidth="148.0" text="SessionExpier(O'Clock)" />
@@ -138,37 +138,31 @@
                                     <Font name="Bell MT" size="24.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="260.0" layoutY="87.0" prefHeight="31.0" prefWidth="183.0" />
-                              <Label layoutX="107.0" layoutY="92.0" text="Select Type of Report">
+                              <Label layoutX="107.0" layoutY="92.0" text="Select A date for Report Generate">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="empDailyReportGenerateShownArea" disable="true" layoutX="107.0" layoutY="143.0" prefHeight="310.0" prefWidth="341.0" style="-fx-background-color: black;">
+                              <TextArea fx:id="empDailyReportGenerateShownArea" editable="false" layoutX="155.0" layoutY="143.0" prefHeight="310.0" prefWidth="341.0" promptText="Report Will Shown Hare" style="-fx-background-color: black;">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </TextArea>
-                              <Button layoutX="107.0" layoutY="472.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #344955;" text="Generate" textFill="#fcf9f9">
+                              <Button layoutX="341.0" layoutY="471.0" mnemonicParsing="false" onAction="#saveDailyEmpReportBtn" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: #344955;" text="Save Pdf" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="349.0" layoutY="471.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: #344955;" text="Save Pdf" textFill="WHITE">
+                              <Button layoutX="153.0" layoutY="471.0" mnemonicParsing="false" onAction="#clearDailyEmpReportBtn" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #344955;" text="Clear" textFill="#fcf9f9">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="228.0" layoutY="472.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #344955;" text="Clear" textFill="#fcf9f9">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Label fx:id="dailyEmpReportShownAreaLabel" layoutX="201.0" layoutY="255.0" prefHeight="73.0" prefWidth="153.0" text="Report Will Shown Here" textAlignment="CENTER" textFill="#575757" wrapText="true">
-                                 <font>
-                                    <Font size="23.0" />
-                                 </font>
-                              </Label>
+                              <DatePicker fx:id="selectDateforDailyEmpReport" layoutX="325.0" layoutY="90.0" onAction="#selectDateforDailyEmpReportOnSelect" />
+                              <CheckBox fx:id="grFoodSupplierCheckBox" layoutX="48.0" layoutY="151.0" mnemonicParsing="false" onAction="#grFoodSupplierCheckBoxOnSelect" text="Food Supplier" />
+                              <CheckBox fx:id="grSecurityDeptCheckBox" layoutX="48.0" layoutY="183.0" mnemonicParsing="false" onAction="#grSecurityDeptCheckBoxOnSelect" text="Security Dept" />
+                              <CheckBox fx:id="grOnlineCustomerCheckBox" layoutX="48.0" layoutY="210.0" mnemonicParsing="false" onAction="#grOnlineCustomerCheckBoxOnSelect" prefHeight="36.0" prefWidth="87.0" text="Online Customer" wrapText="true" />
+                              <CheckBox fx:id="grFoodCourtManagerCheckBox" layoutX="48.0" layoutY="255.0" mnemonicParsing="false" onAction="#grFoodCourtManagerCheckBoxOnSelect" prefHeight="39.0" prefWidth="99.0" text="Food court Manager" wrapText="true" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="empSessionManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="549.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -179,55 +173,61 @@
                                     <Font name="Bell MT" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="114.0" layoutY="112.0" text="Select Employee">
+                              <Label layoutX="113.0" layoutY="147.0" text="Select Employee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="sessionManagementSelectEmpComBox" layoutX="235.0" layoutY="105.0" onAction="#sessionManagementSelectEmpComBoxOnSelect" prefHeight="34.0" prefWidth="187.0" />
-                              <Label layoutX="114.0" layoutY="162.0" text="Employee Role">
+                              <ComboBox fx:id="sessionManagementSelectEmpComBox" layoutX="234.0" layoutY="140.0" onAction="#sessionManagementSelectEmpComBoxOnSelect" prefHeight="34.0" prefWidth="187.0" promptText="Select A Date First" />
+                              <Label layoutX="113.0" layoutY="195.0" text="Employee Role">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="114.0" layoutY="212.0" text="Session Start">
+                              <Label layoutX="113.0" layoutY="245.0" text="Session Start">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="114.0" layoutY="262.0" text="Session Expiry">
+                              <Label layoutX="113.0" layoutY="295.0" text="Session Expiry">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="114.0" layoutY="360.0" text="Feedback">
+                              <Label layoutX="113.0" layoutY="393.0" text="Feedback">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField disable="true" layoutX="234.0" layoutY="353.0" prefHeight="35.0" prefWidth="189.0" />
-                              <Label layoutX="114.0" layoutY="312.0" text="Exit Time">
+                              <TextField fx:id="sessionManagementFeedbackBtn" layoutX="233.0" layoutY="386.0" prefHeight="35.0" prefWidth="189.0" />
+                              <Label layoutX="113.0" layoutY="345.0" text="Exit Time">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="sessionManagementExitTimeCombox" layoutX="235.0" layoutY="305.0" onAction="#sessionManagementExitTimeComboxOnSelect" prefHeight="34.0" prefWidth="187.0" promptText="O'CLOCK" />
-                              <Button layoutX="115.0" layoutY="428.0" mnemonicParsing="false" onAction="#sessionManagementConfirmBtn" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: #344955;" text="Confirm" textFill="#f8f6f6">
+                              <ComboBox fx:id="sessionManagementExitTimeCombox" layoutX="234.0" layoutY="338.0" prefHeight="34.0" prefWidth="187.0" promptText="O'CLOCK" />
+                              <Button layoutX="115.0" layoutY="445.0" mnemonicParsing="false" onAction="#sessionManagementConfirmBtn" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: #344955;" text="Confirm" textFill="#f8f6f6">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="312.0" layoutY="428.0" mnemonicParsing="false" onAction="#sessionManagementClearBtn" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #344955;" text="Clear" textFill="#fcf9f9">
+                              <Button layoutX="312.0" layoutY="445.0" mnemonicParsing="false" onAction="#sessionManagementClearBtn" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #344955;" text="Clear" textFill="#fcf9f9">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="sessionManagementSessionStartTextField" disable="true" editable="false" layoutX="235.0" layoutY="205.0" prefHeight="35.0" prefWidth="189.0" />
-                              <TextField fx:id="sessionManagementSessionExpiryTextField" disable="true" layoutX="235.0" layoutY="255.0" prefHeight="35.0" prefWidth="189.0" />
-                              <TextField fx:id="sessionManagementEmpRoleTextField" disable="true" editable="false" layoutX="235.0" layoutY="155.0" prefHeight="35.0" prefWidth="189.0" />
+                              <TextField fx:id="sessionManagementSessionStartTextField" disable="true" editable="false" layoutX="234.0" layoutY="238.0" prefHeight="35.0" prefWidth="189.0" />
+                              <TextField fx:id="sessionManagementSessionExpiryTextField" disable="true" layoutX="234.0" layoutY="288.0" prefHeight="35.0" prefWidth="189.0" />
+                              <TextField fx:id="sessionManagementEmpRoleTextField" disable="true" editable="false" layoutX="234.0" layoutY="188.0" prefHeight="35.0" prefWidth="189.0" />
+                              <DatePicker fx:id="sessionManagementDatePicker" layoutX="234.0" layoutY="91.0" onAction="#sessionManagementDatePickerOnSelect" prefHeight="34.0" prefWidth="187.0" />
+                              <Label layoutX="113.0" layoutY="98.0" text="Select Date">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="newVehcileRegisterFrame" layoutX="10.0" layoutY="10.0" prefHeight="559.0" prefWidth="566.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="newVehcileRegisterFrame" layoutX="10.0" layoutY="10.0" prefHeight="559.0" prefWidth="566.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="4" />
                               <Label layoutX="162.0" layoutY="16.0" text="New Vehicle Register" textFill="#344955">
