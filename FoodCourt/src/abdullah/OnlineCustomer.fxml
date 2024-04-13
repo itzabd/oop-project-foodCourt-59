@@ -118,7 +118,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboardOC" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboardOC" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="130.0" layoutY="167.0" prefHeight="170.0" prefWidth="276.0" text="Dashboard">
                                  <font>
@@ -369,24 +369,27 @@
                               <Button layoutX="45.0" layoutY="451.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="61.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Confirm" textAlignment="JUSTIFY" wrapText="true" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="notification_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
+                        <AnchorPane fx:id="notification_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Notification" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="163.0" layoutY="268.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="232.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="View Issue's" />
-                              <TableView layoutX="30.0" layoutY="79.0" prefHeight="173.0" prefWidth="477.0">
+                              <Button layoutX="30.0" layoutY="445.0" mnemonicParsing="false" onAction="#ViewNoticeDetailsButtonOnCLick" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="View Details" />
+                              <TableView fx:id="NotificationTableView" layoutX="30.0" layoutY="71.0" prefHeight="173.0" prefWidth="477.0">
                                  <columns>
-                                    <TableColumn prefWidth="98.0" text="Order ID" />
-                                    <TableColumn prefWidth="101.0" text="Date" />
-                                    <TableColumn prefWidth="81.0" text="Time" />
-                                    <TableColumn minWidth="0.0" prefWidth="105.0" text="Order Status" />
-                                    <TableColumn prefWidth="90.0" text="Issue" />
+                                    <TableColumn fx:id="NoticeNameTC" prefWidth="146.0" text="Notice Name" />
+                                    <TableColumn fx:id="NoticeAboutTC" prefWidth="178.0" text="Notice About" />
+                                    <TableColumn fx:id="NoticeDateTC" prefWidth="131.0" text="Date" />
                                  </columns>
                               </TableView>
-                              <TextArea layoutX="31.0" layoutY="302.0" prefHeight="149.0" prefWidth="483.0" promptText="Issue Details" />
+                              <TextArea fx:id="NoticeViewDetailsTextArea" editable="false" layoutX="30.0" layoutY="303.0" prefHeight="133.0" prefWidth="483.0" promptText="View Details" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="272.0" prefHeight="26.0" prefWidth="68.0" text="Details :" textAlignment="CENTER" underline="true" wrapText="true">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="customerAssistance_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false">
@@ -448,6 +451,15 @@
                                     </TitledPane>
                                  </panes>
                               </Accordion>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="ViewProfile_scene" layoutX="10.0" layoutY="10.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Profile" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
