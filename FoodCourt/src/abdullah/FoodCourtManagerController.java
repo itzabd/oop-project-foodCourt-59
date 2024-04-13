@@ -53,6 +53,8 @@ import javafx.util.StringConverter;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -115,6 +117,14 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private TextField NoticeNameTF_SendNotice;
     @FXML    private DatePicker Date_SendNotice;
     @FXML    private TextField NoticeAboutTF_SendNotice;
+    @FXML
+    private TreeTableView<Complaint> ComplaintTableView;
+    @FXML
+    private TreeTableColumn<Complaint, Integer> complaint_id;
+    @FXML
+    private TreeTableColumn<Complaint, String> complaint_from;
+    @FXML
+    private TreeTableColumn<Complaint, String> complaint_details;
 
     /**
      * Initializes the controller class.
@@ -666,6 +676,14 @@ public class FoodCourtManagerController implements Initializable {
         alert.setContentText("Failed to send notice.");
         alert.showAndWait();
     }
+    }
+
+    @FXML
+    private void viewDetailsComplaintOnClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void deleteComplaintBAXuttonOnClick(ActionEvent event) {
     }
         
 }

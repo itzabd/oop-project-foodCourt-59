@@ -39,11 +39,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     @FXML  private Button forgotPassTologinPage;
     @FXML  private AnchorPane createNewUserFrame;
     @FXML  private Button createUserPageToLoginPage;
-    @FXML  private ComboBox<?> selectAuserForCreateAccComBox;
-    @FXML  private TextField createUserNameTextField;
-    @FXML  private PasswordField newUserPassField;
-    @FXML  private PasswordField newUserConfirmPassField;
-    @FXML  private DatePicker createAccDatePicker;
+    @FXML  private Button SignUpButton;
 
     /**
      * Initializes the controller class.
@@ -119,8 +115,5 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         }
     }
 
-    @FXML
-    private void newUserConfirmBtn(ActionEvent event) {
-    }
     
 }
