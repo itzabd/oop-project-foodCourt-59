@@ -4,13 +4,14 @@
  */
 package Shahrier;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author $abit
  */
-public class NewVehicleRegData {
+public class NewVehicleRegData implements Serializable{
     LocalDate regDate;
     int regDuration;
     String vehicleModel,vehicleLicenseNum,vehicleOwnerName,vehicleOwnerContact;
