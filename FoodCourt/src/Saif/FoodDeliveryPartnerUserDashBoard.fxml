@@ -73,12 +73,12 @@
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <DatePicker fx:id="contractFDPDatePStart" prefHeight="25.0" prefWidth="224.0" promptText="Select Contract Start Date" style="-fx-background-color: #b4c6fa;">
+                              <DatePicker fx:id="contractFDPDateStart" prefHeight="25.0" prefWidth="224.0" promptText="Select Contract Start Date" style="-fx-background-color: #b4c6fa;">
                                  <VBox.margin>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </VBox.margin>
                               </DatePicker>
-                              <DatePicker fx:id="contractFDPDatePEnd" layoutX="13.0" layoutY="173.0" prefHeight="25.0" prefWidth="224.0" promptText="Select Contract End Date" style="-fx-background-color: #b4c6fa;">
+                              <DatePicker fx:id="contractFDPDateEnd" layoutX="13.0" layoutY="173.0" prefHeight="25.0" prefWidth="224.0" promptText="Select Contract End Date" style="-fx-background-color: #b4c6fa;">
                                  <VBox.margin>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </VBox.margin>
@@ -136,10 +136,10 @@
                         </AnchorPane>
                      </right>
                      <center>
-                        <TableView prefHeight="293.0" prefWidth="435.0" style="-fx-background-color: #b4c6fa;" BorderPane.alignment="CENTER">
+                        <TableView fx:id="contractTableView" prefHeight="293.0" prefWidth="435.0" style="-fx-background-color: #b4c6fa;" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn prefWidth="131.6666259765625" text="Selected Fields " />
-                            <TableColumn minWidth="0.0" prefWidth="302.0" text="Data Inputs " />
+                            <TableColumn fx:id="contractSelectedFieldColumn" prefWidth="131.6666259765625" text="Selected Fields " />
+                            <TableColumn fx:id="contractDataInputColumn" minWidth="0.0" prefWidth="302.0" text="Data Inputs " />
                           </columns>
                         </TableView>
                      </center>
