@@ -6,12 +6,12 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainpkg.CreateAccLogInAndForgotPassController">
@@ -33,7 +33,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="417.0" style="-fx-background-color: #c1c4c9;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="logInPageFrame" layoutX="129.0" layoutY="143.0" prefHeight="530.0" prefWidth="417.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="logInPageFrame" layoutX="129.0" layoutY="143.0" prefHeight="530.0" prefWidth="417.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ComboBox fx:id="logInPageUserTypeCombox" layoutX="87.0" layoutY="154.0" onAction="#logInPageUserTypeComboxOnClick" prefHeight="32.0" prefWidth="210.0" promptText="User Type" />
                         <TextField fx:id="loginPageUserName" layoutX="87.0" layoutY="207.0" prefHeight="32.0" prefWidth="210.0" promptText="User Name" />
@@ -46,6 +46,16 @@
                         <Hyperlink fx:id="forgotPassHyprLink" layoutX="87.0" layoutY="293.0" onAction="#switchToOtherFrame" text="Forgot Password?" />
                         <Button layoutX="91.0" layoutY="333.0" mnemonicParsing="false" onAction="#logInPageSignInBtn" prefHeight="33.0" prefWidth="210.0" style="-fx-background-color: #344955;" text="Sign In" textFill="WHITE" />
                         <Button fx:id="createAccbtn" layoutX="91.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToOtherFrame" prefHeight="33.0" prefWidth="210.0" style="-fx-background-color: #344955;" text="Don't Have Account?Sign Up" textFill="WHITE" />
+                        <Label fx:id="UserNameError" layoutX="301.0" layoutY="211.0" prefHeight="25.0" prefWidth="49.0" textFill="RED">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="PassError" layoutX="301.0" layoutY="264.0" prefHeight="25.0" prefWidth="49.0" textFill="RED">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="forgotPassFrame" layoutX="10.0" layoutY="10.0" prefHeight="540.0" prefWidth="427.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -58,53 +68,32 @@
                         <Button fx:id="forgotPassTologinPage" layoutX="33.0" layoutY="478.0" mnemonicParsing="false" onAction="#switchToOtherFrame" style="-fx-background-color: #344955;" text="&lt; Back" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="createNewUserFrame" prefHeight="550.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="createNewUserFrame" layoutX="10.0" layoutY="10.0" prefHeight="550.0" prefWidth="437.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="35.0" layoutY="22.0" text="Create New User" textFill="#656565">
+                        <Label layoutX="35.0" layoutY="22.0" text="Create New User" textFill="#656565" underline="true">
                            <font>
                               <Font name="Calibri" size="24.0" />
                            </font>
                         </Label>
-                        <Button fx:id="createUserPageToLoginPage" layoutX="69.0" layoutY="398.0" mnemonicParsing="false" onAction="#switchToOtherFrame" prefHeight="25.0" prefWidth="286.0" style="-fx-background-color: #344955;" text="&lt; Back" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Button>
-                        <Label layoutX="71.0" layoutY="144.0" text="Select  A User">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="selectAuserForCreateAccComBox" layoutX="194.0" layoutY="141.0" prefHeight="25.0" prefWidth="165.0" />
-                        <Label layoutX="71.0" layoutY="188.0" text="User Name">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="createUserNameTextField" layoutX="194.0" layoutY="186.0" prefHeight="25.0" prefWidth="165.0" />
-                        <Label layoutX="72.0" layoutY="234.0" text="User Password">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="newUserPassField" layoutX="194.0" layoutY="232.0" prefHeight="25.0" prefWidth="165.0" />
-                        <Label layoutX="71.0" layoutY="278.0" text="Confirm Password">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="newUserConfirmPassField" layoutX="193.0" layoutY="276.0" prefHeight="25.0" prefWidth="165.0" />
-                        <Button layoutX="69.0" layoutY="350.0" mnemonicParsing="false" onAction="#newUserConfirmBtn" prefHeight="25.0" prefWidth="287.0" style="-fx-background-color: #344955;" text="Confirm User" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Line endX="66.0" layoutX="136.0" layoutY="53.0" startX="-100.0" stroke="#5b5757" />
-                        <Label layoutX="71.0" layoutY="100.0" text="Register Date">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <DatePicker fx:id="createAccDatePicker" layoutX="194.0" layoutY="98.0" prefHeight="25.0" prefWidth="165.0" />
+                        <Button fx:id="createUserPageToLoginPage" layoutX="35.0" layoutY="482.0" mnemonicParsing="false" onAction="#switchToOtherFrame" text="&lt; Back" />
+                        <TextField fx:id="usernameTF" layoutX="164.0" layoutY="85.0" promptText="Username" />
+                        <Label layoutX="88.0" layoutY="89.0" text="Username :" />
+                        <TextField fx:id="nameTF" layoutX="164.0" layoutY="126.0" promptText="Name" />
+                        <Label layoutX="88.0" layoutY="130.0" text="Name :" />
+                        <TextField fx:id="paasTF" layoutX="164.0" layoutY="163.0" promptText="Password" />
+                        <Label layoutX="88.0" layoutY="167.0" text="Password :" />
+                        <Label layoutX="88.0" layoutY="206.0" text="Date of Birth :" />
+                        <DatePicker fx:id="DOB_DP" layoutX="163.0" layoutY="202.0" prefHeight="25.0" prefWidth="151.0" promptText="DD / MM / YYYY" />
+                        <TextField fx:id="emailTF" layoutX="164.0" layoutY="239.0" promptText="Email" />
+                        <Label layoutX="88.0" layoutY="243.0" text="Email :" />
+                        <Label layoutX="88.0" layoutY="284.0" text="Gender :" />
+                        <RadioButton fx:id="MaleRadButton" layoutX="164.0" layoutY="284.0" mnemonicParsing="false" text="Male" />
+                        <RadioButton fx:id="FemaleRadButton" layoutX="239.0" layoutY="284.0" mnemonicParsing="false" text="Female" />
+                        <TextField fx:id="contactNoTF" layoutX="164.0" layoutY="316.0" promptText="Contact No." />
+                        <Label layoutX="88.0" layoutY="320.0" text="Contact No. :" />
+                        <Button fx:id="SignUpButton" layoutX="167.0" layoutY="409.0" mnemonicParsing="false" onAction="#SignInButtonOnClick" prefHeight="25.0" prefWidth="69.0" style="-fx-background-radius: 100; -fx-border-radius: 100;" text="Sign In" />
+                        <Label layoutX="88.0" layoutY="360.0" text="User type : " />
+                        <ComboBox fx:id="userTypeComboBox" layoutX="164.0" layoutY="356.0" prefWidth="150.0" promptText="Select" visibleRowCount="3" />
                      </children>
                   </AnchorPane>
                </children>
