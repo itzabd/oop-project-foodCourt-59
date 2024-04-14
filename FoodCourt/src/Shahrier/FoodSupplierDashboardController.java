@@ -261,6 +261,21 @@ public class FoodSupplierDashboardController implements Initializable {
 
     @FXML
     private void selectItemForUpdateComboBoxOnSelect(ActionEvent event) {
+        ObjectInputStream ois = null;
+        try{
+            SupplierItem s;
+            ois = new ObjectInputStream(new FileInputStream("supplierItemObj.bin"));
+            while(true){
+               s =  (SupplierItem) ois.readObject();
+               if(s.getSupItemName().equals(selectItemForUpdateComboBox.getValue())){
+                   availableQuantityTextField.setText(Integer.toString(s.getSupItemQuantity()));
+                   priceUpdateTextField.setText(Integer.toString(s.getSupPerItemPrice()));
+               }
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 
     @FXML

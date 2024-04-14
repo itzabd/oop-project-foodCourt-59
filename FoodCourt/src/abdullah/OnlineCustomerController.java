@@ -6,14 +6,11 @@ package abdullah;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,14 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -73,25 +67,15 @@ public class OnlineCustomerController implements Initializable {
     private TextArea NoticeViewDetailsTextArea;
     @FXML
     private AnchorPane ViewProfile_scene;
-    @FXML
-    private DatePicker Date_C;
-    @FXML
-    private TextField subject_C;
-    @FXML
-    private TextField NameTF_C;
-    @FXML
-    private ComboBox<String> userType_C;
-    @FXML
-    private TextArea details_TextArea_C;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
-        NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
-        NoticeDateTC.setCellValueFactory(new PropertyValueFactory<>("noticeDate"));
+        NoticeNameTC.setCellValueFactory(new PropertyValueFactory<SendNotice, String>("noticeName"));
+        NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<SendNotice, String>("noticeSubject"));
+        NoticeDateTC.setCellValueFactory(new PropertyValueFactory<SendNotice, LocalDate>("noticeDate"));
     // Set up table columns
         NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
         NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
@@ -128,10 +112,11 @@ public class OnlineCustomerController implements Initializable {
             }
 
         }
-        userType_C.getItems().addAll("Online Customer","Stall Manager"
-            ,"Security Department","Food Supplier");
         
     }
+
+    
+      
 
     @FXML
     private void sceneSwitch(ActionEvent event) {
@@ -235,12 +220,12 @@ public class OnlineCustomerController implements Initializable {
         SendNotice selectedNotice = NotificationTableView.getSelectionModel().getSelectedItem();
     
     if (selectedNotice != null) {
-        
+        // Join the list of description strings into a single string
         String description = String.join("\n", selectedNotice.getNoticeDescription());
-        
+        // Display the description of the selected notice in the text area
         NoticeViewDetailsTextArea.setText(description);
     } else {
-        //error msg
+        // If no notice is selected, display an alert
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText(null);
@@ -248,15 +233,5 @@ public class OnlineCustomerController implements Initializable {
         alert.showAndWait();
     }
     }
-    
-    private int generateRandomID() {
-        Random random = new Random();
-        int id = random.nextInt(9000) + 1000;
-        return id;
-    }
 
-    @FXML
-    private void reportButtonOnClick_C(ActionEvent event) {
-        
-    }
 }
