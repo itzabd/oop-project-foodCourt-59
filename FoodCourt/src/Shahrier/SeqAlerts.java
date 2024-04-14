@@ -4,13 +4,11 @@
  */
 package Shahrier;
 
-import java.io.Serializable;
-
 /**
  *
  * @author $abit
  */
-public class SeqAlerts implements Serializable {
+public class SeqAlerts {
     String alertReciver,alertMsg;
 
     public SeqAlerts(String alertReciver, String alertMsg) {
