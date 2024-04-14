@@ -261,9 +261,42 @@ public class OnlineCustomerController implements Initializable {
 
     @FXML
     private void reportButtonOnClick_C(ActionEvent event) {
-        
+        LocalDate date = Date_C.getValue();
+        String subject = subject_C.getText();
+        String name = NameTF_C.getText();
+        String userType = userType_C.getValue();
+
+        //creating a Complaint object
+        Complaint complaint = new Complaint(name, subject, userType, date,
+                generateRandomID());
+
+        try {
+            //file output stream in append mode
+            FileOutputStream fos = new FileOutputStream("ComplaintList.bin", true);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(complaint);
+
+            oos.close();
+            fos.close();
+
+            //alert msg
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Complaint reported successfully.");
+            alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //error msg
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Error occurred while reporting the complaint.");
+            alert.showAndWait();
+        }
     }
 
+<<<<<<< HEAD
     @FXML
     private void LogoutButtonOnClick(ActionEvent event) {
         try {
@@ -285,4 +318,6 @@ public class OnlineCustomerController implements Initializable {
 
         }
     }
+=======
+>>>>>>> parent of 5286bd4 (80% done of creating new account)
 }
