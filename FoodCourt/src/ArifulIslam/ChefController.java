@@ -4,8 +4,14 @@
  */
 package ArifulIslam;
 
+import Shahrier.ReportGeneratingData;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -49,19 +56,19 @@ public class ChefController implements Initializable {
     @FXML
     private AnchorPane menuCreationFrame;
     @FXML
-    private ComboBox<?> MenuCreationSelectStallComboBox;
+    private ComboBox<String> MenuCreationSelectStallComboBox;
     @FXML
     private TextField MenuCreationItemNameTextField;
     @FXML
     private TextField MenuCreationPriceTextField;
     @FXML
-    private TableView<?> MenuCreationTableView;
+    private TableView<MenuCreation> MenuCreationTableView;
     @FXML
-    private TableColumn<?, ?> StallNameTableColumnOfMenuCreation;
+    private TableColumn<MenuCreation, String> StallNameTableColumnOfMenuCreation;
     @FXML
-    private TableColumn<?, ?> ItemNameTableColumn;
+    private TableColumn<MenuCreation, String> ItemNameTableColumn;
     @FXML
-    private TableColumn<?, ?> PriceTableColumnOfMenuCreation;
+    private TableColumn<MenuCreation, String> PriceTableColumnOfMenuCreation;
     @FXML
     private AnchorPane menuCustomizationFrame;
     @FXML
@@ -150,6 +157,8 @@ public class ChefController implements Initializable {
     private TextArea InventoryAlertsTextArea;
     @FXML
     private TableView<?> SpecailAndPromotionTableView;
+    
+    private ArrayList<MenuCreation> menuArray;
 
     /**
      * Initializes the controller class.
@@ -158,6 +167,40 @@ public class ChefController implements Initializable {
         @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initialize your controller
+        
+        // Array crate kora hoice
+        menuArray = new ArrayList<>(); 
+        
+        // ComboBox a value add korar kaj
+        MenuCreationSelectStallComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
+        
+        
+        // Read code start
+        ObjectInputStream ois = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            MenuCreation e;
+            
+            ois = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            while(true){
+               e =  (MenuCreation) ois.readObject();
+               menuArray.add(e);
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end 
+        
+        
+        // table er column golor kaj korar code
+        StallNameTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("stallName"));
+        ItemNameTableColumn.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("itemName"));
+        PriceTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("price"));
+        
+        
+        
+        
     }
 
     @FXML
@@ -265,6 +308,8 @@ public class ChefController implements Initializable {
         
     }
 
+    
+    
 
     @FXML
     private void chefDashBoardBackButton(ActionEvent event) throws IOException {
@@ -278,7 +323,41 @@ public class ChefController implements Initializable {
 
     @FXML
     private void MenuCreationSaveButton(ActionEvent event) {
+        MenuCreation mn = new MenuCreation(MenuCreationSelectStallComboBox.getValue(), MenuCreationItemNameTextField.getText(), Integer.parseInt(MenuCreationPriceTextField.getText()));
+        //System.out.println(MenuCreationItemNameTextField.getText());
+        menuArray.add(mn);
+        
+        
+        // write code start
+        try{
+            FileOutputStream fos = new FileOutputStream("menuObject.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(MenuCreation r:menuArray){
+                oos.writeObject(r);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // write code end
+        
+        
+        // table View add korar kaj
+        for(MenuCreation e:menuArray){
+            if(MenuCreationTableView.getItems().contains(e)){
+                System.out.println("Already Contain");
+            }
+            else{
+                MenuCreationTableView.getItems().add(e);
+            }
+        }
     }
+    
+    
+    
 
     @FXML
     private void SpecailAndPromotionsSaveButton(ActionEvent event) {
