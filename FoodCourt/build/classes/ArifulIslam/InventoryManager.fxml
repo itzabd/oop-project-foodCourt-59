@@ -3,9 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -49,40 +46,23 @@
                      <children>
                         <AnchorPane fx:id="RealTimeSalesAnalysisFrame" layoutX="121.0" layoutY="200.0" prefHeight="524.0" prefWidth="478.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="629.0" layoutY="14.0" text="1" />
-                              <Label layoutX="185.0" layoutY="28.0" prefHeight="24.0" prefWidth="227.0" text="Real Time Sales Analysis">
+                              <Label layoutX="446.0" layoutY="14.0" text="1" />
+                              <Label layoutX="129.0" layoutY="33.0" prefHeight="24.0" prefWidth="227.0" text="Real Time Sales Analysis">
                                  <font>
-                                    <Font name="Bell MT Bold" size="19.0" />
+                                    <Font name="Bell MT Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="73.0" layoutY="96.0" prefHeight="26.0" prefWidth="77.0" text="Stall Name">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox fx:id="RealTimeSalesAnalysisStallNameComboBox" layoutX="157.0" layoutY="92.0" prefHeight="29.0" prefWidth="191.0" />
-                              <Button layoutX="402.0" layoutY="94.0" mnemonicParsing="false" onAction="#RealTimeSalesAnalysisShowButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Show" />
-                              <TableView fx:id="RealTimeSalesAnalysisTableView" layoutX="4.0" layoutY="157.0" prefHeight="395.0" prefWidth="691.0">
-                                <columns>
-                                  <TableColumn fx:id="RealTimeSalesAnalysisTableViewStallNameTableColumn" prefWidth="229.66665649414062" text="Stall Name" />
-                                  <TableColumn fx:id="RealTimeSalesAnalysisTableViewItemTableColumn" prefWidth="265.3333435058594" text="Item" />
-                                    <TableColumn fx:id="RealTimeSalesAnalysisTableViewTotalSaleTableColumn" prefWidth="194.0" text="Total Sale" />
-                                </columns>
-                              </TableView>
                            </children></AnchorPane>
                         <AnchorPane fx:id="InventoryReportsFrame" layoutX="10.0" layoutY="10.0" prefHeight="534.0" prefWidth="488.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="645.0" layoutY="22.0" text="2" />
-                              <Label layoutX="251.0" layoutY="24.0" prefHeight="26.0" prefWidth="221.0" text="Inventory Reports">
+                              <Label layoutX="450.0" layoutY="14.0" text="2" />
+                              <Label layoutX="139.0" layoutY="33.0" prefHeight="26.0" prefWidth="221.0" text="Inventory Reports">
                                  <font>
                                     <Font name="Bell MT Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="66.0" layoutY="107.0" prefHeight="17.0" prefWidth="94.0" text="Select a Stall" />
-                              <ComboBox layoutX="176.0" layoutY="103.0" prefWidth="150.0" />
-                              <TextArea editable="false" layoutX="-1.0" layoutY="166.0" prefHeight="280.0" prefWidth="676.0" />
-                              <Button layoutX="160.0" layoutY="483.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Save" />
-                              <Button layoutX="409.0" layoutY="483.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" text="Clear" />
+                              <Label layoutX="61.0" layoutY="91.0" text="Label" />
+                              <ComboBox layoutX="100.0" layoutY="87.0" prefWidth="150.0" />
                            </children></AnchorPane>
                         <AnchorPane fx:id="InventoryAlertsFrame" layoutX="10.0" layoutY="10.0" prefHeight="544.0" prefWidth="498.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
