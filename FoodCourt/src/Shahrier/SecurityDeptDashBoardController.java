@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -87,7 +86,7 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TextField sessionManagementFeedbackBtn;
     @FXML  private DatePicker sessionManagementDatePicker;
     private ArrayList<ReportGeneratingData> reportGenerateDataArr;
-
+<<<<<<< HEAD
     @FXML  private DatePicker newVehicleRegDatePicker;
     @FXML  private TextField newVehicleRegCarModelTextField;
     @FXML  private TextField newVehicleRegLicenseNum;
@@ -125,7 +124,8 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private CheckBox stallManagerEmgMsgCheckBox;
     @FXML  private TextArea alertMsgTextArea;
     private ArrayList<SeqAlerts> seqAlertsArr;
-
+=======
+>>>>>>> main
      /**
      * Initializes the controller class.
      */
@@ -177,7 +177,8 @@ public class SecurityDeptDashBoardController implements Initializable {
         catch(Exception ex){
             System.out.println(ex);
         }
-
+        
+<<<<<<< HEAD
         ObjectInputStream oisForVehicle = null;
         try{
             NewVehicleRegData nv;
@@ -213,7 +214,9 @@ public class SecurityDeptDashBoardController implements Initializable {
         catch(Exception ex){
             System.out.println(ex);
         }
-
+        
+=======
+>>>>>>> main
         for(EmpManagementData e:empManagementDataArr){
             empManagementTableViewData.getItems().add(e);
         }
@@ -540,6 +543,7 @@ public class SecurityDeptDashBoardController implements Initializable {
         }
 
     }
+<<<<<<< HEAD
 
     @FXML
     private void newVehicleRegConfirmBtn(ActionEvent event) {
@@ -727,5 +731,7 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML
     private void sendEmgMsgBtn(ActionEvent event) {
     }
+=======
+>>>>>>> main
     
 }
