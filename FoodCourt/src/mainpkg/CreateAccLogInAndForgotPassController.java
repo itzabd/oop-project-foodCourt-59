@@ -99,6 +99,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     private Label UserNameError;
     @FXML
     private Label PassError;
+    private String loggedInUsername;
 
     /**
      * Initializes the controller class.
@@ -124,7 +125,12 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
 
         //----Create Account init --- Ends
     }
-
+    
+    public String getUsername1(){
+        String username = loginPageUserName.getText();
+        return username;
+    }
+    
     private int generateUniqueId() {
         Random random = new Random();
         return random.nextInt(10000);
@@ -134,19 +140,6 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         return email.contains("@") && email.endsWith(".com");
     }
 
-//    private void saveUserDataToFile(AllUserData userData) {
-//        File allUserDataFile = new File("AllUserData.bin");
-//
-//        try (FileOutputStream fos = new FileOutputStream(allUserDataFile, true); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-//            oos.writeObject(userData);
-//           // Alert alert = new Alert(Alert.AlertType.INFORMATION, "User data saved successfully");
-//            //alert.showAndWait();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save user data");
-//            alert.showAndWait();
-//        }
-//    }
 
     @FXML
     private void logInPageUserTypeComboxOnClick(ActionEvent event) {
@@ -181,6 +174,8 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         String userType = logInPageUserTypeCombox.getValue();
         String username = loginPageUserName.getText();
         String password = loginPagePswdField.getText();
+        
+        
 
         // Check if a user type is selected
         if (userType == null) {
@@ -737,21 +732,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         ex.printStackTrace();
     }
 
-    //Creates an instance of AllUserData
-//    AllUserData userData = new AllUserData(
-//            usernameTF.getText(),
-//            emailTF.getText(),
-//            nameTF.getText(),
-//            paasTF.getText(),
-//            contactNoTF.getText(),
-//            gender,
-//            userType,
-//            generateUniqueId(),
-//            DOB_DP.getValue()
-//    );
-//
-//    // Save user data to file
-//    saveUserDataToFile(userData);
+  
 }
 
 }

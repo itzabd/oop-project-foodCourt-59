@@ -9,8 +9,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -112,13 +110,15 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboardOC" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboardOC" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" layoutX="130.0" layoutY="167.0" prefHeight="170.0" prefWidth="276.0" text="Dashboard">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
                               </Label>
+                              <TextArea fx:id="dashboardTA" layoutX="86.0" layoutY="38.0" prefHeight="146.0" prefWidth="276.0" />
+                              <Button layoutX="96.0" layoutY="198.0" mnemonicParsing="false" onAction="#testbutton" text="Button" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="orderManagement_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
@@ -171,126 +171,6 @@
                               </TableView>
                               <Button layoutX="30.0" layoutY="403.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Cancel Order" textAlignment="JUSTIFY" wrapText="true" />
                               <Button layoutX="151.0" layoutY="403.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Re-order" textAlignment="JUSTIFY" wrapText="true" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="setAddress_scene" prefHeight="504.0" prefWidth="535.0" style="-fx-background-color: #c1c4c9;" visible="false">
-                           <children>
-                              <TabPane prefHeight="504.0" prefWidth="536.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <tabs>
-                                    <Tab text="Address">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="12.0" prefHeight="38.0" prefWidth="301.0" text=" Address" textAlignment="CENTER" wrapText="true">
-                                                   <font>
-                                                      <Font name="System Bold" size="25.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="60.0" layoutY="162.0" text="Street no:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button layoutX="148.0" layoutY="391.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: f38a65; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Load" />
-                                                <TextField layoutX="148.0" layoutY="74.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <Label layoutX="59.0" layoutY="122.0" text="Block no:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="148.0" layoutY="193.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <Label layoutX="58.0" layoutY="77.0" text="House no:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="148.0" layoutY="117.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <ComboBox layoutX="148.0" layoutY="263.0" prefHeight="25.0" prefWidth="175.0" promptText="Select Division" />
-                                                <Label layoutX="59.0" layoutY="266.0" text="Division:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="59.0" layoutY="198.0" text="Postal Code:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="148.0" layoutY="157.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <Label layoutX="59.0" layoutY="233.0" text="Area:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="59.0" layoutY="312.0" text="Note:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextArea layoutX="148.0" layoutY="298.0" prefHeight="77.0" prefWidth="271.0" style="-fx-border-color: grey;" />
-                                                <ComboBox layoutX="148.0" layoutY="230.0" prefHeight="25.0" prefWidth="175.0" promptText="Select Area" />
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                    </Tab>
-                                    <Tab text="Set new address">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="12.0" prefHeight="38.0" prefWidth="301.0" text="Set new Address" textAlignment="CENTER" wrapText="true">
-                                                   <font>
-                                                      <Font name="System Bold" size="25.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="59.0" layoutY="160.0" text="Street no:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button layoutX="148.0" layoutY="389.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: f38a65; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Save" />
-                                                <TextField layoutX="148.0" layoutY="72.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <Label layoutX="59.0" layoutY="120.0" text="Block no:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="148.0" layoutY="191.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <Label layoutX="58.0" layoutY="75.0" text="House no:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="148.0" layoutY="115.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <ComboBox layoutX="148.0" layoutY="261.0" prefHeight="25.0" prefWidth="175.0" promptText="Select Division" />
-                                                <Label layoutX="59.0" layoutY="264.0" text="Division:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="59.0" layoutY="196.0" text="Postal Code:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="148.0" layoutY="155.0" prefHeight="29.0" prefWidth="174.0" />
-                                                <Label layoutX="59.0" layoutY="231.0" text="Area:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="59.0" layoutY="310.0" text="Note:">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextArea layoutX="148.0" layoutY="299.0" prefHeight="77.0" prefWidth="271.0" style="-fx-border-color: grey;" />
-                                                <ComboBox layoutX="148.0" layoutY="228.0" prefHeight="25.0" prefWidth="175.0" promptText="Select Area" />
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                    </Tab>
-                                 </tabs>
-                              </TabPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="ratingAndFeedback_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
@@ -386,7 +266,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="customerAssistance_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;">
+                        <AnchorPane fx:id="customerAssistance_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Customer Assistance" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -426,13 +306,85 @@
                               <ComboBox fx:id="userType_C" layoutX="159.0" layoutY="215.0" prefHeight="25.0" prefWidth="138.0" promptText="Select" visibleRowCount="3" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="ViewProfile_scene" layoutX="10.0" layoutY="10.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="ViewProfile_scene" layoutX="10.0" layoutY="10.0" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Profile" textAlignment="CENTER" wrapText="true">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Profile" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="70.0" layoutY="104.0" prefHeight="23.0" prefWidth="50.0" text="Name :" />
+                              <TextField fx:id="name_profileScene" editable="false" layoutX="154.0" layoutY="103.0" />
+                              <Label layoutX="70.0" layoutY="147.0" prefHeight="23.0" prefWidth="67.0" text="Phone No. :" />
+                              <TextField fx:id="phoneNo_profileScene" editable="false" layoutX="154.0" layoutY="146.0" />
+                              <Label layoutX="70.0" layoutY="196.0" prefHeight="23.0" prefWidth="67.0" text="Gender :" />
+                              <TextField fx:id="gender_profileScene" editable="false" layoutX="154.0" layoutY="195.0" />
+                              <Label layoutX="72.0" layoutY="238.0" prefHeight="23.0" prefWidth="50.0" text="Email :" />
+                              <TextField fx:id="email_profileScene" layoutX="154.0" layoutY="237.0" />
+                              <Label layoutX="69.0" layoutY="318.0" prefHeight="23.0" prefWidth="50.0" text="Address :" />
+                              <TextArea fx:id="address_profileScene" layoutX="152.0" layoutY="319.0" prefHeight="83.0" prefWidth="236.0" />
+                              <Label layoutX="70.0" layoutY="278.0" prefHeight="23.0" prefWidth="79.0" text="Date of birth: " />
+                              <DatePicker fx:id="Dobl_profileScene" editable="false" layoutX="154.0" layoutY="277.0" prefHeight="25.0" prefWidth="149.0" />
+                              <Button layoutX="367.0" layoutY="420.0" mnemonicParsing="false" onAction="#Loadbutton_ProfileScene" prefHeight="32.0" prefWidth="79.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Load" textAlignment="JUSTIFY" wrapText="true">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="30.0" layoutY="427.0" text="Type username to load Profile" />
+                              <TextField fx:id="userNameTF_ProfileScene" layoutX="205.0" layoutY="423.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="setAddress_scene" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="7.0" prefHeight="38.0" prefWidth="301.0" text="Set Address" textAlignment="CENTER" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="70.0" layoutY="137.0" prefHeight="20.0" prefWidth="113.0" text="Street name/no:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="183.0" layoutY="418.0" mnemonicParsing="false" onAction="#saveAddressButtonOnClick" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: f38a65; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Save" />
+                                    <TextField fx:id="HouseNo_Address" layoutX="182.0" layoutY="90.0" prefHeight="29.0" prefWidth="174.0" promptText="House no" />
+                                    <Label layoutX="70.0" layoutY="176.0" text="Block no:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="postalCode_Address1" layoutX="181.0" layoutY="215.0" prefHeight="29.0" prefWidth="174.0" promptText="Postal Code" />
+                                    <Label layoutX="67.0" layoutY="95.0" text="House no:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="bloclNo_Address" layoutX="182.0" layoutY="171.0" prefHeight="29.0" prefWidth="174.0" promptText="Block No" />
+                                    <Label layoutX="71.0" layoutY="220.0" text="Postal Code:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="streetNo_Address" layoutX="182.0" layoutY="132.0" prefHeight="29.0" prefWidth="174.0" promptText="Street name/no" />
+                                    <Label layoutX="72.0" layoutY="265.0" text="Area:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="71.0" layoutY="314.0" text="Note:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="NoteAddresscene1" layoutX="181.0" layoutY="303.0" prefHeight="65.0" prefWidth="271.0" promptText="Any notes?" style="-fx-border-color: grey;" />
+                                    <ComboBox fx:id="selectArea_Address" layoutX="181.0" layoutY="262.0" prefHeight="25.0" prefWidth="175.0" promptText="Select Area" />
+                                    <Label layoutX="47.0" layoutY="382.0" text="Type username to save:" />
+                                    <TextField fx:id="usernameAddress" layoutX="181.0" layoutY="378.0" prefHeight="25.0" prefWidth="162.0" />
+                                    <TextArea fx:id="testbox" layoutX="13.0" prefHeight="87.0" prefWidth="512.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>

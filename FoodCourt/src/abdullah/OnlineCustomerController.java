@@ -4,6 +4,7 @@
  */
 package abdullah;
 
+
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -93,6 +95,40 @@ public class OnlineCustomerController implements Initializable {
     private TextArea details_TextArea_C;
     @FXML
     private TextField About_C;
+    @FXML
+    private TextField name_profileScene;
+    @FXML
+    private TextField phoneNo_profileScene;
+    @FXML
+    private TextField gender_profileScene;
+    @FXML
+    private TextField email_profileScene;
+    @FXML
+    private TextArea address_profileScene;
+    @FXML
+    private DatePicker Dobl_profileScene;
+    @FXML
+    private TextField userNameTF_ProfileScene;
+    @FXML
+    private TextField HouseNo_Address;
+    private TextField postalCode_Address;
+    @FXML
+    private TextField bloclNo_Address;
+    @FXML
+    private TextField streetNo_Address;
+    @FXML
+    private ComboBox<String> selectArea_Address;
+    private TextArea NoteAddresscene;
+    @FXML
+    private TextField postalCode_Address1;
+    @FXML
+    private TextArea NoteAddresscene1;
+    @FXML
+    private TextField usernameAddress;
+    @FXML
+    private TextArea testbox;
+    @FXML
+    private TextArea dashboardTA;
 
     /**
      * Initializes the controller class.
@@ -109,40 +145,77 @@ public class OnlineCustomerController implements Initializable {
         
         
         NotificationTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
-        ObjectInputStream ois = null;
-        {
-            ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
-            try {
-                SendNotice s;
+        //private String loggedInUsername;
+//        ObjectInputStream ois = null;
+//        {
+//            ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
+//            try {
+//                SendNotice s;
+//
+//                ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
+//
+//                while (true) {
+//                    s = (SendNotice) ois.readObject();
+//                    sendnotice.add(s);
+//                    NotificationTableView.setItems(sendnotice);
+//                    
+//                }
+//
+//            } catch (RuntimeException e) {
+//                e.printStackTrace();
+//
+//            } catch (Exception ex) {
+//                try {
+//                    if (ois != null) {
+//                        ois.close();
+//                    }
+//                } catch (IOException ex1) {
+//                }
+//            }
+//
+//        
+          ObjectInputStream ois = null;
+        ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
 
-                ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
+        try {
+            SendNotice s;
 
-                while (true) {
-                    s = (SendNotice) ois.readObject();
+            ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
+
+            while (true) {
+                s = (SendNotice) ois.readObject();
+
+                // Check if the recipient field contains "Online Customer"
+                if (s.getNoticeForUserType().equals("Online Customer")
+                        || s.getNoticeForUserType().equals("Food Delivery Partner")) {
                     sendnotice.add(s);
-                    NotificationTableView.setItems(sendnotice);
-                    
-                }
-
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-
-            } catch (Exception ex) {
-                try {
-                    if (ois != null) {
-                        ois.close();
-                    }
-                } catch (IOException ex1) {
                 }
             }
 
+        } catch (EOFException eof) {
+            // End of file reached, do nothing
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
+
+// Set the items to the TableView after reading all relevant objects
+        NotificationTableView.setItems(sendnotice);
         userType_C.getItems().addAll("Online Customer","Stall Manager"
             ,"Security Department","Food Supplier");
-        
+      //Address Scene
+      selectArea_Address.getItems().addAll("Bashundhara","Rampura",
+              "Kuril","Notunbazar");
             
     }
+    
 
     @FXML
     private void sceneSwitch(ActionEvent event) {
@@ -152,6 +225,7 @@ public class OnlineCustomerController implements Initializable {
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
             notification_scene.setVisible(false);
@@ -161,6 +235,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(true);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -171,6 +246,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(true);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -181,6 +257,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -191,6 +268,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(true);
             todaysOffer_scene.setVisible(false);
@@ -202,6 +280,7 @@ public class OnlineCustomerController implements Initializable {
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(true);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
             notification_scene.setVisible(false);
@@ -210,6 +289,7 @@ public class OnlineCustomerController implements Initializable {
             dashboardOC.setVisible(false);
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             setAddress_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
@@ -221,6 +301,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -230,6 +311,7 @@ public class OnlineCustomerController implements Initializable {
             dashboardOC.setVisible(false);
             orderManagement_scene.setVisible(true);
             orderHistory_Scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             setAddress_scene.setVisible(false);
            // Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
@@ -349,4 +431,94 @@ public class OnlineCustomerController implements Initializable {
 
         }
     }
+    
+     
+    @FXML
+    private void Loadbutton_ProfileScene(ActionEvent event) {
+        String username = userNameTF_ProfileScene.getText();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("OnlineCustomerList.bin"))) {
+            ObservableList<OnlineCustomer> onCustomer = FXCollections.observableArrayList();
+            boolean found = false;
+
+            while (true) {
+                OnlineCustomer c = (OnlineCustomer) ois.readObject();
+                onCustomer.add(c);
+
+                if (c.getName().equals((username))) {
+                    
+                    name_profileScene.setText(c.getName());
+                    phoneNo_profileScene.setText(c.getContNo());
+                    gender_profileScene.setText(c.getGender());
+                    email_profileScene.setText(c.getEmail());
+                    
+                    Dobl_profileScene.setValue(c.getDateOfBirth());
+
+                    found = true;
+                    break; 
+                }
+            }
+
+            if (!found) {
+               
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("User not found");
+                alert.showAndWait();
+            }
+        } catch (EOFException eof) {
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void saveAddressButtonOnClick(ActionEvent event) {
+    String houseNo = HouseNo_Address.getText();
+    String blockNo = bloclNo_Address.getText();
+    String streetNo = streetNo_Address.getText();
+    String postalCode = postalCode_Address1.getText();
+    String selectedArea = selectArea_Address.getValue();
+    String note = NoteAddresscene1.getText();
+    String username1 = usernameAddress.getText();
+
+    
+    if (username1.isEmpty() || houseNo.isEmpty() || blockNo.isEmpty() || streetNo.isEmpty() ||
+            postalCode.isEmpty() || selectedArea == null || note.isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Incomplete Address");
+        alert.setHeaderText(null);
+        alert.setContentText("Please fill in all address details.");
+        alert.showAndWait();
+        return;
+    }
+
+    Address address = new Address(houseNo, blockNo, streetNo,
+            selectedArea, note,postalCode, username1);
+
+    try (ObjectOutputStream oos = new ObjectOutputStream(
+                                 new FileOutputStream("CustomerAddressFile.bin", true))) {
+        oos.writeObject(address);
+        oos.flush();
+    } catch (IOException e) {
+        e.printStackTrace();
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Failed to save address.");
+        alert.showAndWait();
+        return;
+    }
+
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Address Saved");
+    alert.setHeaderText(null);
+    alert.setContentText("Address saved successfully.");
+    alert.showAndWait();
+ 
+    }
+
+   
+ 
 }
