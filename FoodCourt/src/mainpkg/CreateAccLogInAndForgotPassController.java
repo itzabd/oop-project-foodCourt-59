@@ -120,7 +120,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         userTypeComboBox.getItems().addAll("Security Depertment", "Food Supplier",
                 "Food Court Manager", "Online Customer",
                 "Inventory Manager", "Chef",
-                "Food Delivery Partner", "Stall Manager ");
+                "Food Delivery Partner", "Stall Manager");
 
         //----Create Account init --- Ends
     }
@@ -399,29 +399,156 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             UserNameError.setText("Invalid");
             PassError.setText("Invalid");
         }
-        // Check if the user type is "Inventory Manager"
+        //if the user type is "Inventory Manager"
         if ("Inventory Manager".equals(userType)) {
             //Load the file
             File employeeFile = new File("InventoryManagerList.bin");
 
-            // Check if the file exists
+            //if the file exists
             if (employeeFile.exists()) {
-                try (FileInputStream fis = new FileInputStream(employeeFile); 
-                     ObjectInputStream ois = new ObjectInputStream(fis)) {
+                try (FileInputStream fis = new FileInputStream(employeeFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
                     boolean found = false;
                     while (true) {
                         InventoryManager manager = (InventoryManager) ois.readObject();
                         // Check if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
-                            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/FoodSupplierDashboard.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/ArifulIslam/InventoryManager.fxml"));
                             Scene scene = new Scene(root);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
                             stage.show();
                             return;
-                        } //check if username matches
-                        else if (manager.getUsername().equals(username)) {
+                        } else if (manager.getUsername().equals(username)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        UserNameError.setText("Invalid username.");
+
+                        return;
+                    }
+                } catch (EOFException e) {
+                    //no match found
+                    System.out.println("No matching user found.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                //if the file does not exist
+                System.out.println("Employee file does not exist.");
+            }
+            UserNameError.setText("Invalid");
+            PassError.setText("Invalid");
+        }
+        //if the user type is "Chef"
+        if ("Chef".equals(userType)) {
+            //Load the file
+            File employeeFile = new File("ChefList.bin");
+
+            //if the file exists
+            if (employeeFile.exists()) {
+                try (FileInputStream fis = new FileInputStream(employeeFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                    boolean found = false;
+                    while (true) {
+                        Chef manager = (Chef) ois.readObject();
+                        // Check if username and password match
+                        if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
+                            //if match, load the MaintananceManager.fxml
+                            Parent root = FXMLLoader.load(getClass().getResource("/ArifulIslam/Chef.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                            return;
+                        } else if (manager.getUsername().equals(username)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        UserNameError.setText("Invalid username.");
+
+                        return;
+                    }
+                } catch (EOFException e) {
+                    //no match found
+                    System.out.println("No matching user found.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                //if the file does not exist
+                System.out.println("Employee file does not exist.");
+            }
+            UserNameError.setText("Invalid");
+            PassError.setText("Invalid");
+        }
+        //if the user type is "Food Delivery Partner"
+        if ("Food Delivery Partner".equals(userType)) {
+            //Load the file
+            File employeeFile = new File("FoodDeliveryPartnerList.bin");
+
+            //if the file exists
+            if (employeeFile.exists()) {
+                try (FileInputStream fis = new FileInputStream(employeeFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                    boolean found = false;
+                    while (true) {
+                        FoodDeliveryPartner manager = (FoodDeliveryPartner) ois.readObject();
+                        // Check if username and password match
+                        if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
+                            //if match, load the MaintananceManager.fxml
+                            Parent root = FXMLLoader.load(getClass().getResource("/Saif/FoodDeliveryPartnerUserDashBoard.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                            return;
+                        } else if (manager.getUsername().equals(username)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        UserNameError.setText("Invalid username.");
+
+                        return;
+                    }
+                } catch (EOFException e) {
+                    //no match found
+                    System.out.println("No matching user found.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                //if the file does not exist
+                System.out.println("Employee file does not exist.");
+            }
+            UserNameError.setText("Invalid");
+            PassError.setText("Invalid");
+        }
+        //if the user type is "Stall Manager"
+        if ("Stall Manager".equals(userType)) {
+            //Load the file
+            File employeeFile = new File("StallManagerList.bin");
+
+            //if the file exists
+            if (employeeFile.exists()) {
+                try (FileInputStream fis = new FileInputStream(employeeFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                    boolean found = false;
+                    while (true) {
+                        StallManager manager = (StallManager) ois.readObject();
+                        // Check if username and password match
+                        if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
+                            //if match, load the MaintananceManager.fxml
+                            Parent root = FXMLLoader.load(getClass().getResource("/Saif/StallManagerUserDashBoard.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                            return;
+                        } else if (manager.getUsername().equals(username)) {
                             found = true;
                             break;
                         }
