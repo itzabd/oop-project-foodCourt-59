@@ -685,19 +685,16 @@ public class FoodCourtManagerController implements Initializable {
         Complaint selectedComplaint = ComplaintTableView.getSelectionModel().getSelectedItem();
 
         if (selectedComplaint != null) {
-
-            String description = String.join("\n", selectedComplaint.getcDetails());
-
+            String description = "Complaint about - " + selectedComplaint.getcAbout() + "\n"
+                    + "Complaint details - "+"\n\n"+ selectedComplaint.getcDetails();
             complaintDetailsTextArea.setText(description);
         } else {
-            //error msg
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information");
             alert.setHeaderText(null);
-            alert.setContentText("Please select a Complaint from list.");
+            alert.setContentText("Please select a Complaint from the list.");
             alert.showAndWait();
         }
-
     }
 
     @FXML
