@@ -253,11 +253,11 @@ public class OnlineCustomerController implements Initializable {
     }
     }
     
-    private int generateRandomID() {
-        Random random = new Random();
-        int id = random.nextInt(9000) + 1000;
-        return id;
-    }
+//    private int generateRandomID() {
+//        Random random = new Random();
+//        int id = random.nextInt(9000) + 1000;
+//        return id;
+//    }
 
     @FXML
     private void reportButtonOnClick_C(ActionEvent event) {
