@@ -148,6 +148,8 @@ public class ChefController implements Initializable {
     private ComboBox<?> InventoryAlertsStallNameComboBox;
     @FXML
     private TextArea InventoryAlertsTextArea;
+    @FXML
+    private TableView<?> SpecailAndPromotionTableView;
 
     /**
      * Initializes the controller class.
