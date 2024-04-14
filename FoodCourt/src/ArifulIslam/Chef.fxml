@@ -20,7 +20,7 @@
                <left>
                   <AnchorPane prefHeight="529.0" prefWidth="217.0" style="-fx-background-color: #0E4916;" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="recipeManagementButton" layoutX="9.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Recipe Management">
+                        <Button fx:id="InventoryAlertsButton" layoutX="9.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #c1c4c9;" text="Inventory Alerts">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -190,12 +190,17 @@
                         </AnchorPane>
                         <AnchorPane fx:id="recipeManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="569.0" prefWidth="576.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="515.0" layoutY="14.0" text="5" />
-                              <Label layoutX="153.0" layoutY="18.0" text="Recipe Management" textFill="#0e4916">
+                              <Label layoutX="678.0" layoutY="29.0" text="5" />
+                              <Label layoutX="268.0" layoutY="38.0" text="Inventory Alerts" textFill="#0e4916">
                                  <font>
                                     <Font name="Bell MT Bold" size="26.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="82.0" layoutY="109.0" prefHeight="17.0" prefWidth="81.0" text="Stall Name" />
+                              <ComboBox fx:id="InventoryAlertsStallNameComboBox" layoutX="165.0" layoutY="105.0" prefWidth="150.0" />
+                              <TextArea fx:id="InventoryAlertsTextArea" layoutX="-1.0" layoutY="191.0" prefHeight="200.0" prefWidth="719.0" />
+                              <Button layoutX="190.0" layoutY="429.0" mnemonicParsing="false" onAction="#InventoryAlertsSendButton" prefHeight="47.0" prefWidth="99.0" text="Send" />
+                              <Button layoutX="384.0" layoutY="105.0" mnemonicParsing="false" onAction="#InventoryAlertsLoadButton" prefHeight="25.0" prefWidth="73.0" text="Load" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="ingredientManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="579.0" prefWidth="586.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

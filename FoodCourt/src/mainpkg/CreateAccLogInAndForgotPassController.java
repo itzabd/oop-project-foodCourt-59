@@ -131,6 +131,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+        
     }
 
     @FXML

@@ -31,8 +31,6 @@ import javafx.stage.Stage;
 public class ChefController implements Initializable {
 
     @FXML
-    private Button recipeManagementButton;
-    @FXML
     private Button seasonalMenuUpdatesButton;
     @FXML
     private Button specialsAndPromotionsButton;
@@ -144,6 +142,12 @@ public class ChefController implements Initializable {
     private TextField MenuCustomizationItemPriceTextField;
     @FXML
     private TextField MenuCustomizationChangeItemPriceIfNeededTextField;
+    @FXML
+    private Button InventoryAlertsButton;
+    @FXML
+    private ComboBox<?> InventoryAlertsStallNameComboBox;
+    @FXML
+    private TextArea InventoryAlertsTextArea;
 
     /**
      * Initializes the controller class.
@@ -167,7 +171,7 @@ public class ChefController implements Initializable {
             orderQueueFrame.setVisible(false);
             customerFeedbackAnalysisFrame.setVisible(false);
         }
-        else if(event.getSource()==recipeManagementButton){
+        else if(event.getSource()==InventoryAlertsButton){
             ChefDashboardReturnFrame.setVisible(false);
             recipeManagementFrame.setVisible(true);
             menuCreationFrame.setVisible(false);
@@ -304,6 +308,14 @@ public class ChefController implements Initializable {
 
     @FXML
     private void MenuCustomizationUpdateButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void InventoryAlertsSendButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void InventoryAlertsLoadButton(ActionEvent event) {
     }
     
 }

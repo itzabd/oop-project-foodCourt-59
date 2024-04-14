@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -74,6 +76,52 @@ public class InventoryManagerController implements Initializable {
     private TableColumn<?, ?> RealTimeSalesAnalysisTableViewItemTableColumn;
     @FXML
     private TableColumn<?, ?> RealTimeSalesAnalysisTableViewTotalSaleTableColumn;
+    @FXML
+    private ComboBox<?> InventoryReportSelectStallComboBox;
+    @FXML
+    private TextArea InventoryReportTextArea;
+    @FXML
+    private TextArea SeeAlertsAndTakeOrderTextArea;
+    @FXML
+    private ComboBox<?> SeeAlertsAndTakeOrderStallNameComboBox;
+    @FXML
+    private TextField SeeAlertsAndTakeOrderItemTextField;
+    @FXML
+    private TextField SeeAlertsAndTakeOrderQuantityTextField;
+    @FXML
+    private TextArea SeeAlertsAndTakeOrderCreateAnOrderTextArea;
+    @FXML
+    private ComboBox<?> CostAnalysisSelectAStallComboBox;
+    @FXML
+    private TextArea CostAnalysisTextArea;
+    @FXML
+    private ComboBox<?> SupplierManagementSelectASupplierComboBox;
+    @FXML
+    private TextField SupplierManagementNameTextField;
+    @FXML
+    private TextField SupplierManagementEmailTextField;
+    @FXML
+    private TextField SupplierManagementContactNumberTextField;
+    @FXML
+    private TextField SupplierManagementPasswordTextField;
+    @FXML
+    private ComboBox<?> NewSupplierRegistrationListComboBox;
+    @FXML
+    private TextArea NewSupplierRegistrationTextArea;
+    @FXML
+    private ComboBox<?> ManageStockLevelSelectAStallComboBox;
+    @FXML
+    private TextField ManageStockLevelQuantityTableField;
+    @FXML
+    private TextField ManageStockLevelProductTableField;
+    @FXML
+    private TableView<?> ManageStockLevelTableView;
+    @FXML
+    private TableColumn<?, ?> ManageStockLevelTableViewStallNameTableColumn;
+    @FXML
+    private TableColumn<?, ?> ManageStockLevelTableViewProductTableColumn;
+    @FXML
+    private TableColumn<?, ?> ManageStockLevelTableViewQuantityTableColumn;
 
     /**
      * Initializes the controller class.
@@ -206,6 +254,58 @@ public class InventoryManagerController implements Initializable {
 
     @FXML
     private void RealTimeSalesAnalysisShowButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void InventoryReportSaveButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void InventoryReportClearButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void InventoryReportShowButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SeeAlertsAndTakeOrderOrderButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void CostAnalysisShowButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void CostAnalysisReportGenerateButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void CostAnalysisClearButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SupplierManagementSelectASupplierComboBoxOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void SupplierManagementUpdateButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void NewSupplierRegistrationInfoShowButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void NewSupplierRegistrationAcceptButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void NewSupplierRegistrationRejectedButtonOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ManageStockLevelShowButton(ActionEvent event) {
     }
 }
     

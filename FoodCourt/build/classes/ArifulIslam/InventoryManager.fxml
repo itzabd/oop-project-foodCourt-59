@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -21,13 +22,10 @@
                      <children>
                         <Button fx:id="RealTimeSalesAnalysisButton" layoutX="13.0" layoutY="107.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Real-time Sales Analysis" />
                         <Button fx:id="InventoryReportsButton" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Inventory Reports" />
-                        <Button fx:id="InventoryAlertsButton" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Inventory Alerts" />
+                        <Button fx:id="InventoryAlertsButton" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="See Alerts &amp; Take Order" />
                         <Button fx:id="CostAnalysisButton" layoutX="13.0" layoutY="226.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Cost Analysis" />
                         <Button fx:id="SupplierManagmentButton" layoutX="13.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Supplier Management" />
-                        <Button fx:id="VendorPerformanceEvaluationButton" layoutX="12.0" layoutY="301.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Vendor Performance Evaluation">
-                           <font>
-                              <Font size="10.0" />
-                           </font></Button>
+                        <Button fx:id="VendorPerformanceEvaluationButton" layoutX="12.0" layoutY="301.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Manage Stock Levels" />
                         <Button fx:id="SupportTeamBUtton" layoutX="14.0" layoutY="339.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="Support team" />
                         <Button fx:id="NewSupplierRegistrationButton" layoutX="13.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchingFrame" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #c1c4c9;" text="New Supplier Registration" />
                         <Button layoutX="24.0" layoutY="441.0" mnemonicParsing="false" onAction="#InventoryManagerDashBoardBackButton" prefHeight="14.0" prefWidth="66.0" style="-fx-background-color: #c1c4c9;" text="&gt;Back" />
@@ -70,7 +68,7 @@
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="InventoryReportsFrame" layoutX="10.0" layoutY="10.0" prefHeight="534.0" prefWidth="488.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="InventoryReportsFrame" layoutX="10.0" layoutY="10.0" prefHeight="534.0" prefWidth="488.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="645.0" layoutY="22.0" text="2" />
                               <Label layoutX="251.0" layoutY="24.0" prefHeight="26.0" prefWidth="221.0" text="Inventory Reports">
@@ -79,46 +77,97 @@
                                  </font>
                               </Label>
                               <Label layoutX="66.0" layoutY="107.0" prefHeight="17.0" prefWidth="94.0" text="Select a Stall" />
-                              <ComboBox layoutX="176.0" layoutY="103.0" prefWidth="150.0" />
-                              <TextArea editable="false" layoutX="-1.0" layoutY="166.0" prefHeight="280.0" prefWidth="676.0" />
-                              <Button layoutX="160.0" layoutY="483.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" text="Save" />
-                              <Button layoutX="409.0" layoutY="483.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" text="Clear" />
+                              <ComboBox fx:id="InventoryReportSelectStallComboBox" layoutX="176.0" layoutY="103.0" prefWidth="150.0" />
+                              <TextArea fx:id="InventoryReportTextArea" editable="false" layoutX="2.0" layoutY="166.0" prefHeight="280.0" prefWidth="695.0" />
+                              <Button layoutX="160.0" layoutY="483.0" mnemonicParsing="false" onAction="#InventoryReportSaveButton" prefHeight="42.0" prefWidth="108.0" text="Save" />
+                              <Button layoutX="409.0" layoutY="483.0" mnemonicParsing="false" onAction="#InventoryReportClearButton" prefHeight="41.0" prefWidth="107.0" text="Clear" />
+                              <Button layoutX="420.0" layoutY="103.0" mnemonicParsing="false" onAction="#InventoryReportShowButton" prefHeight="25.0" prefWidth="67.0" text="Show" />
                            </children></AnchorPane>
                         <AnchorPane fx:id="InventoryAlertsFrame" layoutX="10.0" layoutY="10.0" prefHeight="544.0" prefWidth="498.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="425.0" layoutY="14.0" text="3" />
-                              <Label layoutX="143.0" layoutY="45.0" prefHeight="28.0" prefWidth="176.0" text="Inventory Alerts">
+                              <Label layoutX="658.0" layoutY="16.0" text="3" />
+                              <Label layoutX="221.0" layoutY="20.0" prefHeight="28.0" prefWidth="251.0" text="See Alerts &amp; Take Order">
                                  <font>
                                     <Font name="Bell MT Bold" size="19.0" />
                                  </font>
                               </Label>
+                              <TextArea fx:id="SeeAlertsAndTakeOrderTextArea" layoutY="76.0" prefHeight="173.0" prefWidth="697.0" promptText="Show Inventory Alerts" />
+                              <Label layoutX="275.0" layoutY="268.0" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #B5BCB4;" text="Create an Order">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="36.0" layoutY="319.0" prefHeight="17.0" prefWidth="81.0" text="Stall Name" />
+                              <ComboBox fx:id="SeeAlertsAndTakeOrderStallNameComboBox" layoutX="120.0" layoutY="314.0" prefWidth="150.0" />
+                              <Label layoutX="359.0" layoutY="316.0" prefHeight="17.0" prefWidth="42.0" text="Item" />
+                              <TextField fx:id="SeeAlertsAndTakeOrderItemTextField" layoutX="410.0" layoutY="312.0" />
+                              <Label layoutX="46.0" layoutY="355.0" prefHeight="17.0" prefWidth="59.0" text="Quantity" />
+                              <TextField fx:id="SeeAlertsAndTakeOrderQuantityTextField" layoutX="121.0" layoutY="351.0" />
+                              <Button layoutX="591.0" layoutY="428.0" mnemonicParsing="false" onAction="#SeeAlertsAndTakeOrderOrderButtonOnAction" prefHeight="58.0" prefWidth="64.0" text="Order" />
+                              <TextArea fx:id="SeeAlertsAndTakeOrderCreateAnOrderTextArea" layoutY="388.0" prefHeight="163.0" prefWidth="561.0" />
                            </children></AnchorPane>
                         <AnchorPane fx:id="CostAnalysisFrame" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="508.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="425.0" layoutY="23.0" text="4" />
-                              <Label layoutX="163.0" layoutY="40.0" prefHeight="28.0" prefWidth="188.0" text="Cost Analysis">
+                              <Label layoutX="644.0" layoutY="5.0" text="4" />
+                              <Label layoutX="237.0" layoutY="18.0" prefHeight="28.0" prefWidth="188.0" text="Cost Analysis">
                                  <font>
                                     <Font name="Bell MT Bold" size="20.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="75.0" layoutY="89.0" prefHeight="17.0" prefWidth="75.0" text="Select a Stall" />
+                              <ComboBox fx:id="CostAnalysisSelectAStallComboBox" layoutX="173.0" layoutY="85.0" prefWidth="150.0" />
+                              <Button layoutX="415.0" layoutY="85.0" mnemonicParsing="false" onAction="#CostAnalysisShowButton" text="Show" />
+                              <TextArea fx:id="CostAnalysisTextArea" layoutY="155.0" prefHeight="200.0" prefWidth="693.0" />
+                              <Button layoutX="163.0" layoutY="377.0" mnemonicParsing="false" onAction="#CostAnalysisReportGenerateButton" prefHeight="36.0" prefWidth="169.0" text="Report Generate" />
+                              <Button layoutX="509.0" layoutY="85.0" mnemonicParsing="false" onAction="#CostAnalysisClearButton" text="Clear" />
                            </children></AnchorPane>
                         <AnchorPane fx:id="SupplierManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="524.0" prefWidth="478.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="436.0" layoutY="14.0" text="5" />
-                              <Label layoutX="152.0" layoutY="37.0" prefHeight="25.0" prefWidth="186.0" text="Supplier Management">
+                              <Label layoutX="625.0" layoutY="23.0" text="5" />
+                              <Label layoutX="273.0" layoutY="19.0" prefHeight="25.0" prefWidth="186.0" text="Supplier Management">
                                  <font>
                                     <Font name="Bell MT Bold" size="19.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="68.0" layoutY="94.0" prefHeight="17.0" prefWidth="99.0" text="Select a Supplier" />
+                              <ComboBox fx:id="SupplierManagementSelectASupplierComboBox" layoutX="167.0" layoutY="90.0" onAction="#SupplierManagementSelectASupplierComboBoxOnAction" prefWidth="150.0" />
+                              <Label layoutX="89.0" layoutY="133.0" prefHeight="17.0" prefWidth="58.0" text="Name" />
+                              <TextField fx:id="SupplierManagementNameTextField" layoutX="168.0" layoutY="129.0" />
+                              <Label layoutX="410.0" layoutY="133.0" prefHeight="17.0" prefWidth="61.0" text="Email" />
+                              <TextField fx:id="SupplierManagementEmailTextField" layoutX="469.0" layoutY="129.0" />
+                              <Label layoutX="56.0" layoutY="170.0" prefHeight="17.0" prefWidth="105.0" text="Contact Number" />
+                              <TextField fx:id="SupplierManagementContactNumberTextField" layoutX="168.0" layoutY="166.0" />
+                              <Label layoutX="403.0" layoutY="170.0" prefHeight="17.0" prefWidth="62.0" text="Password" />
+                              <TextField fx:id="SupplierManagementPasswordTextField" layoutX="469.0" layoutY="166.0" />
+                              <Button layoutX="326.0" layoutY="251.0" mnemonicParsing="false" onAction="#SupplierManagementUpdateButton" prefHeight="38.0" prefWidth="97.0" text="Update" />
                            </children></AnchorPane>
                         <AnchorPane fx:id="VendorPerformanceEvaluationFrame" layoutX="10.0" layoutY="10.0" prefHeight="534.0" prefWidth="488.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="441.0" layoutY="14.0" text="6" />
-                              <Label layoutX="113.0" layoutY="36.0" prefHeight="28.0" prefWidth="272.0" text="Vendor Performance Evaluation">
+                              <Label layoutX="637.0" layoutY="10.0" text="6" />
+                              <Label layoutX="291.0" layoutY="19.0" prefHeight="28.0" prefWidth="192.0" text="Manage Stock Levels">
                                  <font>
                                     <Font name="Bell MT Bold" size="19.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="78.0" layoutY="90.0" prefHeight="17.0" prefWidth="86.0" text="Select a Stall" />
+                              <ComboBox fx:id="ManageStockLevelSelectAStallComboBox" layoutX="168.0" layoutY="86.0" prefWidth="150.0" />
+                              <Label layoutX="84.0" layoutY="125.0" prefHeight="17.0" prefWidth="61.0" text="Quantity" />
+                              <TextField fx:id="ManageStockLevelQuantityTableField" layoutX="169.0" layoutY="121.0" />
+                              <Label layoutX="431.0" layoutY="92.0" prefHeight="17.0" prefWidth="61.0" text="product" />
+                              <TextField fx:id="ManageStockLevelProductTableField" layoutX="495.0" layoutY="86.0" />
+                              <Button layoutX="544.0" layoutY="134.0" mnemonicParsing="false" onAction="#ManageStockLevelShowButton" text="Show" />
+                              <Label layoutX="302.0" layoutY="177.0" prefHeight="17.0" prefWidth="170.0" text="Product stock Level Table">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="ManageStockLevelTableView" layoutX="-2.0" layoutY="211.0" prefHeight="345.0" prefWidth="700.0">
+                                <columns>
+                                  <TableColumn fx:id="ManageStockLevelTableViewStallNameTableColumn" prefWidth="232.0" text="Stall Name" />
+                                  <TableColumn fx:id="ManageStockLevelTableViewProductTableColumn" prefWidth="300.0" text="Product" />
+                                    <TableColumn fx:id="ManageStockLevelTableViewQuantityTableColumn" prefWidth="161.33331298828125" text="Quantity" />
+                                </columns>
+                              </TableView>
                            </children></AnchorPane>
                         <AnchorPane fx:id="SupprtTeamFrame" layoutX="10.0" layoutY="10.0" prefHeight="544.0" prefWidth="498.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -131,12 +180,19 @@
                            </children></AnchorPane>
                         <AnchorPane fx:id="NewSupplierRegistrationFrame" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="508.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="440.0" layoutY="14.0" text="8" />
-                              <Label layoutX="144.0" layoutY="30.0" prefHeight="30.0" prefWidth="221.0" text="New Supplier Registration">
+                              <Label layoutX="663.0" layoutY="14.0" text="8" />
+                              <Label layoutX="227.0" layoutY="16.0" prefHeight="30.0" prefWidth="221.0" text="New Supplier Registration">
                                  <font>
                                     <Font name="Bell MT Bold" size="18.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="41.0" layoutY="95.0" prefHeight="17.0" prefWidth="166.0" text="New Supplier Registration list" />
+                              <ComboBox fx:id="NewSupplierRegistrationListComboBox" layoutX="215.0" layoutY="91.0" prefWidth="150.0" />
+                              <Label layoutX="41.0" layoutY="135.0" prefHeight="17.0" prefWidth="166.0" text="Show New Supplier Info" />
+                              <Button layoutX="215.0" layoutY="131.0" mnemonicParsing="false" onAction="#NewSupplierRegistrationInfoShowButtonOnAction" text="Show" />
+                              <TextArea fx:id="NewSupplierRegistrationTextArea" layoutX="3.0" layoutY="176.0" prefHeight="231.0" prefWidth="694.0" />
+                              <Button layoutX="144.0" layoutY="435.0" mnemonicParsing="false" onAction="#NewSupplierRegistrationAcceptButtonOnAction" prefHeight="39.0" prefWidth="121.0" text="Accept" />
+                              <Button layoutX="485.0" layoutY="435.0" mnemonicParsing="false" onAction="#NewSupplierRegistrationRejectedButtonOnAction" prefHeight="39.0" prefWidth="121.0" text="Rejected" />
                            </children></AnchorPane>
                         <AnchorPane fx:id="InventoryManagerDashboardReturnFrame" layoutX="10.0" layoutY="10.0" prefHeight="524.0" prefWidth="467.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
