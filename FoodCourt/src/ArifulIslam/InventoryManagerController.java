@@ -15,6 +15,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -61,6 +64,16 @@ public class InventoryManagerController implements Initializable {
     private AnchorPane NewSupplierRegistrationFrame;
     @FXML
     private AnchorPane InventoryManagerDashboardReturnFrame;
+    @FXML
+    private ComboBox<?> RealTimeSalesAnalysisStallNameComboBox;
+    @FXML
+    private TableView<?> RealTimeSalesAnalysisTableView;
+    @FXML
+    private TableColumn<?, ?> RealTimeSalesAnalysisTableViewStallNameTableColumn;
+    @FXML
+    private TableColumn<?, ?> RealTimeSalesAnalysisTableViewItemTableColumn;
+    @FXML
+    private TableColumn<?, ?> RealTimeSalesAnalysisTableViewTotalSaleTableColumn;
 
     /**
      * Initializes the controller class.
@@ -189,6 +202,10 @@ public class InventoryManagerController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void RealTimeSalesAnalysisShowButtonOnAction(ActionEvent event) {
     }
 }
     

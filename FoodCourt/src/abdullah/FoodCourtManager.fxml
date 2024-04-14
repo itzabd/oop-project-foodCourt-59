@@ -106,7 +106,7 @@
                            <bottom>
                               <AnchorPane prefHeight="88.0" prefWidth="217.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button layoutX="130.0" layoutY="35.0" mnemonicParsing="false" onAction="#back_btn" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Back" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button layoutX="130.0" layoutY="35.0" mnemonicParsing="false" onAction="#LogoutButtonOnClick" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Logout" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -244,7 +244,7 @@
                               <ComboBox layoutX="170.0" layoutY="145.0" prefHeight="25.0" prefWidth="129.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
+                        <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Send User Notice" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -294,26 +294,24 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="complaintsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
+                        <AnchorPane fx:id="complaintsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="13.0" prefHeight="38.0" prefWidth="301.0" text="Complaints" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <TreeTableView layoutX="48.0" layoutY="83.0" prefHeight="152.0" prefWidth="424.0">
-                                 <columns>
-                                    <TreeTableColumn prefWidth="91.0" text="Complaint ID" />
-                                    <TreeTableColumn prefWidth="117.0" text="From" />
-                                    <TreeTableColumn prefWidth="215.0" text="Details" />
-                                 </columns>
-                              </TreeTableView>
-                              <TextArea layoutX="47.0" layoutY="289.0" prefHeight="146.0" prefWidth="426.0" />
-                              <Button layoutX="111.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-border-radius: 100; -fx-background-radius: 100;" text="Delete" />
-                              <Button layoutX="215.0" layoutY="448.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Response" />
-                              <Button layoutX="47.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Load" />
-                              <Button layoutX="178.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Clear" />
-                              <ComboBox layoutX="47.0" layoutY="449.0" prefWidth="150.0" promptText="Select Complain ID" />
+                              <TextArea fx:id="complaintDetailsTextArea" editable="false" layoutX="47.0" layoutY="289.0" prefHeight="146.0" prefWidth="426.0" promptText="Complaintt details" />
+                              <Button layoutX="49.0" layoutY="450.0" mnemonicParsing="false" onAction="#viewDetailsComplaintOnClick" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="View details" />
+                              <Button layoutX="49.0" layoutY="245.0" mnemonicParsing="false" onAction="#deleteComplaintBAXuttonOnClick" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Delete" />
+                              <TableView fx:id="ComplaintTableView" layoutX="49.0" layoutY="96.0" prefHeight="130.0" prefWidth="422.0">
+                                <columns>
+                                  <TableColumn fx:id="complaint_idTC" prefWidth="134.0" text="Complaint ID" />
+                                  <TableColumn fx:id="complaint_fromTC" prefWidth="161.0" text="From" />
+                                    <TableColumn fx:id="complaint_dateTC" prefWidth="108.0" text="Date" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="139.0" layoutY="245.0" mnemonicParsing="false" onAction="#loadButtonOnClick" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Load" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="addNewPolicy_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false">
