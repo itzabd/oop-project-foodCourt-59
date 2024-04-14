@@ -102,7 +102,7 @@
                                     <Font name="Bell MT" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="31.0" layoutY="287.0" text="Upgrad Supplier Stoke" textFill="#4a4949">
+                              <Label layoutX="31.0" layoutY="287.0" text="Upgrad Supplier Stock" textFill="#4a4949">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -120,7 +120,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="28.0" layoutY="93.0" text="Add New Item To Supplier Stote" textFill="#4a4949">
+                              <Label layoutX="28.0" layoutY="93.0" text="Add New Item To Supplier Stock" textFill="#4a4949">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -138,7 +138,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="orderTakingFrame" prefHeight="539.0" prefWidth="546.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="orderTakingFrame" prefHeight="539.0" prefWidth="546.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="2" />
                               <Label layoutX="210.0" layoutY="16.0" text="Take Order" textFill="#344955">
@@ -151,38 +151,38 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TextArea disable="true" layoutX="352.0" layoutY="96.0" prefHeight="210.0" prefWidth="169.0" />
+                              <TextArea fx:id="availableOrderShowingArea" editable="false" layoutX="352.0" layoutY="96.0" prefHeight="210.0" prefWidth="169.0" />
                               <Label layoutX="19.0" layoutY="70.0" text="Add An order">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="16.0" layoutY="160.0" prefHeight="30.0" prefWidth="125.0" promptText="Item  Name" />
-                              <ComboBox layoutX="149.0" layoutY="160.0" prefHeight="30.0" prefWidth="89.0" promptText="Quantity" />
-                              <Label layoutX="246.0" layoutY="160.0" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: white;" />
+                              <ComboBox fx:id="takeOrderItemNameCombox" layoutX="16.0" layoutY="160.0" onAction="#takeOrderItemNameComboxOnSelect" prefHeight="30.0" prefWidth="125.0" promptText="Item  Name" />
+                              <ComboBox fx:id="takeOrderQuantityCombox" layoutX="149.0" layoutY="160.0" prefHeight="30.0" prefWidth="89.0" promptText="Quantity" />
+                              <Label fx:id="takeOrderPerItemPriceshowArea" layoutX="246.0" layoutY="160.0" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: white;" />
                               <Label layoutX="246.0" layoutY="146.0" prefHeight="15.0" prefWidth="77.0" text="Price Per Item" textFill="#868686">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="179.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Approximate Delivery Time">
+                              <TextField fx:id="takeOrderDelivertTime" layoutX="179.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Approximate Delivery Time">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
                               </TextField>
-                              <ComboBox layoutX="16.0" layoutY="109.0" prefHeight="30.0" prefWidth="150.0" promptText="Select Rendom ID" />
-                              <Button layoutX="17.0" layoutY="255.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="312.0" style="-fx-background-color: #344955;" text="Add This Item To The Order Item Array" textFill="WHITE" />
-                              <ComboBox layoutX="180.0" layoutY="109.0" prefHeight="30.0" prefWidth="150.0" promptText="Stall ID/Name" />
-                              <DatePicker layoutX="16.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Today" />
-                              <TableView layoutX="19.0" layoutY="315.0" prefHeight="200.0" prefWidth="499.0">
+                              <Button layoutX="17.0" layoutY="255.0" mnemonicParsing="false" onAction="#takeOrderAndSaveToArr" prefHeight="42.0" prefWidth="312.0" style="-fx-background-color: #344955;" text="Add This Item To The Order Item Array" textFill="WHITE" />
+                              <ComboBox fx:id="takeOrderSelectStallCombox" layoutX="180.0" layoutY="109.0" prefHeight="30.0" prefWidth="150.0" promptText="Stall ID/Name" />
+                              <DatePicker fx:id="takeOrderDatePicker" layoutX="16.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Today" />
+                              <TableView fx:id="takeOrderShowingTableView" layoutX="19.0" layoutY="315.0" prefHeight="200.0" prefWidth="499.0">
                                 <columns>
-                                  <TableColumn prefWidth="120.0" text="Order ID" />
-                                  <TableColumn prefWidth="106.0" text="Stall " />
-                                    <TableColumn prefWidth="136.0" text="Item " />
-                                    <TableColumn prefWidth="59.0" text="Quantity" />
-                                    <TableColumn prefWidth="77.0" text="Price" />
+                                  <TableColumn fx:id="orderIDColumnOftakeOrder" prefWidth="120.0" text="Order ID" />
+                                  <TableColumn fx:id="stallColumnOftakeOrder" prefWidth="118.0" text="Stall " />
+                                    <TableColumn fx:id="itemColumnOftakeOrder" prefWidth="117.0" text="Item " />
+                                    <TableColumn fx:id="quantityColumnOftakeOrder" prefWidth="66.0" text="Quantity" />
+                                    <TableColumn fx:id="priceColumnOftakeOrder" prefWidth="77.0" text="Price" />
                                 </columns>
                               </TableView>
+                              <TextField fx:id="orderIDFortakeOrder" layoutX="16.0" layoutY="110.0" prefHeight="30.0" prefWidth="150.0" promptText="Give a Order ID" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="paymentProcessingFrame" layoutX="10.0" layoutY="10.0" prefHeight="549.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -423,7 +423,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homePageFoodsupplier" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="616.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="homePageFoodsupplier" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="616.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="0" />
                               <Label layoutX="191.0" layoutY="23.0" text="Supplier Stoke" textFill="#344955">

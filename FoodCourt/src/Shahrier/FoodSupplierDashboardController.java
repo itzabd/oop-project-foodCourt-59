@@ -4,6 +4,7 @@
  */
 package Shahrier;
 
+import abdullah.Stall;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -22,11 +23,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -69,14 +75,37 @@ public class FoodSupplierDashboardController implements Initializable {
     @FXML private PieChart pieChart;
     @FXML private TextArea spacificItemQuantityTextArea;
     private ObservableList <PieChart.Data> list = FXCollections.observableArrayList();
+    @FXML  private TextArea availableOrderShowingArea;
+    @FXML  private ComboBox<String> takeOrderItemNameCombox;
+    @FXML  private ComboBox<Integer> takeOrderQuantityCombox;
+    @FXML  private Label takeOrderPerItemPriceshowArea;
+    @FXML  private TextField takeOrderDelivertTime;
+    @FXML  private ComboBox<String> takeOrderSelectStallCombox;
+    @FXML  private DatePicker takeOrderDatePicker;
+    @FXML  private TableView<TakeOrder> takeOrderShowingTableView;
+    @FXML  private TableColumn<TakeOrder, String> orderIDColumnOftakeOrder;
+    @FXML  private TableColumn<TakeOrder, String> stallColumnOftakeOrder;
+    @FXML  private TableColumn<TakeOrder, String> itemColumnOftakeOrder;
+    @FXML  private TableColumn<TakeOrder, String> quantityColumnOftakeOrder;
+    @FXML  private TableColumn<TakeOrder, String> priceColumnOftakeOrder;
+    @FXML  private TextField orderIDFortakeOrder;
+    private ArrayList<TakeOrder> takeOrderItemArr;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("TEST");
         supplierItems = new ArrayList<>();
+        takeOrderItemArr = new ArrayList<>();
+        takeOrderQuantityCombox.getItems().addAll(1,2,3,4,5,6,7,8,9);
+        
+        orderIDColumnOftakeOrder.setCellValueFactory(new PropertyValueFactory<TakeOrder,String>("orderID"));
+        stallColumnOftakeOrder.setCellValueFactory(new PropertyValueFactory<TakeOrder,String>("stallName"));
+        itemColumnOftakeOrder.setCellValueFactory(new PropertyValueFactory<TakeOrder,String>("itemName"));
+        quantityColumnOftakeOrder.setCellValueFactory(new PropertyValueFactory<TakeOrder,String>("itemQuantity"));
+        priceColumnOftakeOrder.setCellValueFactory(new PropertyValueFactory<TakeOrder,String>("totalPrice"));
+        
         ObjectInputStream ois = null;
         pieChart.getData().clear();
         try{
@@ -84,11 +113,12 @@ public class FoodSupplierDashboardController implements Initializable {
             
             ois = new ObjectInputStream(new FileInputStream("supplierItemObj.bin"));
             while(true){
-               s =  (SupplierItem) ois.readObject();
+               s = (SupplierItem) ois.readObject();
                supplierItems.add(s);
                list.add(new PieChart.Data(s.getSupItemName(),s.getSupItemQuantity()));
                selectItemForUpdateComboBox.getItems().add(s.getSupItemName()); 
                pieChart.setData(list);
+               takeOrderItemNameCombox.getItems().add(s.getSupItemName());
             }
             
             
@@ -107,6 +137,45 @@ public class FoodSupplierDashboardController implements Initializable {
                 }
             );  
         }
+        
+        //check for seq alerts
+        ObjectInputStream oisForAlert = null;
+        try{
+            SeqAlerts s;
+            
+            oisForAlert = new ObjectInputStream(new FileInputStream("allAlertsobj.bin"));
+            while(true){
+               s =  (SeqAlerts) oisForAlert.readObject();
+               if(s.getAlertReciver().equals("Food Supplier")){
+                   System.out.println(s.getAlertReciver());
+                   //System.out.println(s.getAlertReciver());
+                   Alert a = new Alert(Alert.AlertType.WARNING);
+                   a.setTitle("Security Alert");
+                   a.setContentText(s.getAlertMsg());
+                   a.setHeaderText(null);
+                   a.showAndWait();
+               }
+            }    
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        ObjectInputStream oisForStall = null;
+        try{
+            Stall st;
+            
+            oisForStall = new ObjectInputStream(new FileInputStream("StallObjects.bin"));
+            while(true){
+               st =  (Stall) oisForStall.readObject();
+               takeOrderSelectStallCombox.getItems().add(st.getStallName());
+            }    
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        
     }    
 
     @FXML
@@ -366,6 +435,44 @@ public class FoodSupplierDashboardController implements Initializable {
     @FXML
     private void spacificItemQuantityTextAreaClearBtn(ActionEvent event) {
         spacificItemQuantityTextArea.clear();
+    }
+
+    @FXML
+    private void takeOrderItemNameComboxOnSelect(ActionEvent event) {
+        ObjectInputStream ois = null;
+        try{
+            SupplierItem s;
+            ois = new ObjectInputStream(new FileInputStream("supplierItemObj.bin"));
+            while(true){
+               s =  (SupplierItem) ois.readObject();
+               if(s.getSupItemName().equals(takeOrderItemNameCombox.getValue())){
+                   takeOrderPerItemPriceshowArea.setText(Integer.toString(s.getSupPerItemPrice()));
+               }
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void takeOrderAndSaveToArr(ActionEvent event) {
+        TakeOrder t = new TakeOrder(orderIDFortakeOrder.getText(),
+                                    takeOrderSelectStallCombox.getValue(),
+                                    takeOrderItemNameCombox.getValue(),
+                                    takeOrderDelivertTime.getText(),
+                                    takeOrderDatePicker.getValue(),
+                                    takeOrderQuantityCombox.getValue(),
+                                    Integer.parseInt(takeOrderPerItemPriceshowArea.getText()),
+                                    t.totalPriceCalculation());
+       
+        
+        takeOrderItemArr.add(t);
+        
+        for(TakeOrder o:takeOrderItemArr){
+            takeOrderShowingTableView.getItems().add(o);
+        }
+        
     }
     
 }

@@ -369,7 +369,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                         // Check if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
-                            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/SecurityDeptDashBoard.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/FoodSupplierDashboard.fxml"));
                             Scene scene = new Scene(root);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);

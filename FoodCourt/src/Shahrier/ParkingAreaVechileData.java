@@ -93,10 +93,17 @@ public class ParkingAreaVechileData implements Serializable{
     public void setVhInfoParkingCost(int vhInfoParkingCost) {
         this.vhInfoParkingCost = vhInfoParkingCost;
     }
-
+    
+    
+    
     @Override
     public String toString() {
-        return "ParkingAreaVechileData{" + "vhInfoLicenseNum=" + vhInfoLicenseNum + ", vhInfoOwnerName=" + vhInfoOwnerName + ", vhInfoOwnerContact=" + vhInfoOwnerContact + ", vhInfoComplain=" + vhInfoComplain + ", vhInfoParkingTime=" + vhInfoParkingTime + ", vhInfoperMinCost=" + vhInfoperMinCost + ", vhInfoParkingCost=" + vhInfoParkingCost + '}';
+        return "License Number = " + vhInfoLicenseNum +"\n"+
+               "Owner Name = " + vhInfoOwnerName +"\n"+
+               "Owner Contact = " + vhInfoOwnerContact +"\n"+
+               "Suggestions = " + vhInfoComplain+"\n" +
+               "Parking Duration = " + vhInfoParkingTime +"\n"+
+               "Parking Cost = " + vhInfoParkingCost +"\n";
     }
     
     public int tCostOfParking(){
