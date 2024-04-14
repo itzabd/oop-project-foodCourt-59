@@ -139,8 +139,8 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
 
         try (FileOutputStream fos = new FileOutputStream(allUserDataFile, true); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(userData);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "User data saved successfully");
-            alert.showAndWait();
+           // Alert alert = new Alert(Alert.AlertType.INFORMATION, "User data saved successfully");
+            //alert.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save user data");

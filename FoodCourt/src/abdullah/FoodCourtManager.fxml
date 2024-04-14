@@ -106,7 +106,7 @@
                            <bottom>
                               <AnchorPane prefHeight="88.0" prefWidth="217.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button layoutX="130.0" layoutY="35.0" mnemonicParsing="false" onAction="#back_btn" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Back" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button layoutX="130.0" layoutY="35.0" mnemonicParsing="false" onAction="#LogoutButtonOnClick" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Logout" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

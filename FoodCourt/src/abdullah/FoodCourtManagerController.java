@@ -444,9 +444,6 @@ public class FoodCourtManagerController implements Initializable {
         updateFile();
     }
 
-    @FXML
-    private void back_btn(ActionEvent event) {
-    }
     private ObservableList<Stall> filteredItems = FXCollections.observableArrayList();
 
     @FXML
@@ -691,6 +688,30 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private void loadButtonOnClick(ActionEvent event) {
         
+    }
+
+    @FXML
+    private void LogoutButtonOnClick(ActionEvent event) {
+        //for foodcourt Manager
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainpkg/CreateAccLogInAndForgotPass.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText(null);
+            alert.setContentText("You have been logged out successfully");
+            alert.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
+        }
+
     }
 
 }

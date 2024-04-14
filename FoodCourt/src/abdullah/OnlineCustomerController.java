@@ -19,7 +19,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -32,6 +36,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -59,7 +64,6 @@ public class OnlineCustomerController implements Initializable {
     @FXML    private Label todaysOffer1_scene;
     @FXML    private AnchorPane notification_scene;
     @FXML    private AnchorPane customerAssistance_scene;
-    @FXML    private Button backbtn;
     @FXML    private Button homeBtn;
     @FXML
     private TableView<SendNotice> NotificationTableView;
@@ -258,5 +262,27 @@ public class OnlineCustomerController implements Initializable {
     @FXML
     private void reportButtonOnClick_C(ActionEvent event) {
         
+    }
+
+    @FXML
+    private void LogoutButtonOnClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainpkg/CreateAccLogInAndForgotPass.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText(null);
+            alert.setContentText("You have been logged out successfully");
+            alert.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
+        }
     }
 }
