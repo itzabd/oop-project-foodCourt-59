@@ -646,7 +646,7 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML
     private void takeVechileInfoPerMinCostComboxOnSelect(ActionEvent event) {
         takeVechileIeInfoParkingCost.setText(Integer.toHexString(100));       
-        System.out.println("ddddddddd");
+        System.out.println("dddddd");
     }
     
 }
