@@ -301,7 +301,6 @@
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-<<<<<<< HEAD
                               <TreeTableView layoutX="48.0" layoutY="83.0" prefHeight="152.0" prefWidth="424.0">
                                  <columns>
                                     <TreeTableColumn prefWidth="91.0" text="Complaint ID" />
@@ -315,18 +314,6 @@
                               <Button layoutX="47.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Load" />
                               <Button layoutX="178.0" layoutY="252.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Clear" />
                               <ComboBox layoutX="47.0" layoutY="449.0" prefWidth="150.0" promptText="Select Complain ID" />
-=======
-                              <TreeTableView fx:id="ComplaintTableView" layoutX="48.0" layoutY="83.0" prefHeight="152.0" prefWidth="424.0">
-                                 <columns>
-                                    <TreeTableColumn fx:id="complaint_id" prefWidth="91.0" text="Complaint ID" />
-                                    <TreeTableColumn fx:id="complaint_from" prefWidth="117.0" text="From" />
-                                    <TreeTableColumn fx:id="complaint_details" prefWidth="215.0" text="Details" />
-                                 </columns>
-                              </TreeTableView>
-                              <TextArea editable="false" layoutX="47.0" layoutY="289.0" prefHeight="146.0" prefWidth="426.0" promptText="Complaintt details" />
-                              <Button layoutX="49.0" layoutY="450.0" mnemonicParsing="false" onAction="#viewDetailsComplaintOnClick" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="View details" />
-                              <Button layoutX="49.0" layoutY="245.0" mnemonicParsing="false" onAction="#deleteComplaintBAXuttonOnClick" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Delete" />
->>>>>>> parent of 5286bd4 (80% done of creating new account)
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="addNewPolicy_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false">

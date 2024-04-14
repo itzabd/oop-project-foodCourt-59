@@ -115,17 +115,6 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private TextField NoticeNameTF_SendNotice;
     @FXML    private DatePicker Date_SendNotice;
     @FXML    private TextField NoticeAboutTF_SendNotice;
-<<<<<<< HEAD
-=======
-    @FXML
-    private TreeTableView<Complaint> ComplaintTableView;
-    @FXML
-    private TreeTableColumn<Complaint, Integer> complaint_id;
-    @FXML
-    private TreeTableColumn<Complaint, String> complaint_from;
-    @FXML
-    private TreeTableColumn<Complaint, String> complaint_details;
->>>>>>> parent of 5286bd4 (80% done of creating new account)
 
     /**
      * Initializes the controller class.
@@ -678,16 +667,5 @@ public class FoodCourtManagerController implements Initializable {
         alert.showAndWait();
     }
     }
-<<<<<<< HEAD
-=======
-
-    @FXML
-    private void viewDetailsComplaintOnClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void deleteComplaintBAXuttonOnClick(ActionEvent event) {
-    }
->>>>>>> parent of 5286bd4 (80% done of creating new account)
         
 }

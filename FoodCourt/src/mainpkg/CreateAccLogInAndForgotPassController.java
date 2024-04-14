@@ -39,15 +39,11 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     @FXML  private Button forgotPassTologinPage;
     @FXML  private AnchorPane createNewUserFrame;
     @FXML  private Button createUserPageToLoginPage;
-<<<<<<< HEAD
     @FXML  private ComboBox<?> selectAuserForCreateAccComBox;
     @FXML  private TextField createUserNameTextField;
     @FXML  private PasswordField newUserPassField;
     @FXML  private PasswordField newUserConfirmPassField;
     @FXML  private DatePicker createAccDatePicker;
-=======
-    @FXML  private Button SignUpButton;
->>>>>>> parent of 5286bd4 (80% done of creating new account)
 
     /**
      * Initializes the controller class.
@@ -55,11 +51,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         logInPageUserTypeCombox.getItems().addAll("Security Depertment","Food Supplier"
-<<<<<<< HEAD
                                                      ,"Food Court Manager", "Online Customer", "Chef", "Inventory Manager");
-=======
-                                                     ,"Food Court Manager", "Online Customer");
->>>>>>> parent of 5286bd4 (80% done of creating new account)
     }    
 
     @FXML
@@ -125,7 +117,6 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-<<<<<<< HEAD
         else if(logInPageUserTypeCombox.getValue()=="Chef"){
             Parent root = FXMLLoader.load(getClass().getResource("/ArifulIslam/Chef.fxml"));
             Scene scene = new Scene(root);
@@ -145,9 +136,5 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     @FXML
     private void newUserConfirmBtn(ActionEvent event) {
     }
-=======
-    }
-
->>>>>>> parent of 5286bd4 (80% done of creating new account)
     
 }
