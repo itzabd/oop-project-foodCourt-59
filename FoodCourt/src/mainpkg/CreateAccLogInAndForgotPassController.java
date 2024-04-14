@@ -105,6 +105,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+<<<<<<< HEAD
 //        logInPageUserTypeCombox.getItems().addAll("Security Depertment","Food Supplier"
 //                                                     ,"Food Court Manager", "Online Customer");
         logInPageUserTypeCombox.getItems().addAll("Security Depertment", "Food Supplier",
@@ -147,6 +148,11 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             alert.showAndWait();
         }
     }
+=======
+        logInPageUserTypeCombox.getItems().addAll("Security Depertment","Food Supplier"
+                                                     ,"Food Court Manager", "Online Customer", "Chef", "Inventory Manager");
+    }    
+>>>>>>> main
 
     @FXML
     private void logInPageUserTypeComboxOnClick(ActionEvent event) {
@@ -206,6 +212,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+<<<<<<< HEAD
          */
         
         String userType = logInPageUserTypeCombox.getValue();
@@ -446,6 +453,23 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         }
 
     }//buttons last bracket
+=======
+        else if(logInPageUserTypeCombox.getValue()=="Chef"){
+            Parent root = FXMLLoader.load(getClass().getResource("/ArifulIslam/Chef.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        else if(logInPageUserTypeCombox.getValue()=="Inventory Manager"){
+            Parent root = FXMLLoader.load(getClass().getResource("/ArifulIslam/InventoryManager.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+>>>>>>> main
 
     @FXML
     private void SignInButtonOnClick(ActionEvent event) {
