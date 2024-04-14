@@ -117,14 +117,11 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private TextField NoticeNameTF_SendNotice;
     @FXML    private DatePicker Date_SendNotice;
     @FXML    private TextField NoticeAboutTF_SendNotice;
-    @FXML
-    private TreeTableView<Complaint> ComplaintTableView;
-    @FXML
-    private TreeTableColumn<Complaint, Integer> complaint_id;
-    @FXML
-    private TreeTableColumn<Complaint, String> complaint_from;
-    @FXML
-    private TreeTableColumn<Complaint, String> complaint_details;
+    @FXML    private TableView<Complaint> ComplaintTableView;
+    @FXML    private TableColumn<Complaint, Integer> complaint_idTC;
+    @FXML    private TableColumn<Complaint, String> complaint_fromTC;
+    @FXML    private TableColumn<Complaint, LocalDate> complaint_dateTC;
+    @FXML    private TextArea complaintDetailsTextArea;
 
     /**
      * Initializes the controller class.
@@ -199,10 +196,15 @@ public class FoodCourtManagerController implements Initializable {
                 tableView.getSelectionModel().select(newSelection);
             }
         });
-    //--------------Send Notice Initialz-------------------
-        userTypeComboBox_SendNotice.getItems().addAll("Online Customer","Stall Manager"
-                                                      ,"Security Department","Food Supplier");
-    
+        //--------------Send Notice Initialz-------------------
+        userTypeComboBox_SendNotice.getItems().addAll("Online Customer", "Stall Manager",
+                 "Security Department", "Food Supplier");
+
+        //----------------Complaint scene Init----------------------
+        complaint_idTC.setCellValueFactory(new PropertyValueFactory<Complaint, Integer>("Id"));
+        complaint_fromTC.setCellValueFactory(new PropertyValueFactory<Complaint, String>("cAbout"));
+        complaint_dateTC.setCellValueFactory(new PropertyValueFactory<Complaint, LocalDate>("CDate"));
+        
     }
 
     @FXML
@@ -685,5 +687,10 @@ public class FoodCourtManagerController implements Initializable {
     @FXML
     private void deleteComplaintBAXuttonOnClick(ActionEvent event) {
     }
+
+    @FXML
+    private void loadButtonOnClick(ActionEvent event) {
         
+    }
+
 }

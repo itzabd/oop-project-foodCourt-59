@@ -15,14 +15,14 @@ import java.util.Random;
 public class Complaint implements Serializable {
     String cName,cAbout,cUserType;
     LocalDate CDate;
-    int ID;
+    int Id;
 
-    public Complaint(String cName, String cAbout, String cUserType, LocalDate CDate, int ID) {
+    public Complaint(String cName, String cAbout, String cUserType, LocalDate CDate, int Id) {
         this.cName = cName;
         this.cAbout = cAbout;
         this.cUserType = cUserType;
         this.CDate = CDate;
-        this.ID = ID;
+        this.Id = Id;
     }
     
 
@@ -58,12 +58,12 @@ public class Complaint implements Serializable {
         this.CDate = CDate;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return Id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int Id) {
+        this.Id = Id;
     }
     
 }

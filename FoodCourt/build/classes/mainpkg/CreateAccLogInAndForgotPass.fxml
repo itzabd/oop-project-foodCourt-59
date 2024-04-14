@@ -46,6 +46,16 @@
                         <Hyperlink fx:id="forgotPassHyprLink" layoutX="87.0" layoutY="293.0" onAction="#switchToOtherFrame" text="Forgot Password?" />
                         <Button layoutX="91.0" layoutY="333.0" mnemonicParsing="false" onAction="#logInPageSignInBtn" prefHeight="33.0" prefWidth="210.0" style="-fx-background-color: #344955;" text="Sign In" textFill="WHITE" />
                         <Button fx:id="createAccbtn" layoutX="91.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToOtherFrame" prefHeight="33.0" prefWidth="210.0" style="-fx-background-color: #344955;" text="Don't Have Account?Sign Up" textFill="WHITE" />
+                        <Label fx:id="UserNameError" layoutX="301.0" layoutY="211.0" prefHeight="25.0" prefWidth="49.0" textFill="RED">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="PassError" layoutX="301.0" layoutY="264.0" prefHeight="25.0" prefWidth="49.0" textFill="RED">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="forgotPassFrame" layoutX="10.0" layoutY="10.0" prefHeight="540.0" prefWidth="427.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -60,28 +70,30 @@
                   </AnchorPane>
                   <AnchorPane fx:id="createNewUserFrame" layoutX="10.0" layoutY="10.0" prefHeight="550.0" prefWidth="437.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="35.0" layoutY="22.0" text="Create New User" textFill="#656565">
+                        <Label layoutX="35.0" layoutY="22.0" text="Create New User" textFill="#656565" underline="true">
                            <font>
                               <Font name="Calibri" size="24.0" />
                            </font>
                         </Label>
                         <Button fx:id="createUserPageToLoginPage" layoutX="35.0" layoutY="482.0" mnemonicParsing="false" onAction="#switchToOtherFrame" text="&lt; Back" />
-                        <TextField layoutX="147.0" layoutY="114.0" promptText="Username" />
-                        <Label layoutX="71.0" layoutY="118.0" text="Username :" />
-                        <TextField layoutX="147.0" layoutY="155.0" promptText="Name" />
-                        <Label layoutX="71.0" layoutY="159.0" text="Name :" />
-                        <TextField layoutX="147.0" layoutY="192.0" promptText="Password" />
-                        <Label layoutX="71.0" layoutY="196.0" text="Password :" />
-                        <Label layoutX="71.0" layoutY="235.0" text="Date of Birth :" />
-                        <DatePicker layoutX="146.0" layoutY="231.0" prefHeight="25.0" prefWidth="151.0" promptText="DD / MM / YYYY" />
-                        <TextField layoutX="147.0" layoutY="268.0" promptText="Email" />
-                        <Label layoutX="71.0" layoutY="272.0" text="Email :" />
-                        <Label layoutX="71.0" layoutY="313.0" text="Gender :" />
-                        <RadioButton layoutX="147.0" layoutY="313.0" mnemonicParsing="false" text="Male" />
-                        <RadioButton layoutX="222.0" layoutY="313.0" mnemonicParsing="false" text="Female" />
-                        <TextField layoutX="147.0" layoutY="345.0" promptText="Contact No." />
-                        <Label layoutX="71.0" layoutY="349.0" text="Contact No. :" />
-                        <Button fx:id="SignUpButton" layoutX="147.0" layoutY="397.0" mnemonicParsing="false" onAction="#switchToOtherFrame" prefHeight="25.0" prefWidth="69.0" style="-fx-background-radius: 100; -fx-border-radius: 100;" text="Sign In" />
+                        <TextField fx:id="usernameTF" layoutX="164.0" layoutY="85.0" promptText="Username" />
+                        <Label layoutX="88.0" layoutY="89.0" text="Username :" />
+                        <TextField fx:id="nameTF" layoutX="164.0" layoutY="126.0" promptText="Name" />
+                        <Label layoutX="88.0" layoutY="130.0" text="Name :" />
+                        <TextField fx:id="paasTF" layoutX="164.0" layoutY="163.0" promptText="Password" />
+                        <Label layoutX="88.0" layoutY="167.0" text="Password :" />
+                        <Label layoutX="88.0" layoutY="206.0" text="Date of Birth :" />
+                        <DatePicker fx:id="DOB_DP" layoutX="163.0" layoutY="202.0" prefHeight="25.0" prefWidth="151.0" promptText="DD / MM / YYYY" />
+                        <TextField fx:id="emailTF" layoutX="164.0" layoutY="239.0" promptText="Email" />
+                        <Label layoutX="88.0" layoutY="243.0" text="Email :" />
+                        <Label layoutX="88.0" layoutY="284.0" text="Gender :" />
+                        <RadioButton fx:id="MaleRadButton" layoutX="164.0" layoutY="284.0" mnemonicParsing="false" text="Male" />
+                        <RadioButton fx:id="FemaleRadButton" layoutX="239.0" layoutY="284.0" mnemonicParsing="false" text="Female" />
+                        <TextField fx:id="contactNoTF" layoutX="164.0" layoutY="316.0" promptText="Contact No." />
+                        <Label layoutX="88.0" layoutY="320.0" text="Contact No. :" />
+                        <Button fx:id="SignUpButton" layoutX="167.0" layoutY="409.0" mnemonicParsing="false" onAction="#SignInButtonOnClick" prefHeight="25.0" prefWidth="69.0" style="-fx-background-radius: 100; -fx-border-radius: 100;" text="Sign In" />
+                        <Label layoutX="88.0" layoutY="360.0" text="User type : " />
+                        <ComboBox fx:id="userTypeComboBox" layoutX="164.0" layoutY="356.0" prefWidth="150.0" promptText="Select" visibleRowCount="3" />
                      </children>
                   </AnchorPane>
                </children>
