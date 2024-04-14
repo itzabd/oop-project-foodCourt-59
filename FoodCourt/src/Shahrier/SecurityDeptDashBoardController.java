@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -85,6 +87,45 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TextField sessionManagementFeedbackBtn;
     @FXML  private DatePicker sessionManagementDatePicker;
     private ArrayList<ReportGeneratingData> reportGenerateDataArr;
+
+    @FXML  private DatePicker newVehicleRegDatePicker;
+    @FXML  private TextField newVehicleRegCarModelTextField;
+    @FXML  private TextField newVehicleRegLicenseNum;
+    @FXML  private TextField newVehicleRegOwnerNameTextField;
+    @FXML  private TextField newVehicleRegOwnerContactNum;
+    @FXML  private ComboBox<Integer> newVehicleRegDurationCombox;
+    @FXML  private TableView<NewVehicleRegData> newVehicleRegTableView;
+    @FXML  private TableColumn<NewVehicleRegData, String> vPlateNumColumn;
+    @FXML  private TableColumn<NewVehicleRegData, LocalDate> vRegDateColumn;
+    @FXML  private TableColumn<NewVehicleRegData, Integer> vRegDurationColumn;
+    @FXML  private TableColumn<NewVehicleRegData, String> vOwnersConColumn;
+    @FXML  private ComboBox<String> takeVechileInfoSelectLicenseNumCombox;
+    private ArrayList<NewVehicleRegData> newVehicleRegDataArr;
+    @FXML  private TextField takeVechileInfoParkingTime;
+    @FXML  private TextField takeVechileIeInfoParkingCost;
+    @FXML  private TextField takeVechileInfoOwnersNameField;
+    @FXML  private TextField takeVechileInfoOwnersContactField;
+    @FXML  private TextArea takeVechileInfoComplineBox;
+    @FXML  private TableView<ParkingAreaVechileData> takeVechileInfoTableView;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileInfoVechileColumn;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileInfoParkingTimeColumn;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileIeInfoCostColumn;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileInfoCommColumn;
+    @FXML  private ComboBox<Integer> takeVechileInfoPerMinCostCombox;
+    @FXML  private DatePicker takeVechileInfoDatePicker;
+    private ArrayList<ParkingAreaVechileData> parkingAreaVechileDataArr;
+    @FXML  private TextArea generateReportDailyVechileResultArea;
+    @FXML  private DatePicker generateReportDailyVechileDatepicker;
+    @FXML  private CheckBox foodSupplierEmgMsgCheckBox;
+    @FXML  private CheckBox chefEmgMsgCheckBox;
+    @FXML  private CheckBox inventoryManagerEmgMsgCheckBox;
+    @FXML  private CheckBox foodCourtEmgMsgCheckBox;
+    @FXML  private CheckBox customerEmgMsgCheckBox;
+    @FXML  private CheckBox deliveryPartnerEmgMsgCheckBox;
+    @FXML  private CheckBox stallManagerEmgMsgCheckBox;
+    @FXML  private TextArea alertMsgTextArea;
+    private ArrayList<SeqAlerts> seqAlertsArr;
+
      /**
      * Initializes the controller class.
      */
@@ -136,11 +177,51 @@ public class SecurityDeptDashBoardController implements Initializable {
         catch(Exception ex){
             System.out.println(ex);
         }
+
+        ObjectInputStream oisForVehicle = null;
+        try{
+            NewVehicleRegData nv;
+            
+            oisForVehicle = new ObjectInputStream(new FileInputStream("newVehicleRegDataobj.bin"));
+            while(true){
+               nv =  (NewVehicleRegData) oisForVehicle.readObject();
+               newVehicleRegDataArr.add(nv);
+               if (takeVechileInfoSelectLicenseNumCombox.getItems().contains(nv.getVehicleLicenseNum())){
+                   System.out.println("lalalala");
+               }
+               else{
+                   takeVechileInfoSelectLicenseNumCombox.getItems().add(nv.getVehicleLicenseNum());
+               }
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
         
+        ObjectInputStream oisForParkingData = null;
+        try{
+            ParkingAreaVechileData p;
+            
+            oisForParkingData = new ObjectInputStream(new FileInputStream("allParkingVehicleRegDataobj.bin"));
+            while(true){
+               p =  (ParkingAreaVechileData) oisForParkingData.readObject();
+               parkingAreaVechileDataArr.add(p);
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+
         for(EmpManagementData e:empManagementDataArr){
             empManagementTableViewData.getItems().add(e);
         }
         
+        
+        for(ParkingAreaVechileData p:parkingAreaVechileDataArr){
+            takeVechileInfoTableView.getItems().add(p);
+        }
         
         
     }    
@@ -458,6 +539,193 @@ public class SecurityDeptDashBoardController implements Initializable {
             System.out.println(ex);
         }
 
+    }
+
+    @FXML
+    private void newVehicleRegConfirmBtn(ActionEvent event) {
+        NewVehicleRegData nd = new NewVehicleRegData(newVehicleRegDatePicker.getValue(),
+                                                     newVehicleRegDurationCombox.getValue(),
+                                                     newVehicleRegCarModelTextField.getText(),
+                                                     newVehicleRegLicenseNum.getText(),
+                                                     newVehicleRegOwnerNameTextField.getText(),
+                                                     newVehicleRegOwnerContactNum.getText());
+        for(NewVehicleRegData v:newVehicleRegDataArr){
+            //System.out.println(v.getVehicleLicenseNum());
+            if(newVehicleRegDataArr.contains(nd.getVehicleLicenseNum())){
+                Alert a = new Alert(Alert.AlertType.WARNING);
+                a.setTitle("Error");
+                a.setContentText("A car with same license number is already in register");
+                a.setHeaderText(null);
+                a.showAndWait();
+        }
+        else{
+            newVehicleRegDataArr.add(nd);
+        }    
+        
+        }
+       
+        
+        for(NewVehicleRegData v:newVehicleRegDataArr){
+            if(newVehicleRegTableView.getItems().contains(v)){
+                System.out.println("Already Contain");
+            }
+            else{
+                newVehicleRegTableView.getItems().add(v);
+            }
+            
+        }
+        
+        try{
+            FileOutputStream fos = new FileOutputStream("newVehicleRegDataobj.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(NewVehicleRegData nv:newVehicleRegDataArr){
+                oos.writeObject(nv);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        ObjectInputStream oisForVehicle = null;
+        try{
+            NewVehicleRegData nv;
+            
+            oisForVehicle = new ObjectInputStream(new FileInputStream("newVehicleRegDataobj.bin"));
+            while(true){
+               nv =  (NewVehicleRegData) oisForVehicle.readObject();
+               if (takeVechileInfoSelectLicenseNumCombox.getItems().contains(nv.getVehicleLicenseNum())){
+                   System.out.println("lalalala");
+               }
+               else{
+                   takeVechileInfoSelectLicenseNumCombox.getItems().add(nv.getVehicleLicenseNum());
+               }
+               
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        newVehicleRegCarModelTextField.clear();
+        newVehicleRegOwnerNameTextField.clear();
+        newVehicleRegOwnerContactNum.clear();
+        
+        
+    }
+
+    @FXML
+    private void newVehicleRegNextBtn(ActionEvent event) {
+        empManagementFrame.setVisible(false);
+        reportGenerateForDailyEmpFrame.setVisible(false);
+        empSessionManagementFrame.setVisible(false);
+        newVehcileRegisterFrame.setVisible(false);
+        vehicleInfoTakingFrame.setVisible(true);
+        generateReportForDailyVehicle.setVisible(false);
+        emgAlertSendingFrame.setVisible(false);
+        giveOtherUsersResponseFrame.setVisible(false);
+        seqdeptFontFrame.setVisible(false);
+        
+        
+    }
+
+    @FXML
+    private void takeVechileInfoSelectLicenseNumComboxOnSelect(ActionEvent event) {
+        
+        ObjectInputStream oisForVehicle = null;
+        try{
+            NewVehicleRegData nv;
+            
+            oisForVehicle = new ObjectInputStream(new FileInputStream("newVehicleRegDataobj.bin"));
+            while(true){
+               nv =  (NewVehicleRegData) oisForVehicle.readObject();
+               if (takeVechileInfoSelectLicenseNumCombox.getItems().contains(nv.getVehicleLicenseNum())){
+                   takeVechileInfoOwnersNameField.setText(nv.getVehicleOwnerName());
+                   takeVechileInfoOwnersContactField.setText(nv.getVehicleOwnerContact());
+               }
+               else{
+                   takeVechileInfoSelectLicenseNumCombox.getItems().add(nv.getVehicleLicenseNum());
+               }
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void takeVechileInfoDoneBtn(ActionEvent event) {
+        ParkingAreaVechileData pvd =  new ParkingAreaVechileData(
+                                                                takeVechileInfoDatePicker.getValue(),
+                                                                takeVechileInfoSelectLicenseNumCombox.getValue(),
+                                                                takeVechileInfoOwnersNameField.getText(),
+                                                                takeVechileInfoOwnersContactField.getText(),
+                                                                takeVechileInfoComplineBox.getText(),
+                                                                Integer.parseInt(takeVechileInfoParkingTime.getText()),
+                                                                takeVechileInfoPerMinCostCombox.getValue(),
+                                                                Integer.parseInt(takeVechileIeInfoParkingCost.getText()));
+        
+        parkingAreaVechileDataArr.add(pvd);
+        
+        for(ParkingAreaVechileData p:parkingAreaVechileDataArr){
+            if(takeVechileInfoTableView.getItems().contains(p)){
+                System.out.println("Already Contain");
+            }
+            else{
+                takeVechileInfoTableView.getItems().add(p);
+            }
+            
+        }
+        
+        try{
+            FileOutputStream fos = new FileOutputStream("allParkingVehicleRegDataobj.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(ParkingAreaVechileData p:parkingAreaVechileDataArr){
+                oos.writeObject(p);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void takeVechileInfoToNewVechileRgBtn(ActionEvent event) {
+        empManagementFrame.setVisible(false);
+        reportGenerateForDailyEmpFrame.setVisible(false);
+        empSessionManagementFrame.setVisible(false);
+        newVehcileRegisterFrame.setVisible(true);
+        vehicleInfoTakingFrame.setVisible(false);
+        generateReportForDailyVehicle.setVisible(false);
+        emgAlertSendingFrame.setVisible(false);
+        giveOtherUsersResponseFrame.setVisible(false);
+        seqdeptFontFrame.setVisible(false);
+    }
+
+    @FXML
+    private void takeVechileInfoPerMinCostComboxOnSelect(ActionEvent event) {
+        takeVechileIeInfoParkingCost.setText(Integer.toHexString(100));       
+        System.out.println("dddddd");
+    }
+
+    @FXML
+    private void generateReportDailyVechileAreaClearBtn(ActionEvent event) {
+    }
+
+    @FXML
+    private void generateReportDailyVechileDatepickerOnSelect(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void sendEmgMsgBtn(ActionEvent event) {
     }
     
 }
