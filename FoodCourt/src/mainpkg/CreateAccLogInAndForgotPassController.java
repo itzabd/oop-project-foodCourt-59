@@ -176,37 +176,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
 
     @FXML
     private void logInPageSignInBtn(ActionEvent event) throws Exception {
-        /*
-        if(logInPageUserTypeCombox.getValue()=="Security Depertment"){
-            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/SecurityDeptDashBoard.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
         
-        else if(logInPageUserTypeCombox.getValue()=="Food Supplier"){
-            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/FoodSupplierDashboard.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-        else if(logInPageUserTypeCombox.getValue()=="Food Court Manager"){
-            Parent root = FXMLLoader.load(getClass().getResource("/abdullah/FoodCourtManager.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-        else if(logInPageUserTypeCombox.getValue()=="Online Customer"){
-            Parent root = FXMLLoader.load(getClass().getResource("/abdullah/OnlineCustomer.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-         */
         
         String userType = logInPageUserTypeCombox.getValue();
         String username = loginPageUserName.getText();
@@ -224,14 +194,14 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             //Load the file
             File employeeFile = new File("FoodCourtManagerList.bin");
 
-            // Check if the file exists
+            //if the file exists
             if (employeeFile.exists()) {
                 try (FileInputStream fis = new FileInputStream(employeeFile); 
                      ObjectInputStream ois = new ObjectInputStream(fis)) {
                     boolean found = false;
                     while (true) {
                         FoodCourtManager manager = (FoodCourtManager) ois.readObject();
-                        // Check if username and password match
+                        //if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
                             Parent root = FXMLLoader.load(getClass().getResource("/abdullah/FoodCourtManager.fxml"));
@@ -240,7 +210,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                             stage.setScene(scene);
                             stage.show();
                             return;
-                        } //check if username matches
+                        } //if username matches
                         else if (manager.getUsername().equals(username)) {
                             found = true;
                             break;
@@ -264,19 +234,19 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             UserNameError.setText("Invalid");
             PassError.setText("Invalid");
         }
-        // Check if the user type is "Online Customer"
+        //if the user type is "Online Customer"
         if ("Online Customer".equals(userType)) {
             //Load the file
             File employeeFile = new File("OnlineCustomerList.bin");
 
-            // Check if the file exists
+            //if the file exists
             if (employeeFile.exists()) {
                 try (FileInputStream fis = new FileInputStream(employeeFile);
                      ObjectInputStream ois = new ObjectInputStream(fis)) {
                     boolean found = false;
                     while (true) {
                         OnlineCustomer manager = (OnlineCustomer) ois.readObject();
-                        // Check if username and password match
+                        //if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
                             Parent root = FXMLLoader.load(getClass().getResource("/abdullah/OnlineCustomer.fxml"));
@@ -309,19 +279,19 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             UserNameError.setText("Invalid");
             PassError.setText("Invalid");
         }
-        // Check if the user type is "Security Depertment"
+        //if the user type is "Security Depertment"
         if ("Security Depertment".equals(userType)) {
             //Load the file
             File employeeFile = new File("SecurityDepertmentList.bin");
 
-            // Check if the file exists
+            //if the file exists
             if (employeeFile.exists()) {
                 try (FileInputStream fis = new FileInputStream(employeeFile); 
                      ObjectInputStream ois = new ObjectInputStream(fis)) {
                     boolean found = false;
                     while (true) {
                         SecurityDepartment manager = (SecurityDepartment) ois.readObject();
-                        // Check if username and password match
+                        //if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
                             Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/SecurityDeptDashBoard.fxml"));
@@ -330,7 +300,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                             stage.setScene(scene);
                             stage.show();
                             return;
-                        } //check if username matches
+                        } //if username matches
                         else if (manager.getUsername().equals(username)) {
                             found = true;
                             break;
@@ -354,19 +324,19 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             UserNameError.setText("Invalid");
             PassError.setText("Invalid");
         }
-        // Check if the user type is "Food Supplier"
+        //if the user type is "Food Supplier"
         if ("Food Supplier".equals(userType)) {
             //Load the file
             File employeeFile = new File("FoodSupplierList.bin");
 
-            // Check if the file exists
+            //if the file exists
             if (employeeFile.exists()) {
                 try (FileInputStream fis = new FileInputStream(employeeFile); 
                      ObjectInputStream ois = new ObjectInputStream(fis)) {
                     boolean found = false;
                     while (true) {
                         FoodSupplier manager = (FoodSupplier) ois.readObject();
-                        // Check if username and password match
+                        //if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
                             Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/SecurityDeptDashBoard.fxml"));
@@ -375,7 +345,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                             stage.setScene(scene);
                             stage.show();
                             return;
-                        } //check if username matches
+                        } //if username matches
                         else if (manager.getUsername().equals(username)) {
                             found = true;
                             break;
@@ -399,19 +369,19 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             UserNameError.setText("Invalid");
             PassError.setText("Invalid");
         }
-        // Check if the user type is "Inventory Manager"
+        //if the user type is "Inventory Manager"
         if ("Inventory Manager".equals(userType)) {
             //Load the file
             File employeeFile = new File("InventoryManagerList.bin");
 
-            // Check if the file exists
+            //if the file exists
             if (employeeFile.exists()) {
                 try (FileInputStream fis = new FileInputStream(employeeFile); 
                      ObjectInputStream ois = new ObjectInputStream(fis)) {
                     boolean found = false;
                     while (true) {
                         InventoryManager manager = (InventoryManager) ois.readObject();
-                        // Check if username and password match
+                        //if username and password match
                         if (manager.getUsername().equals(username) && manager.getPassword().equals(password)) {
                             //if match, load the MaintananceManager.fxml
                             Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/FoodSupplierDashboard.fxml"));
@@ -420,7 +390,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                             stage.setScene(scene);
                             stage.show();
                             return;
-                        } //check if username matches
+                        } //if username matches
                         else if (manager.getUsername().equals(username)) {
                             found = true;
                             break;
@@ -466,7 +436,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         return;
     }
 
-    // Validating username
+    //valid username
     if (usernameTF.getText().length() <= 4) {
         Alert alert = new Alert(Alert.AlertType.ERROR, "Username needs to be at least 4 characters long");
         alert.showAndWait();
@@ -496,7 +466,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         return;
     }
 
-    // Checking if it's a number
+    //if it's a number
     try {
         Long.parseLong(contactNoTF.getText());
     } catch (NumberFormatException e) {
@@ -507,7 +477,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         return;
     }
 
-    // Validating DOB
+    //valid DOB
     if (DOB_DP.getValue().isAfter(LocalDate.now().minusYears(18))) {
         Alert a = new Alert(Alert.AlertType.ERROR, "You must be at least 18 years old to register");
         a.show();
@@ -542,16 +512,14 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             return;
         }
 
-// Create or open the corresponding file
+//create or open the corresponding file
         File employeeFile = new File(filePath);
 
         try {
             if (!employeeFile.exists()) {
-                // Handle the case when the file doesn't exist
                 System.out.println("File does not exist. Creating new file.");
                 employeeFile.createNewFile();
             }
-            // Read all existing objects from the file into a collection
             List<User> userList = new ArrayList<>();
             try (FileInputStream fis = new FileInputStream(employeeFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
                 while (true) {
@@ -559,12 +527,9 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                     userList.add(user);
                 }
             } catch (EOFException e) {
-                // End of file reached
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
-            // Add the new object to the collection
             if (!userList.stream().anyMatch(u -> u.getUsername().equals(usernameTF.getText()))) {
                 User newUser;
                 if (userTypeComboBox.getValue().equals("Food Court Manager")) {
@@ -607,13 +572,12 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
                 }
                 userList.add(newUser);
             } else {
-                // Username already exists
+                //if username already exists
                 Alert a = new Alert(Alert.AlertType.ERROR, "Username already exists");
                 a.show();
                 return;
             }
 
-            // Write the entire collection back to the file
             try (FileOutputStream fos = new FileOutputStream(employeeFile); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
                 for (User user : userList) {
                     oos.writeObject(user);
