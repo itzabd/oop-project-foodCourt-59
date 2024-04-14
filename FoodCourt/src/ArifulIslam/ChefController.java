@@ -74,7 +74,7 @@ public class ChefController implements Initializable {
     @FXML
     private AnchorPane specialAndPromotionsFrame;
     @FXML
-    private ComboBox<?> SpecailAndPromotionsSelectAStallComboBox;
+    private ComboBox<String> SpecailAndPromotionsSelectAStallComboBox;
     @FXML
     private TextField SpecailAndPromotionsSpecialItemTextField;
     @FXML
@@ -82,15 +82,15 @@ public class ChefController implements Initializable {
     @FXML
     private TextField SpecailAndPromotionsOfferTextField;
     @FXML
-    private TableView<?> SpecailAndPromotionsTableView;
+    private TableView<SpecialAndPromotionA> SpecailAndPromotionsTableView;
     @FXML
-    private TableColumn<?, ?> StallNameTableColumnOfSpecialAndPromotion;
+    private TableColumn<SpecialAndPromotionA, String> StallNameTableColumnOfSpecialAndPromotion;
     @FXML
-    private TableColumn<?, ?> SpecialItemTableColumn;
+    private TableColumn<SpecialAndPromotionA, String> SpecialItemTableColumn;
     @FXML
-    private TableColumn<?, ?> PriceTableColumnOfSpecialAndPromotion;
+    private TableColumn<SpecialAndPromotionA, String> PriceTableColumnOfSpecialAndPromotion;
     @FXML
-    private TableColumn<?, ?> OfferTableColumn;
+    private TableColumn<SpecialAndPromotionA, String> OfferTableColumn;
     @FXML
     private AnchorPane seasonalMenuUpdatesFrame;
     @FXML
@@ -198,7 +198,47 @@ public class ChefController implements Initializable {
         ItemNameTableColumn.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("itemName"));
         PriceTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("price"));
         
+   
         
+        
+        // Special And Promotion Start
+        
+        
+        
+                // Array crate kora hoice
+        specialArray = new ArrayList<>(); 
+        
+        // ComboBox a value add korar kaj
+        SpecailAndPromotionsSelectAStallComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
+        
+        
+        // Read code start
+        ObjectInputStream sp = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            SpecialAndPromotionA e;
+            
+            sp = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            while(true){
+               e =  (SpecialAndPromotionA) sp.readObject();
+               specialArray.add(e);
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end 
+        
+        
+        // table er column golor kaj korar code
+        StallNameTableColumnOfSpecialAndPromotion.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("stallName"));
+        SpecialItemTableColumn.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("specialitemName"));
+        PriceTableColumnOfSpecialAndPromotion.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("price"));
+        OfferTableColumn.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("offer"));
+        
+        
+        
+        // Special And promotion end
         
         
     }
@@ -361,6 +401,37 @@ public class ChefController implements Initializable {
 
     @FXML
     private void SpecailAndPromotionsSaveButton(ActionEvent event) {
+        SpecialAndPromotionA sp = new SpecialAndPromotionA(SpecailAndPromotionsSelectAStallComboBox.getValue(), SpecailAndPromotionsSpecialItemTextField.getText(),SpecailAndPromotionsOfferTextField.getText(), Integer.parseInt(SpecailAndPromotionsPriceTextField.getText()));
+        //System.out.println(MenuCreationItemNameTextField.getText());
+        specialArray.add(sp);
+        
+        
+        // write code start
+        try{
+            FileOutputStream fos = new FileOutputStream("menuObject.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(SpecialAndPromotionA r:specialArray){
+                oos.writeObject(r);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // write code end
+        
+        
+        // table View add korar kaj
+        for(SpecialAndPromotionA e:specialArray){
+            if(SpecailAndPromotionsTableView.getItems().contains(e)){
+                System.out.println("Already Contain");
+            }
+            else{
+                SpecailAndPromotionsTableView.getItems().add(e);
+            }
+        }
     }
 
     @FXML
