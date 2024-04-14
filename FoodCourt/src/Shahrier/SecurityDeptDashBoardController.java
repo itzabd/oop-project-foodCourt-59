@@ -99,6 +99,18 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TableColumn<NewVehicleRegData, String> vOwnersConColumn;
     @FXML  private ComboBox<String> takeVechileInfoSelectLicenseNumCombox;
     private ArrayList<NewVehicleRegData> newVehicleRegDataArr;
+    @FXML  private TextField takeVechileInfoParkingTime;
+    @FXML  private TextField takeVechileIeInfoParkingCost;
+    @FXML  private TextField takeVechileInfoOwnersNameField;
+    @FXML  private TextField takeVechileInfoOwnersContactField;
+    @FXML  private TextArea takeVechileInfoComplineBox;
+    @FXML  private TableView<ParkingAreaVechileData> takeVechileInfoTableView;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileInfoVechileColumn;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileInfoParkingTimeColumn;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileIeInfoCostColumn;
+    @FXML  private TableColumn<ParkingAreaVechileData, String> takeVechileInfoCommColumn;
+    @FXML  private ComboBox<Integer> takeVechileInfoPerMinCostCombox;
+    private ArrayList<ParkingAreaVechileData> parkingAreaVechileDataArr;
      /**
      * Initializes the controller class.
      */
@@ -107,6 +119,7 @@ public class SecurityDeptDashBoardController implements Initializable {
         reportGenerateDataArr = new ArrayList<>();
         newVehicleRegDataArr = new ArrayList<>();
         empManagementDataArr = new ArrayList<>();
+        parkingAreaVechileDataArr = new ArrayList<>();
         
         empNameColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("mngEmpDate"));
         empIDColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empId"));
@@ -118,8 +131,16 @@ public class SecurityDeptDashBoardController implements Initializable {
         vRegDurationColumn.setCellValueFactory(new PropertyValueFactory<NewVehicleRegData,Integer>("regDuration"));
         vOwnersConColumn.setCellValueFactory(new PropertyValueFactory<NewVehicleRegData,String>("vehicleOwnerContact"));
         
+        takeVechileInfoVechileColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoLicenseNum"));
+        takeVechileInfoParkingTimeColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoParkingTime"));
+        takeVechileIeInfoCostColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoParkingCost"));
+        takeVechileInfoCommColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoComplain"));
+        
         newVehicleRegDurationCombox.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
         
+        for(int i=5;i<=15;i++){
+            takeVechileInfoPerMinCostCombox.getItems().add(i);
+        }
         for(int i=1;i<=24;i++){
             empManagementEmpEntryTimeComBox.getItems().add(i);
         }
@@ -187,6 +208,9 @@ public class SecurityDeptDashBoardController implements Initializable {
             empManagementTableViewData.getItems().add(e);
         }
         
+        for(NewVehicleRegData nv:newVehicleRegDataArr){
+            newVehicleRegTableView.getItems().add(nv);
+        }
         
         
     }    
@@ -453,7 +477,6 @@ public class SecurityDeptDashBoardController implements Initializable {
     private void grFoodCourtManagerCheckBoxOnSelect(ActionEvent event) {
     }
 
-
     @FXML
     private void saveDailyEmpReportBtn(ActionEvent event) {
     }
@@ -571,6 +594,58 @@ public class SecurityDeptDashBoardController implements Initializable {
 
     @FXML
     private void newVehicleRegNextBtn(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void takeVechileInfoSelectLicenseNumComboxOnSelect(ActionEvent event) {
+        
+        ObjectInputStream oisForVehicle = null;
+        try{
+            NewVehicleRegData nv;
+            
+            oisForVehicle = new ObjectInputStream(new FileInputStream("newVehicleRegDataobj.bin"));
+            while(true){
+               nv =  (NewVehicleRegData) oisForVehicle.readObject();
+               if (takeVechileInfoSelectLicenseNumCombox.getItems().contains(nv.getVehicleLicenseNum())){
+                   takeVechileInfoOwnersNameField.setText(nv.getVehicleOwnerName());
+                   takeVechileInfoOwnersContactField.setText(nv.getVehicleOwnerContact());
+               }
+               else{
+                   takeVechileInfoSelectLicenseNumCombox.getItems().add(nv.getVehicleLicenseNum());
+               }
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void takeVechileInfoDoneBtn(ActionEvent event) {
+        ParkingAreaVechileData pvd =  new ParkingAreaVechileData(takeVechileInfoSelectLicenseNumCombox.getValue(),
+                                                                takeVechileInfoOwnersNameField.getText(),
+                                                                takeVechileInfoOwnersContactField.getText(),
+                                                                takeVechileInfoComplineBox.getText(),
+                                                                Integer.parseInt(takeVechileInfoParkingTime.getText()),
+                                                                takeVechileInfoPerMinCostCombox.getValue(),
+                                                                Integer.parseInt(takeVechileIeInfoParkingCost.getText()));
+        parkingAreaVechileDataArr.add(pvd);
+        
+        for(ParkingAreaVechileData p:parkingAreaVechileDataArr){
+            takeVechileInfoTableView.getItems().add(p);
+        }
+    }
+
+    @FXML
+    private void takeVechileInfoToNewVechileRgBtn(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void takeVechileInfoPerMinCostComboxOnSelect(ActionEvent event) {
+        takeVechileIeInfoParkingCost.setText(Integer.toHexString(100));       
         
     }
     
