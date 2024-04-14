@@ -122,10 +122,9 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private TableColumn<Complaint, String> complaint_fromTC;
     @FXML    private TableColumn<Complaint, LocalDate> complaint_dateTC;
     @FXML    private TextArea complaintDetailsTextArea;
+             private ObservableList<Complaint> complaintList = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //#for Scene 1 Start
@@ -201,10 +200,13 @@ public class FoodCourtManagerController implements Initializable {
                  "Security Department", "Food Supplier");
 
         //----------------Complaint scene Init----------------------
-        complaint_idTC.setCellValueFactory(new PropertyValueFactory<Complaint, Integer>("Id"));
-        complaint_fromTC.setCellValueFactory(new PropertyValueFactory<Complaint, String>("cAbout"));
-        complaint_dateTC.setCellValueFactory(new PropertyValueFactory<Complaint, LocalDate>("CDate"));
+        ComplaintTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
+
+        complaint_idTC.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        complaint_fromTC.setCellValueFactory(new PropertyValueFactory<>("NameOfC"));
+        complaint_dateTC.setCellValueFactory(new PropertyValueFactory<>("CDate"));
+   
     }
 
     @FXML
@@ -676,18 +678,64 @@ public class FoodCourtManagerController implements Initializable {
         alert.showAndWait();
     }
     }
-
+    
+    
     @FXML
     private void viewDetailsComplaintOnClick(ActionEvent event) {
+        Complaint selectedComplaint = ComplaintTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedComplaint != null) {
+
+            String description = String.join("\n", selectedComplaint.getcDetails());
+
+            complaintDetailsTextArea.setText(description);
+        } else {
+            //error msg
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a Complaint from list.");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
     private void deleteComplaintBAXuttonOnClick(ActionEvent event) {
     }
-
+    
+    
+    
     @FXML
     private void loadButtonOnClick(ActionEvent event) {
-        
+        ObjectInputStream ois2 = null;
+        {
+            ObservableList<Complaint> complaint = FXCollections.observableArrayList();
+            try {
+                Complaint c;
+
+                ois2 = new ObjectInputStream(new FileInputStream("ComplaintList.bin"));
+
+                while (true) {
+                    c = (Complaint) ois2.readObject();
+                    complaint.add(c);
+                    ComplaintTableView.setItems(complaint);
+
+                }
+
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+
+            } catch (Exception ex) {
+                try {
+                    if (ois2 != null) {
+                        ois2.close();
+                    }
+                } catch (IOException ex1) {
+                }
+            }
+
+        }
     }
 
     @FXML

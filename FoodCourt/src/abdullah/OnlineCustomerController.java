@@ -11,10 +11,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +50,7 @@ import javafx.stage.Stage;
  */
 public class OnlineCustomerController implements Initializable {
 
-    @FXML    private Label userNameAfterLogin;
+   
     @FXML    private Button OrderManagement_btn;
     @FXML    private Button orderHistory_btn;
     @FXML    private Button setaddress_btn;
@@ -79,7 +84,6 @@ public class OnlineCustomerController implements Initializable {
     private AnchorPane ViewProfile_scene;
     @FXML
     private DatePicker Date_C;
-    @FXML
     private TextField subject_C;
     @FXML
     private TextField NameTF_C;
@@ -87,6 +91,8 @@ public class OnlineCustomerController implements Initializable {
     private ComboBox<String> userType_C;
     @FXML
     private TextArea details_TextArea_C;
+    @FXML
+    private TextField About_C;
 
     /**
      * Initializes the controller class.
@@ -135,6 +141,7 @@ public class OnlineCustomerController implements Initializable {
         userType_C.getItems().addAll("Online Customer","Stall Manager"
             ,"Security Department","Food Supplier");
         
+            
     }
 
     @FXML
@@ -253,14 +260,71 @@ public class OnlineCustomerController implements Initializable {
     }
     }
     
-//    private int generateRandomID() {
-//        Random random = new Random();
-//        int id = random.nextInt(9000) + 1000;
-//        return id;
-//    }
+
 
     @FXML
     private void reportButtonOnClick_C(ActionEvent event) {
+        Random rand = new Random();
+        int complaintId = 1000 + rand.nextInt(9000); // You can adjust the range as needed
+
+        LocalDate date = Date_C.getValue();
+        String subject = About_C.getText();
+        String name = NameTF_C.getText();
+        String userType = userType_C.getValue();
+        String details = details_TextArea_C.getText();
+
+       
+         if (userType == null || date == null || subject.isEmpty() || name.isEmpty() || details.isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Incomplete Data");
+        alert.setHeaderText(null);
+        alert.setContentText("Please enter all required fields.");
+        alert.showAndWait();
+        return;
+    }
+
+    Complaint compl = new Complaint(name, subject, userType, details, date,complaintId);
+
+    Path filePath = Paths.get("ComplaintList.bin");
+
+    try {
+        if (Files.exists(filePath)) {
+            
+            try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true);
+                 AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                oos.writeObject(compl);
+            }
+        } else {
+            
+            try (FileOutputStream fos = new FileOutputStream(filePath.toString());
+                 ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                oos.writeObject(compl);
+            }
+        }
+
+        
+        userType_C.setValue(null);
+        Date_C.setValue(null);
+        About_C.clear();
+        NameTF_C.clear();
+        details_TextArea_C.clear();
+
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notice Sent");
+        alert.setHeaderText(null);
+        alert.setContentText("Notice has been sent successfully.");
+        alert.showAndWait();
+    } catch (IOException ex) {
+        
+        Logger.getLogger(OnlineCustomerController.class.getName()).log(Level.SEVERE, null, ex);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Failed to send notice.");
+        alert.showAndWait();
+    }  
+      
         
     }
 

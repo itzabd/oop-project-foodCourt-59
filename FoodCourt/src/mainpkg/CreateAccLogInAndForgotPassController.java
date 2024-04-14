@@ -134,19 +134,19 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
         return email.contains("@") && email.endsWith(".com");
     }
 
-    private void saveUserDataToFile(AllUserData userData) {
-        File allUserDataFile = new File("AllUserData.bin");
-
-        try (FileOutputStream fos = new FileOutputStream(allUserDataFile, true); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(userData);
-           // Alert alert = new Alert(Alert.AlertType.INFORMATION, "User data saved successfully");
-            //alert.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save user data");
-            alert.showAndWait();
-        }
-    }
+//    private void saveUserDataToFile(AllUserData userData) {
+//        File allUserDataFile = new File("AllUserData.bin");
+//
+//        try (FileOutputStream fos = new FileOutputStream(allUserDataFile, true); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+//            oos.writeObject(userData);
+//           // Alert alert = new Alert(Alert.AlertType.INFORMATION, "User data saved successfully");
+//            //alert.showAndWait();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save user data");
+//            alert.showAndWait();
+//        }
+//    }
 
     @FXML
     private void logInPageUserTypeComboxOnClick(ActionEvent event) {
@@ -176,37 +176,7 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
 
     @FXML
     private void logInPageSignInBtn(ActionEvent event) throws Exception {
-        /*
-        if(logInPageUserTypeCombox.getValue()=="Security Depertment"){
-            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/SecurityDeptDashBoard.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
         
-        else if(logInPageUserTypeCombox.getValue()=="Food Supplier"){
-            Parent root = FXMLLoader.load(getClass().getResource("/Shahrier/FoodSupplierDashboard.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-        else if(logInPageUserTypeCombox.getValue()=="Food Court Manager"){
-            Parent root = FXMLLoader.load(getClass().getResource("/abdullah/FoodCourtManager.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-        else if(logInPageUserTypeCombox.getValue()=="Online Customer"){
-            Parent root = FXMLLoader.load(getClass().getResource("/abdullah/OnlineCustomer.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }
-         */
         
         String userType = logInPageUserTypeCombox.getValue();
         String username = loginPageUserName.getText();
@@ -680,7 +650,8 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
             }
             // Read all existing objects from the file into a collection
             List<User> userList = new ArrayList<>();
-            try (FileInputStream fis = new FileInputStream(employeeFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            try (FileInputStream fis = new FileInputStream(employeeFile); 
+                 ObjectInputStream ois = new ObjectInputStream(fis)) {
                 while (true) {
                     User user = (User) ois.readObject();
                     userList.add(user);
@@ -767,20 +738,20 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     }
 
     //Creates an instance of AllUserData
-    AllUserData userData = new AllUserData(
-            usernameTF.getText(),
-            emailTF.getText(),
-            nameTF.getText(),
-            paasTF.getText(),
-            contactNoTF.getText(),
-            gender,
-            userType,
-            generateUniqueId(),
-            DOB_DP.getValue()
-    );
-
-    // Save user data to file
-    saveUserDataToFile(userData);
+//    AllUserData userData = new AllUserData(
+//            usernameTF.getText(),
+//            emailTF.getText(),
+//            nameTF.getText(),
+//            paasTF.getText(),
+//            contactNoTF.getText(),
+//            gender,
+//            userType,
+//            generateUniqueId(),
+//            DOB_DP.getValue()
+//    );
+//
+//    // Save user data to file
+//    saveUserDataToFile(userData);
 }
 
 }
