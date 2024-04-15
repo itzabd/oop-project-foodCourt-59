@@ -1,9 +1,16 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Saif;
 
+/**
+ *
+ * @author sakib
+ */
 public class Contract {
-    String selectedField = null;
-    String dataInput = null;
+    String selectedField;
+    String dataInput;
 
     public Contract(String selectedField, String dataInput) {
         this.selectedField = selectedField;
@@ -16,10 +23,6 @@ public class Contract {
 
     public String getDataInput() {
         return dataInput;
-    }
-
-    void setDataInput(String newValue) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

@@ -87,6 +87,7 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private TextField sessionManagementFeedbackBtn;
     @FXML  private DatePicker sessionManagementDatePicker;
     private ArrayList<ReportGeneratingData> reportGenerateDataArr;
+
     @FXML  private DatePicker newVehicleRegDatePicker;
     @FXML  private TextField newVehicleRegCarModelTextField;
     @FXML  private TextField newVehicleRegLicenseNum;
@@ -124,36 +125,17 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML  private CheckBox stallManagerEmgMsgCheckBox;
     @FXML  private TextArea alertMsgTextArea;
     private ArrayList<SeqAlerts> seqAlertsArr;
+
      /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         reportGenerateDataArr = new ArrayList<>();
-        newVehicleRegDataArr = new ArrayList<>();
-        empManagementDataArr = new ArrayList<>();
-        parkingAreaVechileDataArr = new ArrayList<>();
-        
         empNameColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("mngEmpDate"));
         empIDColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empId"));
         entryTimeColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empEntryTime"));
         sessionExpierColumn.setCellValueFactory(new PropertyValueFactory<EmpManagementData,String>("empSessionExpieryTime"));
-        
-        vPlateNumColumn.setCellValueFactory(new PropertyValueFactory<NewVehicleRegData,String>("vehicleLicenseNum"));
-        vRegDateColumn.setCellValueFactory(new PropertyValueFactory<NewVehicleRegData,LocalDate>("regDate"));
-        vRegDurationColumn.setCellValueFactory(new PropertyValueFactory<NewVehicleRegData,Integer>("regDuration"));
-        vOwnersConColumn.setCellValueFactory(new PropertyValueFactory<NewVehicleRegData,String>("vehicleOwnerContact"));
-        
-        takeVechileInfoVechileColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoLicenseNum"));
-        takeVechileInfoParkingTimeColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoParkingTime"));
-        takeVechileIeInfoCostColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoParkingCost"));
-        takeVechileInfoCommColumn.setCellValueFactory(new PropertyValueFactory<ParkingAreaVechileData,String>("vhInfoComplain"));
-        
-        newVehicleRegDurationCombox.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
-        
-        for(int i=5;i<=15;i++){
-            takeVechileInfoPerMinCostCombox.getItems().add(i);
-        }
         for(int i=1;i<=24;i++){
             empManagementEmpEntryTimeComBox.getItems().add(i);
         }
@@ -163,7 +145,7 @@ public class SecurityDeptDashBoardController implements Initializable {
         for(int i=1;i<=24;i++){
             sessionManagementExitTimeCombox.getItems().add(i);
         }
-        
+        empManagementDataArr = new ArrayList<>();
         empManagementEmpTypeComBox.getItems().addAll("Security Depertment","Food Supplier"
                                                      ,"Food Court Manager", "Online Customer");
         ObjectInputStream ois = null;
@@ -195,7 +177,7 @@ public class SecurityDeptDashBoardController implements Initializable {
         catch(Exception ex){
             System.out.println(ex);
         }
-        
+
         ObjectInputStream oisForVehicle = null;
         try{
             NewVehicleRegData nv;
@@ -231,14 +213,11 @@ public class SecurityDeptDashBoardController implements Initializable {
         catch(Exception ex){
             System.out.println(ex);
         }
-        
+
         for(EmpManagementData e:empManagementDataArr){
             empManagementTableViewData.getItems().add(e);
         }
         
-        for(NewVehicleRegData nv:newVehicleRegDataArr){
-            newVehicleRegTableView.getItems().add(nv);
-        }
         
         for(ParkingAreaVechileData p:parkingAreaVechileDataArr){
             takeVechileInfoTableView.getItems().add(p);
@@ -508,6 +487,7 @@ public class SecurityDeptDashBoardController implements Initializable {
     @FXML
     private void grFoodCourtManagerCheckBoxOnSelect(ActionEvent event) {
     }
+
 
     @FXML
     private void saveDailyEmpReportBtn(ActionEvent event) {
