@@ -58,6 +58,7 @@ public class StallManagerUserDashBoardController implements Initializable {
     @FXML
     private TableColumn<MenuManagement, String> menuManageFoodPriceTableColumnId;
     ObservableList <MenuManagement> menuInfoObl = FXCollections.observableArrayList();
+    
     File menuManageFile = new File("Menu1.bin");
     
     @FXML

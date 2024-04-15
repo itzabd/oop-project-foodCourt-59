@@ -11,7 +11,6 @@ public class MenuManagement implements Serializable {
         this.addOffer = addOffer;
     }
 
-
     
     
     public MenuManagement(String stallName, String foodName, String addOffer, String price) {
