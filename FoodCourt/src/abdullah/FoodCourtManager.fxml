@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -16,8 +13,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -36,19 +31,14 @@
                            <top>
                               <AnchorPane prefHeight="77.0" prefWidth="217.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label layoutX="24.0" layoutY="2.0" text="Food Court Manager">
+                                    <Label layoutX="24.0" layoutY="9.0" text="Food Court Manager">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="78.0" layoutY="26.0" text="Welcome">
+                                    <Label layoutX="71.0" layoutY="40.0" prefHeight="20.0" prefWidth="99.0" text="Welcome" textAlignment="JUSTIFY">
                                        <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="userNameAfterLogin" layoutX="78.0" layoutY="53.0" text="[N A M E]">
-                                       <font>
-                                          <Font size="14.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -67,7 +57,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="saleReport_btn" layoutX="9.0" layoutY="140.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Sales Report" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button fx:id="saleReport_btn" layoutX="9.0" layoutY="140.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Online Customer Overview" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -82,7 +72,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="ResolvePaymentDispute_btn" layoutX="9.0" layoutY="221.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Resolve Payment Dispute" textAlignment="JUSTIFY" wrapText="true">
+                                    <Button fx:id="ResolvePaymentDispute_btn" layoutX="9.0" layoutY="221.0" mnemonicParsing="false" onAction="#sceneSwitch" prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="View Rating And Feedback" textAlignment="JUSTIFY" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -136,7 +126,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="stall_detailsScene" layoutX="1.0" layoutY="6.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="stall_detailsScene" layoutX="1.0" layoutY="6.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Stall Details" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -189,26 +179,22 @@
                         </AnchorPane>
                         <AnchorPane fx:id="salesReportScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="14.0" prefHeight="38.0" prefWidth="301.0" text="Sales Report" textAlignment="CENTER" wrapText="true">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="6.0" prefHeight="38.0" prefWidth="355.0" text="Online Customer Overview" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <AreaChart layoutX="35.0" layoutY="182.0" prefHeight="288.0" prefWidth="466.0">
-                                 <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
-                                 </xAxis>
-                                 <yAxis>
-                                    <NumberAxis side="LEFT" />
-                                 </yAxis>
-                              </AreaChart>
-                              <Label layoutX="70.0" layoutY="86.0" text="Chart Type:" />
-                              <ComboBox layoutX="170.0" layoutY="82.0" prefHeight="25.0" prefWidth="129.0" />
-                              <Button layoutX="309.0" layoutY="84.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="55.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Load" />
-                              <Label layoutX="70.0" layoutY="118.0" text="Report Type:" />
-                              <ComboBox layoutX="170.0" layoutY="114.0" prefHeight="25.0" prefWidth="129.0" />
-                              <Label layoutX="70.0" layoutY="149.0" text="Sales Report of:" />
-                              <ComboBox layoutX="170.0" layoutY="145.0" prefHeight="25.0" prefWidth="129.0" />
+                              <PieChart fx:id="pieChart" layoutX="19.0" layoutY="74.0" prefHeight="297.0" prefWidth="500.0" style="-fx-border-color: f38a63;" />
+                              <Button layoutX="303.0" layoutY="393.0" mnemonicParsing="false" onAction="#loadPieChart" prefHeight="32.0" prefWidth="183.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Load Pie Chart in Age" textAlignment="JUSTIFY" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="54.0" layoutY="393.0" mnemonicParsing="false" onAction="#loadPieChartGender" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Load Pie Chart in Gender" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="sendUserNotice_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
@@ -233,32 +219,33 @@
                         </AnchorPane>
                         <AnchorPane fx:id="resolvePaymentDisputeScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
                            <children>
-                              <TreeTableView layoutX="13.0" layoutY="93.0" prefHeight="157.0" prefWidth="512.0">
-                                 <columns>
-                                    <TreeTableColumn prefWidth="107.0" text="Stall ID" />
-                                    <TreeTableColumn prefWidth="184.0" text="Stall Name" />
-                                    <TreeTableColumn prefWidth="131.0" text="Amount" />
-                                    <TreeTableColumn prefWidth="95.0" text="Due" />
-                                 </columns>
-                              </TreeTableView>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Resolve Payment Dispute" textAlignment="CENTER" wrapText="true">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="71.0" layoutY="14.0" prefHeight="38.0" prefWidth="376.0" text="Review And FeedBack of Stalls" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <CheckBox layoutX="165.0" layoutY="252.0" mnemonicParsing="false" text="Unpaid" />
-                              <CheckBox layoutX="242.0" layoutY="252.0" mnemonicParsing="false" text="Paid" />
-                              <CheckBox layoutX="306.0" layoutY="252.0" mnemonicParsing="false" text="Show All" />
-                              <Button layoutX="115.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Show details" />
-                              <Button layoutX="225.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Edit Status" />
-                              <Button layoutX="321.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Send Warning" />
-                              <TextArea layoutX="15.0" layoutY="321.0" prefHeight="102.0" prefWidth="508.0" promptText="Details" />
-                              <ComboBox layoutX="14.0" layoutY="58.0" prefWidth="150.0" promptText="Select Month" />
-                              <Button layoutX="177.0" layoutY="58.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Load">
+                              <TableView fx:id="FRtableView" layoutX="35.0" layoutY="105.0" prefHeight="137.0" prefWidth="343.0" style="-fx-border-color: f38a63;">
+                                <columns>
+                                  <TableColumn fx:id="FrStallNameTC" prefWidth="181.0" text="Stall Name" />
+                                  <TableColumn fx:id="FRRatingTC" prefWidth="136.0" text="Rating" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="35.0" layoutY="252.0" mnemonicParsing="false" onAction="#LoadFRButtonOnCLick" prefHeight="32.0" prefWidth="73.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Load" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
-                                    <Font size="11.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Button>
+                              <TextArea fx:id="FRtextArea" layoutX="36.0" layoutY="297.0" prefHeight="130.0" prefWidth="347.0" promptText="Select a row and click view details to show Feedback" style="-fx-border-color: f38a63;" />
+                              <Button layoutX="35.0" layoutY="435.0" mnemonicParsing="false" onAction="#ViewFRButtonOnCLick1" prefHeight="32.0" prefWidth="109.0" style="-fx-background-color: f38a63; -fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="View Details" textAlignment="JUSTIFY" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="36.0" layoutY="75.0" text="Click load button to load up the the table" underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="complaintsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
@@ -284,16 +271,15 @@
                               <Button layoutX="139.0" layoutY="245.0" mnemonicParsing="false" onAction="#loadButtonOnClick" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Load" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="addNewPolicy_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;" visible="false">
+                        <AnchorPane fx:id="addNewPolicy_scene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: c1c4c9;">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="38.0" prefWidth="325.0" text="Add new Policy" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="206.0" layoutY="294.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Download as PDF" />
-                              <Button layoutX="260.0" layoutY="375.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Load" />
-                              <TextArea layoutX="51.0" layoutY="182.0" prefHeight="100.0" prefWidth="453.0" />
+                              <Button layoutX="257.0" layoutY="291.0" mnemonicParsing="false" onAction="#downloadAsPdfButtonOnCLick" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Download as PDF" />
+                              <TextArea fx:id="polocityDesTextArea" layoutX="51.0" layoutY="182.0" prefHeight="100.0" prefWidth="453.0" promptText="Add policy description" style="-fx-border-color: f38a63;" />
                               <Label layoutX="52.0" layoutY="69.0" text="Policy and Guideline:">
                                  <font>
                                     <Font size="13.0" />
@@ -304,36 +290,31 @@
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="132.0" layoutY="103.0" prefHeight="25.0" prefWidth="109.0" />
+                              <TextField fx:id="policyNameTF" layoutX="132.0" layoutY="103.0" prefHeight="25.0" prefWidth="109.0" promptText="Policy name" style="-fx-border-color: f38a63;" />
                               <Label layoutX="268.0" layoutY="106.0" text="Creation Date:">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <DatePicker layoutX="365.0" layoutY="103.0" prefHeight="25.0" prefWidth="138.0" />
+                              <DatePicker fx:id="policyDate" layoutX="365.0" layoutY="103.0" prefHeight="25.0" prefWidth="138.0" promptText="MM/DD/YYYY" style="-fx-border-color: f38a63;" />
                               <Label layoutX="52.0" layoutY="155.0" text="Policy Description:">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="52.0" layoutY="379.0" text="Policy name:">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="141.0" layoutY="376.0" prefHeight="25.0" prefWidth="109.0" />
                               <Label layoutX="52.0" layoutY="356.0">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <TextArea layoutX="50.0" layoutY="412.0" prefHeight="58.0" prefWidth="384.0" />
-                              <Button layoutX="444.0" layoutY="412.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="59.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Delete" />
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="347.0" prefHeight="4.0" prefWidth="68.0" text="Delete" textAlignment="CENTER" wrapText="true">
+                              <TextArea fx:id="PolicyTA" layoutX="54.0" layoutY="356.0" prefHeight="83.0" prefWidth="457.0" promptText="View" />
+                              <Button layoutX="52.0" layoutY="450.0" mnemonicParsing="false" onAction="#ViewPolicybuttonOnClick" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="View Policy" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="330.0" prefHeight="19.0" prefWidth="112.0" text="View Policy:" textAlignment="CENTER" underline="true" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="187.0" layoutY="291.0" mnemonicParsing="false" onAction="#AddPolicybuttonOnclick" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: f38a63; -fx-border-color: black;" text="Add " />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="stall_detailsScene1" layoutX="10.0" layoutY="10.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -360,7 +341,7 @@
                               <Button layoutX="239.0" layoutY="63.0" mnemonicParsing="false" onAction="#S2_loadButton" prefHeight="27.0" prefWidth="58.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Load" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="537.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="537.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button layoutX="32.0" layoutY="238.0" mnemonicParsing="false" onAction="#addButton_regStallOnClick" prefHeight="27.0" prefWidth="218.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
                               <Button layoutX="228.0" layoutY="454.0" mnemonicParsing="false" onAction="#removeButtonOnclick" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />

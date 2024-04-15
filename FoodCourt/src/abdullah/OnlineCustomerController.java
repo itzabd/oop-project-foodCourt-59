@@ -33,14 +33,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -126,9 +129,22 @@ public class OnlineCustomerController implements Initializable {
     @FXML
     private TextField usernameAddress;
     @FXML
-    private TextArea testbox;
+    private TextArea feedbaclTextArea;
     @FXML
-    private TextArea dashboardTA;
+    private ComboBox<String> stallNameComboBox;
+    
+    @FXML
+    private RadioButton oneStar;
+    @FXML
+    private RadioButton fourStar;
+    @FXML
+    private RadioButton twoStar;
+    @FXML
+    private RadioButton threeStar;
+    @FXML
+    private RadioButton fiveStar;
+    private ToggleGroup ratingToggleGroup;
+   
 
     /**
      * Initializes the controller class.
@@ -138,42 +154,14 @@ public class OnlineCustomerController implements Initializable {
         NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
         NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
         NoticeDateTC.setCellValueFactory(new PropertyValueFactory<>("noticeDate"));
-    // Set up table columns
+    
         NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
         NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
         NoticeDateTC.setCellValueFactory(new PropertyValueFactory<>("noticeDate"));
         
         
         NotificationTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        //private String loggedInUsername;
-//        ObjectInputStream ois = null;
-//        {
-//            ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
-//            try {
-//                SendNotice s;
-//
-//                ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
-//
-//                while (true) {
-//                    s = (SendNotice) ois.readObject();
-//                    sendnotice.add(s);
-//                    NotificationTableView.setItems(sendnotice);
-//                    
-//                }
-//
-//            } catch (RuntimeException e) {
-//                e.printStackTrace();
-//
-//            } catch (Exception ex) {
-//                try {
-//                    if (ois != null) {
-//                        ois.close();
-//                    }
-//                } catch (IOException ex1) {
-//                }
-//            }
-//
-//        
+          
           ObjectInputStream ois = null;
         ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
 
@@ -206,15 +194,51 @@ public class OnlineCustomerController implements Initializable {
             }
         }
 
-// Set the items to the TableView after reading all relevant objects
+
         NotificationTableView.setItems(sendnotice);
         userType_C.getItems().addAll("Online Customer","Stall Manager"
             ,"Security Department","Food Supplier");
-      //Address Scene
+      
       selectArea_Address.getItems().addAll("Bashundhara","Rampura",
               "Kuril","Notunbazar");
             
+      
+      populateStallNames();
+        ratingToggleGroup = new ToggleGroup();
+        fiveStar.setToggleGroup(ratingToggleGroup);
+        fourStar.setToggleGroup(ratingToggleGroup);
+        threeStar.setToggleGroup(ratingToggleGroup);
+        twoStar.setToggleGroup(ratingToggleGroup);
+        oneStar.setToggleGroup(ratingToggleGroup);
+      
+    }//last bracket of ini
+    
+    private void populateStallNames() {
+        Path filePath = Paths.get("StallObjects.bin");
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath.toString()))) {
+            ObservableList<String> stallNames = FXCollections.observableArrayList();
+
+            while (true) {
+                try {
+                    Stall stall = (Stall) ois.readObject();
+                    stallNames.add(stall.getStallName());
+                } catch (ClassNotFoundException e) {
+                    // Handle class not found exception
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // Reached end of file
+                    break;
+                }
+            }
+
+            stallNameComboBox.setItems(stallNames);
+        } catch (IOException e) {
+            // Handle file IO exception
+            e.printStackTrace();
+        }
     }
+    
     
 
     @FXML
@@ -495,27 +519,101 @@ public class OnlineCustomerController implements Initializable {
         Address address = new Address(houseNo, blockNo, streetNo,
                 selectedArea, note, postalCode, username1);
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream("CustomerAddressFile.bin", true))) {
-            oos.writeObject(address);
-            oos.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Failed to save address.");
-            alert.showAndWait();
-            return;
-        }
+        writeAddressToFile(address);
+        
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Address Saved");
         alert.setHeaderText(null);
         alert.setContentText("Address saved successfully.");
         alert.showAndWait();
-
     }
 
+    private void writeAddressToFile(Address address) {
+        Path filePath = Paths.get("CustomerAddressFile.bin");
+
+        try {
+            if (Files.exists(filePath)) {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true); AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                    oos.writeObject(address);
+                }
+            } else {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString()); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                    oos.writeObject(address);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        }
+    }
+
+    @FXML
+    private void sendRFonButtonClick(ActionEvent event) {
+        List<String> selectedOptions = new ArrayList<>();
+        if (fiveStar.isSelected()) {
+            selectedOptions.add("Five Star");
+        }
+        if (fourStar.isSelected()) {
+            selectedOptions.add("Four Star");
+        }
+        if (threeStar.isSelected()) {
+            selectedOptions.add("Three Star");
+        }
+        if (twoStar.isSelected()) {
+            selectedOptions.add("Two Star");
+        }
+        if (oneStar.isSelected()) {
+            selectedOptions.add("One Star");
+        }
+
+        
+        String feedback = feedbaclTextArea.getText();
+        String selectedStall = stallNameComboBox.getValue();
+        RatingAndFeedback ratingAndFeedback = new RatingAndFeedback(feedback, selectedStall, String.join(", ", selectedOptions));
+
+        saveRatingAndFeedbackToFile(ratingAndFeedback);
+        clearSelections();
+    }
+
+    private void saveRatingAndFeedbackToFile(RatingAndFeedback ratingAndFeedback) {
+        Path filePath = Paths.get("RatingAndFeedback.bin");
+
+        try {
+            if (Files.exists(filePath)) {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true);
+                        AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                    oos.writeObject(ratingAndFeedback);
+                }
+            } else {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString()); 
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                    oos.writeObject(ratingAndFeedback);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            // Handle file writing errors
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to send rating and feedback.");
+            alert.showAndWait();
+        }
+    }
+
+    private void clearSelections() {
+        fiveStar.setSelected(false);
+        fourStar.setSelected(false);
+        threeStar.setSelected(false);
+        twoStar.setSelected(false);
+        oneStar.setSelected(false);
+        feedbaclTextArea.clear();
+        stallNameComboBox.setValue(null);
+    }
+
+    @FXML
+    private void clearbuttonOnClick(ActionEvent event) {
+    }
 }
