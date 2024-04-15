@@ -13,25 +13,25 @@ import java.util.Random;
  * @author User
  */
 public class Complaint implements Serializable {
-    String cName,cAbout,cUserType;
+    String NameOfC,cAbout,cUserType,cDetails;
     LocalDate CDate;
     int Id;
 
-    public Complaint(String cName, String cAbout, String cUserType, LocalDate CDate, int Id) {
-        this.cName = cName;
+    public Complaint(String NameOfC, String cAbout, String cUserType, String cDetails, LocalDate CDate, int Id) {
+        this.NameOfC = NameOfC;
         this.cAbout = cAbout;
         this.cUserType = cUserType;
+        this.cDetails = cDetails;
         this.CDate = CDate;
         this.Id = Id;
     }
-    
 
-    public String getcName() {
-        return cName;
+    public String getNameOfC() {
+        return NameOfC;
     }
 
-    public void setcName(String cName) {
-        this.cName = cName;
+    public void setNameOfC(String NameOfC) {
+        this.NameOfC = NameOfC;
     }
 
     public String getcAbout() {
@@ -50,6 +50,14 @@ public class Complaint implements Serializable {
         this.cUserType = cUserType;
     }
 
+    public String getcDetails() {
+        return cDetails;
+    }
+
+    public void setcDetails(String cDetails) {
+        this.cDetails = cDetails;
+    }
+
     public LocalDate getCDate() {
         return CDate;
     }
@@ -65,5 +73,6 @@ public class Complaint implements Serializable {
     public void setId(int Id) {
         this.Id = Id;
     }
-    
+
+  
 }

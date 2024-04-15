@@ -108,7 +108,7 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="selectItemForUpdateComboBox" layoutX="179.0" layoutY="329.0" onAction="#selectItemForUpdateComboBoxOnSelect" prefHeight="30.0" prefWidth="190.0" />
-                              <TextField fx:id="availableQuantityTextField" editable="false" layoutX="179.0" layoutY="368.0" prefHeight="30.0" prefWidth="189.0" />
+                              <TextField fx:id="availableQuantityTextField" layoutX="179.0" layoutY="368.0" prefHeight="30.0" prefWidth="189.0" />
                               <Label layoutX="31.0" layoutY="374.0" text="Available Stoke" />
                               <Label layoutX="31.0" layoutY="336.0" text="Select A Item" />
                               <TextField fx:id="addUpdatedQuantityTextField" layoutX="179.0" layoutY="408.0" prefHeight="30.0" prefWidth="189.0" />
@@ -440,12 +440,12 @@
                                  </font>
                               </Label>
                               <PieChart fx:id="pieChart" layoutX="46.0" layoutY="82.0" prefHeight="366.0" prefWidth="446.0" />
-                              <TextArea fx:id="spacificItemQuantityTextArea" editable="false" layoutX="129.0" layoutY="476.0" prefHeight="39.0" prefWidth="200.0" promptText="Spacific Item Quantity Shown Hare By Clicking any Node" style="-fx-background-color: #344955;">
+                              <TextArea fx:id="spacificItemQuantityTextArea" editable="false" layoutX="129.0" layoutY="464.0" prefHeight="51.0" prefWidth="200.0" promptText="Spacific Item Quantity Shown Hare By Clicking any Node" style="-fx-background-color: #344955;">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </TextArea>
-                              <Button layoutX="337.0" layoutY="477.0" mnemonicParsing="false" onAction="#spacificItemQuantityTextAreaClearBtn" prefHeight="42.0" prefWidth="69.0" text="CLEAR" />
+                              <Button layoutX="346.0" layoutY="477.0" mnemonicParsing="false" onAction="#spacificItemQuantityTextAreaClearBtn" text="CLEAR" />
                            </children>
                         </AnchorPane>
                      </children>
