@@ -137,7 +137,7 @@
                               <TextField fx:id="MenuCustomizationChangeItemPriceIfNeededTextField" layoutX="504.0" layoutY="220.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="specialAndPromotionsFrame" layoutX="10.0" layoutY="16.0" prefHeight="544.0" prefWidth="643.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-94.0" AnchorPane.topAnchor="16.0">
+                        <AnchorPane fx:id="specialAndPromotionsFrame" layoutX="10.0" layoutY="16.0" prefHeight="544.0" prefWidth="643.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-94.0" AnchorPane.topAnchor="16.0">
                            <children>
                               <Label layoutX="605.0" layoutY="14.0" text="3" />
                               <Label layoutX="151.0" layoutY="22.0" text="Specials &amp; Promotions" textFill="#0e4916">
@@ -203,25 +203,17 @@
                               <Button layoutX="384.0" layoutY="105.0" mnemonicParsing="false" onAction="#InventoryAlertsLoadButton" prefHeight="25.0" prefWidth="73.0" text="Load" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="ingredientManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="579.0" prefWidth="586.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="ingredientManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="579.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="622.0" layoutY="30.0" text="6" />
-                              <Label layoutX="145.0" layoutY="23.0" text="Ingredient Management" textFill="#0e4916">
+                              <Label layoutX="201.0" layoutY="38.0" text="Ingredient Management" textFill="#0e4916">
                                  <font>
                                     <Font name="Bell MT Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="43.0" layoutY="104.0" prefHeight="17.0" prefWidth="88.0" text="Select a Stall" />
-                              <ComboBox fx:id="IngredientManagementSelectStallComboBox" layoutX="133.0" layoutY="100.0" onAction="#IngredientManagementSelectStallOnAction" prefWidth="150.0" />
-                              <TableView fx:id="IngredientManagementTableView" layoutX="1.0" layoutY="145.0" prefHeight="287.0" prefWidth="714.0">
-                                <columns>
-                                  <TableColumn fx:id="IngredientManagementStallNameTableColumn" prefWidth="227.0" text="Stall Name" />
-                                  <TableColumn fx:id="IngredientManagementItemNameTableColumn" prefWidth="283.66668701171875" text="Item Name" />
-                                    <TableColumn fx:id="IngredientManagementQuantityTableColumn" prefWidth="204.33331298828125" text="Quantity" />
-                                </columns>
-                              </TableView>
-                              <TextArea fx:id="SendAMessageForInventoryAlertTextArea" layoutX="55.0" layoutY="460.0" prefHeight="83.0" prefWidth="472.0" promptText="Send a Message for inventory alert" />
-                              <Button layoutX="556.0" layoutY="489.0" mnemonicParsing="false" onAction="#SendAMessageForInventoryAlertButtonOnAction" text="Button" />
+                              <Label layoutX="32.0" layoutY="125.0" prefHeight="17.0" prefWidth="88.0" text="Select a Stall" />
+                              <ComboBox fx:id="IngredientManagementSelectStallComboBox" layoutX="131.0" layoutY="121.0" onAction="#IngredientManagementSelectStallOnAction" prefWidth="150.0" />
+                              <TextArea fx:id="IngredientManagementTextArea" layoutX="76.0" layoutY="197.0" prefHeight="297.0" prefWidth="546.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="orderQueueFrame" layoutX="10.0" layoutY="10.0" prefHeight="589.0" prefWidth="596.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

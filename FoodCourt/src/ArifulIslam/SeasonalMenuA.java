@@ -4,11 +4,13 @@
  */
 package ArifulIslam;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HP
  */
-public class SeasonalMenuA {
+public class SeasonalMenuA implements Serializable{
     String stallNameA, newSeasonalItemName;
     int priceA;
 

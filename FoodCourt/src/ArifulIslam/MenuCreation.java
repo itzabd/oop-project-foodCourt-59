@@ -5,11 +5,14 @@
 package ArifulIslam;
 
 // aaaabbbb
+
+import java.io.Serializable;
+
 /**
  *
  * @author HP 
  */
-public class MenuCreation {
+public class MenuCreation implements Serializable{
     String stallName, itemName;
     int price;
 

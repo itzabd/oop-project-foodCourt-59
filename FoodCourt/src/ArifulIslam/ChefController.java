@@ -93,23 +93,13 @@ public class ChefController implements Initializable {
     @FXML
     private AnchorPane ingredientManagementFrame;
     @FXML
-    private ComboBox<?> IngredientManagementSelectStallComboBox;
+    private ComboBox<String> IngredientManagementSelectStallComboBox;
     @FXML
     private AnchorPane orderQueueFrame;
     @FXML
     private AnchorPane customerFeedbackAnalysisFrame;
     @FXML
     private AnchorPane ChefDashboardReturnFrame;
-    @FXML
-    private TableView<?> IngredientManagementTableView;
-    @FXML
-    private TableColumn<?, ?> IngredientManagementStallNameTableColumn;
-    @FXML
-    private TableColumn<?, ?> IngredientManagementItemNameTableColumn;
-    @FXML
-    private TableColumn<?, ?> IngredientManagementQuantityTableColumn;
-    @FXML
-    private TextArea SendAMessageForInventoryAlertTextArea;
     @FXML
     private ComboBox<?> CustomerFeedbackAnalysisSelectAStallComboBox;
     @FXML
@@ -170,6 +160,8 @@ public class ChefController implements Initializable {
     private ArrayList<SpecialAndPromotionA> specialArray;
     
     private ArrayList<SeasonalMenuA> seasonalArray;
+    @FXML
+    private TextArea IngredientManagementTextArea;
     
     
 
@@ -204,6 +196,8 @@ public class ChefController implements Initializable {
             System.out.println(ex);
         }
         // Read code end 
+        
+       
         
         
         // table er column golor kaj korar code
@@ -286,6 +280,34 @@ public class ChefController implements Initializable {
         SeasonalMenuNewSeasonalItemPriceTableColumn.setCellValueFactory(new PropertyValueFactory<SeasonalMenuA,String>("priceA"));
         
         // Seasonal Menu Update End
+        
+        
+        
+       
+        // Ingredient er Initialization part start
+        
+         // Read code start
+        ObjectInputStream oisIngredient = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            ManageStockA e;
+            
+            oisIngredient = new ObjectInputStream(new FileInputStream("manageStockFile.bin"));
+            while(true){
+               e =  (ManageStockA) oisIngredient.readObject();
+                System.out.println(e.toString());
+               IngredientManagementSelectStallComboBox.getItems().add(e.getStallName());
+               
+       
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end
+        
+        
+        
         
         
     }
@@ -485,11 +507,30 @@ public class ChefController implements Initializable {
 
     @FXML
     private void IngredientManagementSelectStallOnAction(ActionEvent event) {
+        
+        // Read code start
+        ObjectInputStream oisIngredient = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            ManageStockA e;
+            
+            oisIngredient = new ObjectInputStream(new FileInputStream("manageStockFile.bin"));
+            while(true){
+               e =  (ManageStockA) oisIngredient.readObject();
+                System.out.println(e.toString());
+               if (e.getStallName().equals(IngredientManagementSelectStallComboBox.getValue())){
+                   IngredientManagementTextArea.appendText(e.toString());
+               }
+               
+       
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end
     }
 
-    @FXML
-    private void SendAMessageForInventoryAlertButtonOnAction(ActionEvent event) {
-    }
 
     @FXML
     private void CustomerFeedbackAnalysisSelectAStallComboBoxShowButton(ActionEvent event) {
@@ -524,7 +565,7 @@ public class ChefController implements Initializable {
         
         // write code start
         try{
-            FileOutputStream fos = new FileOutputStream("menuCreationFile.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            FileOutputStream fos = new FileOutputStream("specialFile.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             
             for(SpecialAndPromotionA r:specialArray){

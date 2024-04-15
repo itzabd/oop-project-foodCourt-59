@@ -4,11 +4,13 @@
  */
 package ArifulIslam;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HP
  */
-public class SpecialAndPromotionA {
+public class SpecialAndPromotionA implements Serializable{
     String stallName, specialitemName, offer;
     int price;
 

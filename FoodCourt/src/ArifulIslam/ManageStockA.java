@@ -4,11 +4,13 @@
  */
 package ArifulIslam;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HP
  */
-public class ManageStockA {
+public class ManageStockA implements Serializable{
     String stallName, productName;          // Field create kora hoyece
     int quantity;
 
@@ -44,7 +46,7 @@ public class ManageStockA {
 
     @Override
     public String toString() {
-        return "ManageStockA{" + "stallName=" + stallName + ", productName=" + productName + ", quantity=" + quantity + '}';
+        return "Products in store according to quantity : {" + "Stall Name: " + stallName + ", Product Name: " + productName + ", Quantity = " + quantity + '}' + '\n';
     }
     
     
