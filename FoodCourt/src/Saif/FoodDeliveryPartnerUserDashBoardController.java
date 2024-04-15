@@ -96,27 +96,6 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
 
     File contractFile = new File("contractFile.bin");
     private ArrayList<FDPInfo> FDPInfoArr = new ArrayList<FDPInfo>();
-    
-    
-//    /// Application  button 
-    @FXML
-    private AnchorPane notifyCustomerAPane;
-    @FXML
-    private TableColumn<?, ?> notifyCustomerCustomerIdTableColumnId;
-    @FXML
-    private TableColumn<?, ?> notifyCustomerCustomerNameTableColumnId;
-    @FXML
-    private TableColumn<?, ?> notifyCustomerCustomerNumberTableColumnId;
-    @FXML
-    private TableColumn<?, ?> notifyCustomerPreferredTimeColumnId;
-    @FXML
-    private ComboBox<?> notifyCustomerHourComboBId;
-    @FXML
-    private ComboBox<?> notifyCustomerMinComboBId;
-    @FXML
-    private ComboBox<?> notifyCustomerAMPMComboBId;
-    @FXML
-    private TextArea notifyCustomerTextAreaId;
 
     
 
@@ -127,7 +106,6 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
         contractAPane.setVisible(false);
         checkDeliveryAPane.setVisible(false);
         applicationAPane.setVisible(false);
-        notifyCustomerAPane.setVisible(false);
 
         ObservableList deliveryType = FXCollections.observableArrayList("By Walking", "By Cycling", "By biking");
         contractFDPComboBDeliveryType.setItems(deliveryType);
@@ -518,12 +496,6 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
 
     @FXML
     private void notifyCustomerButton(ActionEvent event) {
-        contractAPane.setVisible(false);
-        checkDeliveryAPane.setVisible(false);
-        notifyCustomerAPane.setVisible(true);
-        applicationAPane.setVisible(false);
-        
-        
         renewContractButtonId.setStyle("-fx-background-color : #a7bfe4;");
         checkDeliveryButtonId.setStyle("-fx-background-color : #a7bfe4;");
         shareDeliveryPartnerButtonId.setStyle("-fx-background-color : #a7bfe4;");
@@ -823,7 +795,6 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
     private void applicationButton(ActionEvent event) {
         contractAPane.setVisible(false);
         checkDeliveryAPane.setVisible(false);
-        notifyCustomerAPane.setVisible(false);
         applicationAPane.setVisible(true);
         
         renewContractButtonId.setStyle("-fx-background-color : #a7bfe4;");
@@ -895,14 +866,6 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
     private void applicationClearButton(ActionEvent event) {
         applicationTextFieldId.clear();
         
-    }
-
-    @FXML
-    private void notifyCustomerClearButton(ActionEvent event) {
-    }
-
-    @FXML
-    private void notifyCustomerSendButton(ActionEvent event) {
     }
 
 }

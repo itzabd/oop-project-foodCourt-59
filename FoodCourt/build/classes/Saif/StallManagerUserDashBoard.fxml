@@ -6,35 +6,21 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1164.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Saif.StallManagerUserDashBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Saif.StallManagerUserDashBoardController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
+   <center>
+      <AnchorPane prefHeight="415.0" prefWidth="623.0" style="-fx-background-color: #98b8d0;" BorderPane.alignment="CENTER" />
+   </center>
    <left>
       <BorderPane prefHeight="499.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <AnchorPane prefHeight="45.0" prefWidth="720.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label layoutX="11.0" layoutY="4.0" prefHeight="146.0" prefWidth="175.0" text="Stall / Restaurant Manager's User DashBoard" textAlignment="CENTER" textFill="#184580" underline="true" wrapText="true">
-                     <font>
-                        <Font name="Calisto MT Bold Italic" size="25.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </top>
-         <bottom>
-            <AnchorPane prefHeight="48.0" prefWidth="200.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER" />
-         </bottom>
-         <left>
+         <center>
             <VBox alignment="CENTER" prefHeight="411.0" prefWidth="200.0" spacing="12.0" style="-fx-background-color: #2d6791cc;" BorderPane.alignment="CENTER">
                <children>
                   <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="219.0" style="-fx-background-color: #a7bfe4;">
@@ -64,7 +50,7 @@
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#editMenuButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="Edit Menu" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button mnemonicParsing="false" onAction="#addDeliveryButton" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="ADD DELIVERY / menu" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -75,7 +61,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#addOfferButton" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="ADD OFFER/Add delivery" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
+                  <Button mnemonicParsing="false" onAction="#addOfferButton" prefHeight="27.0" prefWidth="140.0" style="-fx-background-color: #a7bfe4;" text="ADD OFFER" textAlignment="CENTER" textFill="#2d589a" wrapText="true">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -149,91 +135,21 @@
                   <Insets bottom="15.0" />
                </padding>
             </VBox>
-         </left>
-      </BorderPane>
-   </left>
-   <center>
-      <AnchorPane prefHeight="610.0" prefWidth="786.0" style="-fx-background-color: #98b8d0;" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane fx:id="editMenuAPane" layoutX="20.0" layoutY="61.0" prefHeight="539.0" prefWidth="925.0" style="-fx-background-color: #5a81b7;">
+         </center>
+         <top>
+            <AnchorPane prefHeight="45.0" prefWidth="720.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="26.0" layoutY="43.0" prefHeight="30.0" prefWidth="131.0" style="-fx-background-color: #000066;" text="Set Stall Name:" textAlignment="CENTER" textFill="#cbc8ff" wrapText="true">
+                  <Label layoutX="11.0" layoutY="4.0" prefHeight="146.0" prefWidth="175.0" text="Stall / Restaurant Manager's User DashBoard" textAlignment="CENTER" textFill="#193a6b" underline="true" wrapText="true">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Calisto MT Bold Italic" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="26.0" layoutY="84.0" prefHeight="30.0" prefWidth="131.0" style="-fx-background-color: #000066;" text="Add Food Name:" textAlignment="CENTER" textFill="#cbc8ff" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="26.0" layoutY="122.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #000066;" text="Set Food Price:" textAlignment="CENTER" textFill="#cbc8ff" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="26.0" layoutY="163.0" prefHeight="30.0" prefWidth="131.0" style="-fx-background-color: #000066;" text="Add Offers :" textAlignment="CENTER" textFill="#cbc8ff" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="stallNametextFieldId" layoutX="171.0" layoutY="43.0" style="-fx-background-color: #a7bfe4;">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="menuManageFoodNameTextFieldId" layoutX="171.0" layoutY="84.0" style="-fx-background-color: #a7bfe4;">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="menuManageFoodPriceTextFieldId" layoutX="171.0" layoutY="122.0" style="-fx-background-color: #a7bfe4;">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="menumanageAddOfferTextFieldId" layoutX="171.0" layoutY="163.0" prefHeight="63.0" prefWidth="265.0" style="-fx-background-color: #a7bfe4;">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TableView fx:id="menuManageTableView" editable="true" layoutX="324.0" layoutY="244.0" onMouseClicked="#MenuManageRowClicked" prefHeight="237.0" prefWidth="538.0" style="-fx-background-color: #a7bfe4;">
-                    <columns>
-                      <TableColumn fx:id="menuManageStallNameTableColumnId" prefWidth="116.3333740234375" text="Stall Name" />
-                      <TableColumn fx:id="menuManageFoodNameTableColumnId" prefWidth="106.33331298828125" text="Food Name" />
-                        <TableColumn fx:id="menuManageFoodPriceTableColumnId" prefWidth="106.33331298828125" text="Food Price" />
-                        <TableColumn fx:id="menuManageOffersTableColumnId1d" prefWidth="205.0" text="Offers" />
-                    </columns>
-                  </TableView>
-                  <Button fx:id="menuManageDeleteButtonId" layoutX="165.0" layoutY="347.0" mnemonicParsing="false" onAction="#menuManageDeleteButton" style="-fx-background-color: #a7bfe4;" text="Delete Selected" textFill="#000066">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="menuManageAddToViewId" layoutX="29.0" layoutY="307.0" mnemonicParsing="false" onAction="#menuManageAddToView" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: #a7bfe4;" text="Add To View" textFill="#1b14a3">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="29.0" layoutY="347.0" mnemonicParsing="false" onAction="#menuManageAddToFile" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: #a7bfe4;" text="Add To File" textFill="#000066">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="menuManageLoadMenuButtonId" layoutX="164.0" layoutY="307.0" mnemonicParsing="false" onAction="#menuManageLoadMenuButton" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: #a7bfe4;" text=" Load Menu" textFill="#1b14a3">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="label" layoutX="422.0" layoutY="50.0" prefHeight="109.0" prefWidth="304.0" text="Label" />
-                  <Button layoutX="31.0" layoutY="385.0" mnemonicParsing="false" onAction="#menuManageReplaceDataButton" prefHeight="46.0" prefWidth="258.0" style="-fx-background-color: #a7bfe4;" text="Replace Menu with Table Items" textFill="#000066">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
-         </children>
-      </AnchorPane>
-   </center>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="48.0" prefWidth="200.0" style="-fx-background-color: #a7bfe4;" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </left>
 </BorderPane>
