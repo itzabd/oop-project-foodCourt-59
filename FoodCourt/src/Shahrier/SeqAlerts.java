@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author $abit
  */
-public class SeqAlerts implements Serializable {
+public class SeqAlerts  implements Serializable{
     String alertReciver,alertMsg;
 
     public SeqAlerts(String alertReciver, String alertMsg) {
@@ -36,7 +36,7 @@ public class SeqAlerts implements Serializable {
 
     @Override
     public String toString() {
-        return "SeqAlerts{" + "alertReciver=" + alertReciver + ", alertMsg=" + alertMsg + '}';
+        return "Message = " + alertMsg;
     }
     
     
