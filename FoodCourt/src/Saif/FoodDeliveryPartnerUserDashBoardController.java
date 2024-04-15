@@ -100,23 +100,26 @@ public class FoodDeliveryPartnerUserDashBoardController implements Initializable
     
 //    /// Application  button 
     @FXML
+    private TableView<Notification> notifyCustomerTableView;
+    @FXML
     private AnchorPane notifyCustomerAPane;
     @FXML
-    private TableColumn<?, ?> notifyCustomerCustomerIdTableColumnId;
+    private TableColumn<Notification, String> notifyCustomerCustomerIdTableColumnId;
     @FXML
-    private TableColumn<?, ?> notifyCustomerCustomerNameTableColumnId;
+    private TableColumn<Notification, String> notifyCustomerCustomerNameTableColumnId;
     @FXML
-    private TableColumn<?, ?> notifyCustomerCustomerNumberTableColumnId;
+    private TableColumn<Notification, String> notifyCustomerCustomerNumberTableColumnId;
     @FXML
-    private TableColumn<?, ?> notifyCustomerPreferredTimeColumnId;
+    private TableColumn<Notification, String> notifyCustomerPreferredTimeColumnId;
     @FXML
-    private ComboBox<?> notifyCustomerHourComboBId;
+    private ComboBox<Integer> notifyCustomerHourComboBId;
     @FXML
-    private ComboBox<?> notifyCustomerMinComboBId;
+    private ComboBox<Integer> notifyCustomerMinComboBId;
     @FXML
-    private ComboBox<?> notifyCustomerAMPMComboBId;
+    private ComboBox<Integer> notifyCustomerAMPMComboBId;
     @FXML
     private TextArea notifyCustomerTextAreaId;
+    
 
     
 
