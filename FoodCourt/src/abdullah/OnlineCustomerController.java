@@ -4,28 +4,49 @@
  */
 package abdullah;
 
+
 import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,7 +55,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class OnlineCustomerController implements Initializable {
 
-    @FXML    private Label userNameAfterLogin;
+   
     @FXML    private Button OrderManagement_btn;
     @FXML    private Button orderHistory_btn;
     @FXML    private Button setaddress_btn;
@@ -53,7 +74,6 @@ public class OnlineCustomerController implements Initializable {
     @FXML    private Label todaysOffer1_scene;
     @FXML    private AnchorPane notification_scene;
     @FXML    private AnchorPane customerAssistance_scene;
-    @FXML    private Button backbtn;
     @FXML    private Button homeBtn;
     @FXML
     private TableView<SendNotice> NotificationTableView;
@@ -67,56 +87,159 @@ public class OnlineCustomerController implements Initializable {
     private TextArea NoticeViewDetailsTextArea;
     @FXML
     private AnchorPane ViewProfile_scene;
+    @FXML
+    private DatePicker Date_C;
+    private TextField subject_C;
+    @FXML
+    private TextField NameTF_C;
+    @FXML
+    private ComboBox<String> userType_C;
+    @FXML
+    private TextArea details_TextArea_C;
+    @FXML
+    private TextField About_C;
+    @FXML
+    private TextField name_profileScene;
+    @FXML
+    private TextField phoneNo_profileScene;
+    @FXML
+    private TextField gender_profileScene;
+    @FXML
+    private TextField email_profileScene;
+    @FXML
+    private TextArea address_profileScene;
+    @FXML
+    private DatePicker Dobl_profileScene;
+    @FXML
+    private TextField userNameTF_ProfileScene;
+    @FXML
+    private TextField HouseNo_Address;
+    private TextField postalCode_Address;
+    @FXML
+    private TextField bloclNo_Address;
+    @FXML
+    private TextField streetNo_Address;
+    @FXML
+    private ComboBox<String> selectArea_Address;
+    private TextArea NoteAddresscene;
+    @FXML
+    private TextField postalCode_Address1;
+    @FXML
+    private TextArea NoteAddresscene1;
+    @FXML
+    private TextField usernameAddress;
+    @FXML
+    private TextArea feedbaclTextArea;
+    @FXML
+    private ComboBox<String> stallNameComboBox;
+    
+    @FXML
+    private RadioButton oneStar;
+    @FXML
+    private RadioButton fourStar;
+    @FXML
+    private RadioButton twoStar;
+    @FXML
+    private RadioButton threeStar;
+    @FXML
+    private RadioButton fiveStar;
+    private ToggleGroup ratingToggleGroup;
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        NoticeNameTC.setCellValueFactory(new PropertyValueFactory<SendNotice, String>("noticeName"));
-        NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<SendNotice, String>("noticeSubject"));
-        NoticeDateTC.setCellValueFactory(new PropertyValueFactory<SendNotice, LocalDate>("noticeDate"));
-    // Set up table columns
+        NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
+        NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
+        NoticeDateTC.setCellValueFactory(new PropertyValueFactory<>("noticeDate"));
+    
         NoticeNameTC.setCellValueFactory(new PropertyValueFactory<>("noticeName"));
         NoticeAboutTC.setCellValueFactory(new PropertyValueFactory<>("noticeSubject"));
         NoticeDateTC.setCellValueFactory(new PropertyValueFactory<>("noticeDate"));
         
         
         NotificationTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
-        ObjectInputStream ois = null;
-        {
-            ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
-            try {
-                SendNotice s;
+          
+          ObjectInputStream ois = null;
+        ObservableList<SendNotice> sendnotice = FXCollections.observableArrayList();
 
-                ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
+        try {
+            SendNotice s;
 
-                while (true) {
-                    s = (SendNotice) ois.readObject();
+            ois = new ObjectInputStream(new FileInputStream("SendNotice.bin"));
+
+            while (true) {
+                s = (SendNotice) ois.readObject();
+
+                // Check if the recipient field contains "Online Customer"
+                if (s.getNoticeForUserType().equals("Online Customer")
+                        || s.getNoticeForUserType().equals("Food Delivery Partner")) {
                     sendnotice.add(s);
-                    NotificationTableView.setItems(sendnotice);
-                    
-                }
-
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-
-            } catch (Exception ex) {
-                try {
-                    if (ois != null) {
-                        ois.close();
-                    }
-                } catch (IOException ex1) {
                 }
             }
 
+        } catch (EOFException eof) {
+            // End of file reached, do nothing
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
-        
-    }
 
-    
+
+        NotificationTableView.setItems(sendnotice);
+        userType_C.getItems().addAll("Online Customer","Stall Manager"
+            ,"Security Department","Food Supplier");
       
+      selectArea_Address.getItems().addAll("Bashundhara","Rampura",
+              "Kuril","Notunbazar");
+            
+      
+      populateStallNames();
+        ratingToggleGroup = new ToggleGroup();
+        fiveStar.setToggleGroup(ratingToggleGroup);
+        fourStar.setToggleGroup(ratingToggleGroup);
+        threeStar.setToggleGroup(ratingToggleGroup);
+        twoStar.setToggleGroup(ratingToggleGroup);
+        oneStar.setToggleGroup(ratingToggleGroup);
+      
+    }//last bracket of ini
+    
+    private void populateStallNames() {
+        Path filePath = Paths.get("StallObjects.bin");
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath.toString()))) {
+            ObservableList<String> stallNames = FXCollections.observableArrayList();
+
+            while (true) {
+                try {
+                    Stall stall = (Stall) ois.readObject();
+                    stallNames.add(stall.getStallName());
+                } catch (ClassNotFoundException e) {
+                    // Handle class not found exception
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // Reached end of file
+                    break;
+                }
+            }
+
+            stallNameComboBox.setItems(stallNames);
+        } catch (IOException e) {
+            // Handle file IO exception
+            e.printStackTrace();
+        }
+    }
+    
+    
 
     @FXML
     private void sceneSwitch(ActionEvent event) {
@@ -126,6 +249,7 @@ public class OnlineCustomerController implements Initializable {
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
             notification_scene.setVisible(false);
@@ -135,6 +259,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(true);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -145,6 +270,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(true);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -155,6 +281,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -165,6 +292,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(true);
             todaysOffer_scene.setVisible(false);
@@ -176,6 +304,7 @@ public class OnlineCustomerController implements Initializable {
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(true);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
             notification_scene.setVisible(false);
@@ -184,6 +313,7 @@ public class OnlineCustomerController implements Initializable {
             dashboardOC.setVisible(false);
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             setAddress_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
@@ -195,6 +325,7 @@ public class OnlineCustomerController implements Initializable {
             orderManagement_scene.setVisible(false);
             orderHistory_Scene.setVisible(false);
             setAddress_scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             //Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
             todaysOffer_scene.setVisible(false);
@@ -204,6 +335,7 @@ public class OnlineCustomerController implements Initializable {
             dashboardOC.setVisible(false);
             orderManagement_scene.setVisible(true);
             orderHistory_Scene.setVisible(false);
+            ViewProfile_scene.setVisible(false);
             setAddress_scene.setVisible(false);
            // Tab_loadAddress_scene.setVisible(false);
             ratingAndFeedback_scene.setVisible(false);
@@ -220,12 +352,12 @@ public class OnlineCustomerController implements Initializable {
         SendNotice selectedNotice = NotificationTableView.getSelectionModel().getSelectedItem();
     
     if (selectedNotice != null) {
-        // Join the list of description strings into a single string
+        
         String description = String.join("\n", selectedNotice.getNoticeDescription());
-        // Display the description of the selected notice in the text area
+        
         NoticeViewDetailsTextArea.setText(description);
     } else {
-        // If no notice is selected, display an alert
+        //error msg
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText(null);
@@ -233,5 +365,255 @@ public class OnlineCustomerController implements Initializable {
         alert.showAndWait();
     }
     }
+    
 
+
+    @FXML
+    private void reportButtonOnClick_C(ActionEvent event) {
+        Random rand = new Random();
+        int complaintId = 1000 + rand.nextInt(9000); // You can adjust the range as needed
+
+        LocalDate date = Date_C.getValue();
+        String subject = About_C.getText();
+        String name = NameTF_C.getText();
+        String userType = userType_C.getValue();
+        String details = details_TextArea_C.getText();
+
+       
+         if (userType == null || date == null || subject.isEmpty() || name.isEmpty() || details.isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Incomplete Data");
+        alert.setHeaderText(null);
+        alert.setContentText("Please enter all required fields.");
+        alert.showAndWait();
+        return;
+    }
+
+    Complaint compl = new Complaint(name, subject, userType, details, date,complaintId);
+
+    Path filePath = Paths.get("ComplaintList.bin");
+
+    try {
+        if (Files.exists(filePath)) {
+            
+            try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true);
+                 AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                oos.writeObject(compl);
+            }
+        } else {
+            
+            try (FileOutputStream fos = new FileOutputStream(filePath.toString());
+                 ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                oos.writeObject(compl);
+            }
+        }
+
+        
+        userType_C.setValue(null);
+        Date_C.setValue(null);
+        About_C.clear();
+        NameTF_C.clear();
+        details_TextArea_C.clear();
+
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notice Sent");
+        alert.setHeaderText(null);
+        alert.setContentText("Notice has been sent successfully.");
+        alert.showAndWait();
+    } catch (IOException ex) {
+        
+        Logger.getLogger(OnlineCustomerController.class.getName()).log(Level.SEVERE, null, ex);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText("Failed to send notice.");
+        alert.showAndWait();
+    }  
+      
+        
+    }
+
+    @FXML
+    private void LogoutButtonOnClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainpkg/CreateAccLogInAndForgotPass.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText(null);
+            alert.setContentText("You have been logged out successfully");
+            alert.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
+        }
+    }
+    
+     
+    @FXML
+    private void Loadbutton_ProfileScene(ActionEvent event) {
+        String username = userNameTF_ProfileScene.getText();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("OnlineCustomerList.bin"))) {
+            ObservableList<OnlineCustomer> onCustomer = FXCollections.observableArrayList();
+            boolean found = false;
+
+            while (true) {
+                OnlineCustomer c = (OnlineCustomer) ois.readObject();
+                onCustomer.add(c);
+
+                if (c.getName().equals((username))) {
+                    
+                    name_profileScene.setText(c.getName());
+                    phoneNo_profileScene.setText(c.getContNo());
+                    gender_profileScene.setText(c.getGender());
+                    email_profileScene.setText(c.getEmail());
+                    
+                    Dobl_profileScene.setValue(c.getDateOfBirth());
+
+                    found = true;
+                    break; 
+                }
+            }
+
+            if (!found) {
+               
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("User not found");
+                alert.showAndWait();
+            }
+        } catch (EOFException eof) {
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void saveAddressButtonOnClick(ActionEvent event) {
+        String houseNo = HouseNo_Address.getText();
+        String blockNo = bloclNo_Address.getText();
+        String streetNo = streetNo_Address.getText();
+        String postalCode = postalCode_Address1.getText();
+        String selectedArea = selectArea_Address.getValue();
+        String note = NoteAddresscene1.getText();
+        String username1 = usernameAddress.getText();
+
+        if (username1.isEmpty() || houseNo.isEmpty() || blockNo.isEmpty() || streetNo.isEmpty()
+                || postalCode.isEmpty() || selectedArea == null || note.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Incomplete Address");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all address details.");
+            alert.showAndWait();
+            return;
+        }
+
+        Address address = new Address(houseNo, blockNo, streetNo,
+                selectedArea, note, postalCode, username1);
+
+        writeAddressToFile(address);
+        
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Address Saved");
+        alert.setHeaderText(null);
+        alert.setContentText("Address saved successfully.");
+        alert.showAndWait();
+    }
+
+    private void writeAddressToFile(Address address) {
+        Path filePath = Paths.get("CustomerAddressFile.bin");
+
+        try {
+            if (Files.exists(filePath)) {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true); AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                    oos.writeObject(address);
+                }
+            } else {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString()); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                    oos.writeObject(address);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        }
+    }
+
+    @FXML
+    private void sendRFonButtonClick(ActionEvent event) {
+        List<String> selectedOptions = new ArrayList<>();
+        if (fiveStar.isSelected()) {
+            selectedOptions.add("Five Star");
+        }
+        if (fourStar.isSelected()) {
+            selectedOptions.add("Four Star");
+        }
+        if (threeStar.isSelected()) {
+            selectedOptions.add("Three Star");
+        }
+        if (twoStar.isSelected()) {
+            selectedOptions.add("Two Star");
+        }
+        if (oneStar.isSelected()) {
+            selectedOptions.add("One Star");
+        }
+
+        
+        String feedback = feedbaclTextArea.getText();
+        String selectedStall = stallNameComboBox.getValue();
+        RatingAndFeedback ratingAndFeedback = new RatingAndFeedback(feedback, selectedStall, String.join(", ", selectedOptions));
+
+        saveRatingAndFeedbackToFile(ratingAndFeedback);
+        clearSelections();
+    }
+
+    private void saveRatingAndFeedbackToFile(RatingAndFeedback ratingAndFeedback) {
+        Path filePath = Paths.get("RatingAndFeedback.bin");
+
+        try {
+            if (Files.exists(filePath)) {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true);
+                        AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos)) {
+                    oos.writeObject(ratingAndFeedback);
+                }
+            } else {
+                try (FileOutputStream fos = new FileOutputStream(filePath.toString()); 
+                        ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                    oos.writeObject(ratingAndFeedback);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            // Handle file writing errors
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to send rating and feedback.");
+            alert.showAndWait();
+        }
+    }
+
+    private void clearSelections() {
+        fiveStar.setSelected(false);
+        fourStar.setSelected(false);
+        threeStar.setSelected(false);
+        twoStar.setSelected(false);
+        oneStar.setSelected(false);
+        feedbaclTextArea.clear();
+        stallNameComboBox.setValue(null);
+    }
+
+    @FXML
+    private void clearbuttonOnClick(ActionEvent event) {
+    }
 }

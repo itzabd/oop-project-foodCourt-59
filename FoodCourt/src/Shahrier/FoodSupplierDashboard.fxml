@@ -102,13 +102,13 @@
                                     <Font name="Bell MT" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="31.0" layoutY="287.0" text="Upgrad Supplier Stoke" textFill="#4a4949">
+                              <Label layoutX="31.0" layoutY="287.0" text="Upgrad Supplier Stock" textFill="#4a4949">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
                               <ComboBox fx:id="selectItemForUpdateComboBox" layoutX="179.0" layoutY="329.0" onAction="#selectItemForUpdateComboBoxOnSelect" prefHeight="30.0" prefWidth="190.0" />
-                              <TextField fx:id="availableQuantityTextField" editable="false" layoutX="179.0" layoutY="368.0" prefHeight="30.0" prefWidth="189.0" />
+                              <TextField fx:id="availableQuantityTextField" layoutX="179.0" layoutY="368.0" prefHeight="30.0" prefWidth="189.0" />
                               <Label layoutX="31.0" layoutY="374.0" text="Available Stoke" />
                               <Label layoutX="31.0" layoutY="336.0" text="Select A Item" />
                               <TextField fx:id="addUpdatedQuantityTextField" layoutX="179.0" layoutY="408.0" prefHeight="30.0" prefWidth="189.0" />
@@ -120,7 +120,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="28.0" layoutY="93.0" text="Add New Item To Supplier Stote" textFill="#4a4949">
+                              <Label layoutX="28.0" layoutY="93.0" text="Add New Item To Supplier Stock" textFill="#4a4949">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -151,65 +151,67 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TextArea disable="true" layoutX="352.0" layoutY="96.0" prefHeight="210.0" prefWidth="169.0" />
+                              <TextArea fx:id="availableOrderShowingArea" editable="false" layoutX="352.0" layoutY="96.0" prefHeight="210.0" prefWidth="169.0" />
                               <Label layoutX="19.0" layoutY="70.0" text="Add An order">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="16.0" layoutY="160.0" prefHeight="30.0" prefWidth="125.0" promptText="Item  Name" />
-                              <ComboBox layoutX="149.0" layoutY="160.0" prefHeight="30.0" prefWidth="89.0" promptText="Quantity" />
-                              <Label layoutX="246.0" layoutY="160.0" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: white;" />
+                              <ComboBox fx:id="takeOrderItemNameCombox" layoutX="16.0" layoutY="160.0" onAction="#takeOrderItemNameComboxOnSelect" prefHeight="30.0" prefWidth="125.0" promptText="Item  Name" />
+                              <ComboBox fx:id="takeOrderQuantityCombox" layoutX="149.0" layoutY="160.0" prefHeight="30.0" prefWidth="89.0" promptText="Quantity" />
+                              <Label fx:id="takeOrderPerItemPriceshowArea" layoutX="246.0" layoutY="160.0" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: white;" />
                               <Label layoutX="246.0" layoutY="146.0" prefHeight="15.0" prefWidth="77.0" text="Price Per Item" textFill="#868686">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="179.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Approximate Delivery Time">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </TextField>
-                              <ComboBox layoutX="16.0" layoutY="109.0" prefHeight="30.0" prefWidth="150.0" promptText="Select Rendom ID" />
-                              <Button layoutX="17.0" layoutY="255.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="312.0" style="-fx-background-color: #344955;" text="Add This Item To The Order Item Array" textFill="WHITE" />
-                              <ComboBox layoutX="180.0" layoutY="109.0" prefHeight="30.0" prefWidth="150.0" promptText="Stall ID/Name" />
-                              <DatePicker layoutX="16.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Today" />
-                              <TableView layoutX="19.0" layoutY="315.0" prefHeight="200.0" prefWidth="499.0">
+                              <Button layoutX="17.0" layoutY="255.0" mnemonicParsing="false" onAction="#takeOrderAndSaveToArr" prefHeight="42.0" prefWidth="312.0" style="-fx-background-color: #344955;" text="Add This Item To The Order Item Array" textFill="WHITE" />
+                              <ComboBox fx:id="takeOrderSelectStallCombox" layoutX="180.0" layoutY="109.0" prefHeight="30.0" prefWidth="150.0" promptText="Stall ID/Name" />
+                              <DatePicker fx:id="takeOrderDatePicker" layoutX="16.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Today" />
+                              <TableView fx:id="takeOrderShowingTableView" layoutX="19.0" layoutY="315.0" prefHeight="200.0" prefWidth="499.0">
                                 <columns>
-                                  <TableColumn prefWidth="120.0" text="Order ID" />
-                                  <TableColumn prefWidth="106.0" text="Stall " />
-                                    <TableColumn prefWidth="136.0" text="Item " />
-                                    <TableColumn prefWidth="59.0" text="Quantity" />
-                                    <TableColumn prefWidth="77.0" text="Price" />
+                                  <TableColumn fx:id="stallColumnOftakeOrder" prefWidth="118.0" text="Stall " />
+                                    <TableColumn fx:id="itemColumnOftakeOrder" prefWidth="129.0" text="Item " />
+                                    <TableColumn fx:id="quantityColumnOftakeOrder" prefWidth="103.0" text="Quantity" />
+                                    <TableColumn fx:id="priceColumnOftakeOrder" prefWidth="148.0" text="Price" />
                                 </columns>
                               </TableView>
+                              <TextField fx:id="orderIDFortakeOrder" layoutX="16.0" layoutY="110.0" prefHeight="30.0" prefWidth="150.0" promptText="Give a Order ID" />
+                              <ComboBox fx:id="takeOrderDelivertTime" layoutX="180.0" layoutY="209.0" prefHeight="30.0" prefWidth="150.0" promptText="Delivery Time" />
+                              <Label layoutX="182.0" layoutY="195.0" prefHeight="15.0" prefWidth="169.0" text="5% off If take More than 10 days" textFill="#868686">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="paymentProcessingFrame" layoutX="10.0" layoutY="10.0" prefHeight="549.0" prefWidth="556.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="3" />
-                              <Label layoutX="167.0" layoutY="16.0" text="Invoice Henetation" textFill="#344955">
+                              <Label layoutX="167.0" layoutY="16.0" text="Invoice Genetation" textFill="#344955">
                                  <font>
                                     <Font name="Bell MT Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="45.0" layoutY="100.0" text="Select An Order ID ">
+                              <Label layoutX="45.0" layoutY="100.0" text="Select A Stall">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="174.0" layoutY="95.0" prefHeight="30.0" prefWidth="160.0" />
-                              <TextArea layoutX="45.0" layoutY="151.0" prefHeight="250.0" prefWidth="448.0" />
-                              <Button layoutX="45.0" layoutY="420.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="164.0" style="-fx-background-color: #344955;" text="Save" textFill="WHITE">
+                              <ComboBox fx:id="invoiceGenerationSelectStallComBox" layoutX="174.0" layoutY="95.0" onAction="#invoiceGenerationSelectStallComBoxOnSelect" prefHeight="30.0" prefWidth="160.0" />
+                              <TextArea fx:id="invoiceGeneratingShowArea" layoutX="45.0" layoutY="140.0" prefHeight="261.0" prefWidth="448.0" />
+                              <Button layoutX="45.0" layoutY="420.0" mnemonicParsing="false" onAction="#invoiceSaveBtn" prefHeight="86.0" prefWidth="164.0" style="-fx-background-color: #344955;" text="Save" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="329.0" layoutY="420.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="164.0" style="-fx-background-color: #344955;" text="Clear" textFill="WHITE">
+                              <Button layoutX="329.0" layoutY="420.0" mnemonicParsing="false" onAction="#invoiceClearBtn" prefHeight="86.0" prefWidth="164.0" style="-fx-background-color: #344955;" text="Clear" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
+                              <Label layoutX="405.0" layoutY="376.0" text="Total :" />
+                              <Label fx:id="invoceGenerationTotalPriceLabel" layoutX="440.0" layoutY="376.0" prefHeight="17.0" prefWidth="45.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="invoiceGenerationFrame" layoutX="10.0" layoutY="10.0" prefHeight="559.0" prefWidth="566.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -220,51 +222,58 @@
                                     <Font name="Bell MT Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="102.0" layoutY="129.0" text="Select An Order ID">
+                              <Label layoutX="88.0" layoutY="118.0" text="Select A Stall">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="231.0" layoutY="124.0" prefHeight="30.0" prefWidth="190.0" />
-                              <Label layoutX="102.0" layoutY="173.0" text="Total Amount">
+                              <ComboBox fx:id="paymentProcessSelectStallComBox" layoutX="253.0" layoutY="113.0" onAction="#paymentProcessSelectStallComBoxOnSelect" prefHeight="30.0" prefWidth="190.0" />
+                              <Label layoutX="88.0" layoutY="198.0" text="Total Amount">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="231.0" layoutY="168.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: white;" />
-                              <Label layoutX="102.0" layoutY="215.0" text="Recive Amount">
+                              <Label fx:id="paymentProcessTotalAmmountArea" layoutX="253.0" layoutY="193.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: white;" />
+                              <Label layoutX="88.0" layoutY="238.0" text="Recive Amount">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="231.0" layoutY="210.0" prefHeight="30.0" prefWidth="190.0" />
-                              <Label layoutX="102.0" layoutY="258.0" text="Due Payment">
+                              <TextField fx:id="paymentProcessReciveAmountArea" layoutX="253.0" layoutY="233.0" prefHeight="30.0" prefWidth="134.0" />
+                              <Label layoutX="88.0" layoutY="276.0" text="Due Payment">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="231.0" layoutY="253.0" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: white;" />
-                              <CheckBox layoutX="371.0" layoutY="251.0" mnemonicParsing="false" text="Show" />
-                              <CheckBox layoutX="371.0" layoutY="269.0" mnemonicParsing="false" text="Hide" />
-                              <Label layoutX="102.0" layoutY="86.0" text="Select An Order ID">
+                              <Label fx:id="paymentProcessDueAmountArea" layoutX="253.0" layoutY="271.0" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: white;" />
+                              <CheckBox fx:id="duePaymentShowCheckBox" layoutX="393.0" layoutY="269.0" mnemonicParsing="false" onAction="#duePaymentShowCheckBoxOnSelect" text="Show" />
+                              <CheckBox fx:id="duePaymentHideCheckBox" layoutX="393.0" layoutY="286.0" mnemonicParsing="false" onAction="#duePaymentHideCheckBoxOnSelect" text="Hide" />
+                              <Label layoutX="88.0" layoutY="81.0" text="Today">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <DatePicker layoutX="231.0" layoutY="80.0" prefHeight="30.0" prefWidth="190.0" />
-                              <Button layoutX="108.0" layoutY="295.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="318.0" style="-fx-background-color: #344955;" text="Confirm" textFill="#f5f5f5">
+                              <DatePicker fx:id="paymentProcessDate" layoutX="253.0" layoutY="75.0" prefHeight="30.0" prefWidth="190.0" />
+                              <Button layoutX="108.0" layoutY="309.0" mnemonicParsing="false" onAction="#paymentProcessConfirmBtn" prefHeight="35.0" prefWidth="318.0" style="-fx-background-color: #344955;" text="Confirm" textFill="#f5f5f5">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <TableView layoutX="14.0" layoutY="344.0" prefHeight="173.0" prefWidth="509.0">
+                              <TableView fx:id="paymentShowingTableView" layoutX="14.0" layoutY="351.0" prefHeight="173.0" prefWidth="509.0">
                                 <columns>
-                                  <TableColumn prefWidth="128.0" text="Order ID" />
-                                  <TableColumn prefWidth="131.0" text="Total Amount" />
-                                    <TableColumn prefWidth="124.0" text="Recive Amount" />
-                                    <TableColumn prefWidth="125.0" text="Due Payment" />
+                                  <TableColumn fx:id="paymentProcessStallCol" prefWidth="128.0" text="Stall Name" />
+                                  <TableColumn fx:id="paymentProcessTotalAmountCol" prefWidth="131.0" text="Total Amount" />
+                                    <TableColumn fx:id="paymentProcessReciveAmountColumn" prefWidth="124.0" text="Recive Amount" />
+                                    <TableColumn fx:id="paymentProcessingDuePaymentColumn" prefWidth="125.0" text="Due Payment" />
                                 </columns>
                               </TableView>
+                              <Label layoutX="88.0" layoutY="151.0" prefHeight="35.0" prefWidth="163.0" text="Contract Advance Payment" />
+                              <Label fx:id="paymentProcessingContractPaymentShowArea" layoutX="253.0" layoutY="154.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: white;" />
+                              <CheckBox fx:id="reciveAmmountFromContractPaymentCheckBox" layoutX="393.0" layoutY="230.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" text="From Contract Payment" wrapText="true">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </CheckBox>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="contractManagementFrame" layoutX="10.0" layoutY="10.0" prefHeight="569.0" prefWidth="576.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -280,43 +289,43 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="227.0" layoutY="84.0" prefHeight="30.0" prefWidth="190.0" />
+                              <ComboBox fx:id="contractManagementSelectStallComBox" layoutX="227.0" layoutY="84.0" prefHeight="30.0" prefWidth="190.0" />
                               <Label layoutX="113.0" layoutY="133.0" text="Contract From">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <DatePicker layoutX="227.0" layoutY="128.0" prefHeight="30.0" prefWidth="190.0" />
+                              <DatePicker fx:id="contractStartDatePicker" layoutX="227.0" layoutY="128.0" prefHeight="30.0" prefWidth="190.0" />
                               <Label layoutX="113.0" layoutY="178.0" text="Contract End">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <DatePicker layoutX="227.0" layoutY="173.0" prefHeight="30.0" prefWidth="190.0" />
+                              <DatePicker fx:id="contractEndDatePicker" layoutX="227.0" layoutY="173.0" onAction="#contractEndDatePickerOnSelect" prefHeight="30.0" prefWidth="190.0" />
                               <Label layoutX="113.0" layoutY="223.0" text="Duration">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="227.0" layoutY="218.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: white;" />
+                              <Label fx:id="contractDurationShowArea" layoutX="227.0" layoutY="218.0" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: white;" />
                               <Label layoutX="113.0" layoutY="267.0" text="Advance Recive">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="227.0" layoutY="262.0" prefHeight="30.0" prefWidth="190.0" />
-                              <Button layoutX="114.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="304.0" style="-fx-background-color: #344955;" text="Confirm" textFill="WHITE" />
+                              <TextField fx:id="advanceReciveTextField" layoutX="227.0" layoutY="262.0" prefHeight="30.0" prefWidth="190.0" />
+                              <Button layoutX="114.0" layoutY="306.0" mnemonicParsing="false" onAction="#cotractConfirmBtn" prefHeight="25.0" prefWidth="304.0" style="-fx-background-color: #344955;" text="Confirm" textFill="WHITE" />
                               <Label layoutX="21.0" layoutY="341.0" text="All Contract" textFill="#5e5d5d">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="21.0" layoutY="364.0" prefHeight="156.0" prefWidth="493.0">
+                              <TableView fx:id="contractTableView" layoutX="21.0" layoutY="364.0" prefHeight="156.0" prefWidth="493.0">
                                 <columns>
-                                  <TableColumn prefWidth="119.0" text="Stall" />
-                                  <TableColumn prefWidth="107.0" text="From" />
-                                    <TableColumn prefWidth="90.0" text="To" />
-                                    <TableColumn prefWidth="176.0" text="Accout Recive" />
+                                  <TableColumn fx:id="contractStallNameColumn" prefWidth="119.0" text="Stall" />
+                                  <TableColumn fx:id="contractStartTimeColumn" prefWidth="107.0" text="From" />
+                                    <TableColumn fx:id="contractEndTimeColumn" prefWidth="90.0" text="To" />
+                                    <TableColumn fx:id="advancePaymentReciveColumn" prefWidth="176.0" text="Accout Recive" />
                                 </columns>
                               </TableView>
                            </children>
@@ -334,29 +343,29 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="275.0" layoutY="78.0" prefHeight="30.0" prefWidth="190.0" />
-                              <TextArea layoutX="78.0" layoutY="127.0" prefHeight="146.0" prefWidth="388.0" />
+                              <ComboBox fx:id="selectStallComBoxForViewInventory" layoutX="275.0" layoutY="78.0" prefHeight="30.0" prefWidth="190.0" />
+                              <TextArea fx:id="inventoryShowingTextArea" layoutX="78.0" layoutY="127.0" prefHeight="146.0" prefWidth="388.0" />
                               <Label layoutX="78.0" layoutY="319.0" text="Send Low Stoke Alert">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="76.0" layoutY="349.0" prefHeight="30.0" prefWidth="190.0" promptText="Item Name" />
-                              <TextField layoutX="295.0" layoutY="349.0" prefHeight="30.0" prefWidth="190.0" promptText="Available Stoke" />
-                              <TextArea layoutX="78.0" layoutY="391.0" prefHeight="71.0" prefWidth="409.0" promptText="Add A Comment" />
-                              <Button layoutX="78.0" layoutY="471.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="412.0" style="-fx-background-color: #344955;" text="Send Low Stoke Alert" textFill="WHITE">
+                              <TextField fx:id="lowStokeItemName" layoutX="76.0" layoutY="349.0" prefHeight="30.0" prefWidth="190.0" promptText="Item Name" />
+                              <TextField fx:id="lowStokeQuantity" layoutX="295.0" layoutY="349.0" prefHeight="30.0" prefWidth="190.0" promptText="Available Stoke" />
+                              <TextArea fx:id="lowStokeMsz" layoutX="78.0" layoutY="391.0" prefHeight="71.0" prefWidth="409.0" promptText="Add A Comment" />
+                              <Button layoutX="78.0" layoutY="471.0" mnemonicParsing="false" onAction="#lowStokeAlertSendBtn" prefHeight="38.0" prefWidth="412.0" style="-fx-background-color: #344955;" text="Send Low Stoke Alert" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="224.0" layoutY="281.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: #344955;" text="Clear" textFill="WHITE">
+                              <Button layoutX="224.0" layoutY="281.0" mnemonicParsing="false" onAction="#inventoryShowingTextAreaClearBtn" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: #344955;" text="Clear" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="generateMonthlyReportBtn" layoutX="10.0" layoutY="10.0" prefHeight="589.0" prefWidth="596.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="generateMonthlyReportBtn" layoutX="10.0" layoutY="10.0" prefHeight="589.0" prefWidth="596.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="7" />
                               <Label layoutX="131.0" layoutY="26.0" text="Generate Monthly Report" textFill="#344955">
@@ -369,15 +378,14 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="260.0" layoutY="88.0" prefHeight="30.0" prefWidth="190.0" />
-                              <TextArea disable="true" layoutX="97.0" layoutY="152.0" prefHeight="243.0" prefWidth="357.0" style="-fx-background-color: black;" />
-                              <Label layoutX="222.0" layoutY="256.0" text="Report Will Shown Here" />
-                              <Button layoutX="97.0" layoutY="423.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="143.0" style="-fx-background-color: #344955;" text="Save" textFill="WHITE">
+                              <ComboBox fx:id="generateReportTypeSelectComBox" layoutX="260.0" layoutY="88.0" onAction="#generateReportTypeSelectComBoxOnSelect" prefHeight="30.0" prefWidth="190.0" />
+                              <TextArea fx:id="generateReportShowingArea" editable="false" layoutX="97.0" layoutY="152.0" prefHeight="243.0" prefWidth="357.0" style="-fx-background-color: black;" />
+                              <Button layoutX="97.0" layoutY="423.0" mnemonicParsing="false" onAction="#generateReportSaveBtn" prefHeight="37.0" prefWidth="143.0" style="-fx-background-color: #344955;" text="Save" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="311.0" layoutY="423.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="143.0" style="-fx-background-color: #344955;" text="Clear" textFill="WHITE">
+                              <Button layoutX="311.0" layoutY="423.0" mnemonicParsing="false" onAction="#generateReportClearBtn" prefHeight="37.0" prefWidth="143.0" style="-fx-background-color: #344955;" text="Clear" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -423,7 +431,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homePageFoodsupplier" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="616.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="homePageFoodsupplier" layoutX="10.0" layoutY="10.0" prefHeight="609.0" prefWidth="616.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="515.0" layoutY="14.0" text="0" />
                               <Label layoutX="191.0" layoutY="23.0" text="Supplier Stoke" textFill="#344955">
@@ -432,12 +440,12 @@
                                  </font>
                               </Label>
                               <PieChart fx:id="pieChart" layoutX="46.0" layoutY="82.0" prefHeight="366.0" prefWidth="446.0" />
-                              <TextArea fx:id="spacificItemQuantityTextArea" editable="false" layoutX="129.0" layoutY="476.0" prefHeight="39.0" prefWidth="200.0" promptText="Spacific Item Quantity Shown Hare By Clicking any Node" style="-fx-background-color: #344955;">
+                              <TextArea fx:id="spacificItemQuantityTextArea" editable="false" layoutX="129.0" layoutY="464.0" prefHeight="51.0" prefWidth="200.0" promptText="Spacific Item Quantity Shown Hare By Clicking any Node" style="-fx-background-color: #344955;">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </TextArea>
-                              <Button layoutX="337.0" layoutY="477.0" mnemonicParsing="false" onAction="#spacificItemQuantityTextAreaClearBtn" prefHeight="42.0" prefWidth="69.0" text="CLEAR" />
+                              <Button layoutX="346.0" layoutY="477.0" mnemonicParsing="false" onAction="#spacificItemQuantityTextAreaClearBtn" text="CLEAR" />
                            </children>
                         </AnchorPane>
                      </children>
