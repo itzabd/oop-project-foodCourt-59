@@ -146,19 +146,19 @@
                                  </font>
                               </Label>
                               <Label layoutX="24.0" layoutY="90.0" prefHeight="17.0" prefWidth="97.0" text="Select a Stall" />
-                              <ComboBox fx:id="SpecailAndPromotionsSelectAStallComboBox" layoutX="105.0" layoutY="86.0" prefWidth="150.0" />
+                              <ComboBox fx:id="SpecailAndPromotionsSelectAStallComboBoxNewId" layoutX="105.0" layoutY="86.0" prefWidth="150.0" />
                               <Label layoutX="24.0" layoutY="126.0" prefHeight="17.0" prefWidth="78.0" text="Special Item" />
-                              <TextField fx:id="SpecailAndPromotionsSpecialItemTextField" layoutX="106.0" layoutY="122.0" />
+                              <TextField fx:id="SpecailAndPromotionsSpecialItemTextFieldNewId" layoutX="106.0" layoutY="122.0" />
                               <Label layoutX="333.0" layoutY="124.0" prefHeight="17.0" prefWidth="40.0" text="Price" />
-                              <TextField fx:id="SpecailAndPromotionsPriceTextField" layoutX="380.0" layoutY="120.0" />
+                              <TextField fx:id="SpecailAndPromotionsPriceTextFieldNewId" layoutX="380.0" layoutY="120.0" />
                               <Label layoutX="33.0" layoutY="162.0" prefHeight="17.0" prefWidth="61.0" text="Offer" />
-                              <TextField fx:id="SpecailAndPromotionsOfferTextField" layoutX="106.0" layoutY="158.0" />
-                              <Button layoutX="435.0" layoutY="158.0" mnemonicParsing="false" onAction="#SpecailAndPromotionsSaveButton" text="Save" />
-                              <TableView fx:id="SpecailAndPromotionTableView" layoutX="1.0" layoutY="221.0" prefHeight="376.0" prefWidth="806.0">
+                              <TextField fx:id="SpecailAndPromotionsOfferTextFieldNewId" layoutX="106.0" layoutY="158.0" />
+                              <Button layoutX="435.0" layoutY="158.0" mnemonicParsing="false" onAction="#SpecailAndPromotionsSaveButtonNewId" text="Save" />
+                              <TableView fx:id="SpecailAndPromotionTableViewNewId" layoutX="1.0" layoutY="221.0" prefHeight="376.0" prefWidth="806.0">
                                 <columns>
-                                  <TableColumn fx:id="StallNameTableColumnOfSpecialAndPromotion" prefWidth="214.66668701171875" text="Stall Name" />
-                                  <TableColumn fx:id="SpecialItemTableColumn" prefWidth="206.33331298828125" text="Special Item" />
-                                    <TableColumn fx:id="PriceTableColumnOfSpecialAndPromotion" minWidth="8.3333740234375" prefWidth="91.66668701171875" text="Price" />
+                                  <TableColumn fx:id="StallNameTableColumnOfSpecialAndPromotionNewId" prefWidth="214.66668701171875" text="Stall Name" />
+                                  <TableColumn fx:id="SpecialItemTableColumnNewId" prefWidth="206.33331298828125" text="Special Item" />
+                                    <TableColumn fx:id="PriceTableColumnOfSpecialAndPromotionNewId" minWidth="8.3333740234375" prefWidth="91.66668701171875" text="Price" />
                                     <TableColumn fx:id="OfferTableColumn" prefWidth="295.0" text="Offer" />
                                 </columns>
                               </TableView>
@@ -179,11 +179,11 @@
                               <Label layoutX="384.0" layoutY="144.0" prefHeight="17.0" prefWidth="37.0" text="Price" />
                               <TextField fx:id="NewSeasonalItemPriceTextField" layoutX="428.0" layoutY="140.0" />
                               <Button layoutX="648.0" layoutY="140.0" mnemonicParsing="false" onAction="#SeasonalMenuUpdatesSaveButton" text="Save" />
-                              <TableView fx:id="SpecailAndPromotionsTableView" layoutY="229.0" prefHeight="376.0" prefWidth="714.0">
+                              <TableView fx:id="SeasonalMenuUpdateTableView" layoutY="229.0" prefHeight="376.0" prefWidth="714.0">
                                 <columns>
-                                  <TableColumn fx:id="SpecailAndPromotionsStallNameTableColumn" prefWidth="251.66665649414062" text="Stall Name" />
-                                  <TableColumn fx:id="SpecailAndPromotionsNewSeasonalItemTableColumn" prefWidth="374.66668701171875" text="New Seasonal Item" />
-                                    <TableColumn fx:id="SpecailAndPromotionsNewSeasonalItemPriceTableColumn" prefWidth="88.33331298828125" text="Price" />
+                                  <TableColumn fx:id="SeasonalMenuStallNameTableColumn" prefWidth="251.66665649414062" text="Stall Name" />
+                                  <TableColumn fx:id="SeasonalMenuNewSeasonalItemTableColumn" prefWidth="374.66668701171875" text="New Seasonal Item" />
+                                    <TableColumn fx:id="SeasonalMenuNewSeasonalItemPriceTableColumn" prefWidth="88.33331298828125" text="Price" />
                                 </columns>
                               </TableView>
                            </children>

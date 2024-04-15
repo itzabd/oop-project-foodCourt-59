@@ -74,37 +74,20 @@ public class ChefController implements Initializable {
     @FXML
     private AnchorPane specialAndPromotionsFrame;
     @FXML
-    private ComboBox<String> SpecailAndPromotionsSelectAStallComboBox;
-    @FXML
-    private TextField SpecailAndPromotionsSpecialItemTextField;
-    @FXML
-    private TextField SpecailAndPromotionsPriceTextField;
-    @FXML
-    private TextField SpecailAndPromotionsOfferTextField;
-    @FXML
-    private TableView<SpecialAndPromotionA> SpecailAndPromotionsTableView;
-    @FXML
-    private TableColumn<SpecialAndPromotionA, String> StallNameTableColumnOfSpecialAndPromotion;
-    @FXML
-    private TableColumn<SpecialAndPromotionA, String> SpecialItemTableColumn;
-    @FXML
-    private TableColumn<SpecialAndPromotionA, String> PriceTableColumnOfSpecialAndPromotion;
-    @FXML
     private TableColumn<SpecialAndPromotionA, String> OfferTableColumn;
     @FXML
     private AnchorPane seasonalMenuUpdatesFrame;
     @FXML
-    private ComboBox<?> SeasonalMenuSelectAStallComboBox;
+    private ComboBox<String> SeasonalMenuSelectAStallComboBox;
     @FXML
     private TextField NewSeasonalItemTextField;
     @FXML
     private TextField NewSeasonalItemPriceTextField;
-    @FXML
+    /*
     private TableColumn<?, ?> SpecailAndPromotionsStallNameTableColumn;
-    @FXML
     private TableColumn<?, ?> SpecailAndPromotionsNewSeasonalItemTableColumn;
-    @FXML
     private TableColumn<?, ?> SpecailAndPromotionsNewSeasonalItemPriceTableColumn;
+    */
     @FXML
     private AnchorPane recipeManagementFrame;
     @FXML
@@ -155,12 +138,40 @@ public class ChefController implements Initializable {
     private ComboBox<?> InventoryAlertsStallNameComboBox;
     @FXML
     private TextArea InventoryAlertsTextArea;
+    
     @FXML
-    private TableView<?> SpecailAndPromotionTableView;
+    private TableView<SeasonalMenuA> SeasonalMenuUpdateTableView;
+    @FXML
+    private TableColumn<SeasonalMenuA, String> SeasonalMenuStallNameTableColumn;
+    @FXML
+    private TableColumn<SeasonalMenuA, String> SeasonalMenuNewSeasonalItemTableColumn;
+    @FXML
+    private TableColumn<SeasonalMenuA, String> SeasonalMenuNewSeasonalItemPriceTableColumn;
+    @FXML
+    private ComboBox<String> SpecailAndPromotionsSelectAStallComboBoxNewId;
+    @FXML
+    private TextField SpecailAndPromotionsSpecialItemTextFieldNewId;
+    @FXML
+    private TextField SpecailAndPromotionsPriceTextFieldNewId;
+    @FXML
+    private TextField SpecailAndPromotionsOfferTextFieldNewId;
+    @FXML
+    private TableView<SpecialAndPromotionA> SpecailAndPromotionTableViewNewId;
+    @FXML
+    private TableColumn<SpecialAndPromotionA, String> StallNameTableColumnOfSpecialAndPromotionNewId;
+    @FXML
+    private TableColumn<SpecialAndPromotionA, String> SpecialItemTableColumnNewId;
+    @FXML
+    private TableColumn<SpecialAndPromotionA, String> PriceTableColumnOfSpecialAndPromotionNewId;
+    
     
     private ArrayList<MenuCreation> menuArray;
     
     private ArrayList<SpecialAndPromotionA> specialArray;
+    
+    private ArrayList<SeasonalMenuA> seasonalArray;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -182,7 +193,7 @@ public class ChefController implements Initializable {
         try{
             MenuCreation e;
             
-            ois = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            ois = new ObjectInputStream(new FileInputStream("menuCreationFile.bin"));
             while(true){
                e =  (MenuCreation) ois.readObject();
                menuArray.add(e);
@@ -205,23 +216,21 @@ public class ChefController implements Initializable {
         
         // Special And Promotion Start
         
-        
-        
-                // Array crate kora hoice
+        // Array crate kora hoice
         specialArray = new ArrayList<>(); 
         
         // ComboBox a value add korar kaj
-        SpecailAndPromotionsSelectAStallComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
+        SpecailAndPromotionsSelectAStallComboBoxNewId.getItems().addAll("ABC1", "ABC2", "ABC3");
         
         
         // Read code start
-        ObjectInputStream spaa = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        ObjectInputStream oisb = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
         try{
             SpecialAndPromotionA e;
             
-            spaa = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            oisb = new ObjectInputStream(new FileInputStream("specialFile.bin"));
             while(true){
-               e =  (SpecialAndPromotionA) spaa.readObject();
+               e =  (SpecialAndPromotionA) oisb.readObject();
                specialArray.add(e);
             }   
             
@@ -233,34 +242,35 @@ public class ChefController implements Initializable {
         
         
         // table er column golor kaj korar code
-        StallNameTableColumnOfSpecialAndPromotion.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("stallName"));
-        SpecialItemTableColumn.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("specialitemName"));
-        PriceTableColumnOfSpecialAndPromotion.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("price"));
+        StallNameTableColumnOfSpecialAndPromotionNewId.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("stallName"));
+        SpecialItemTableColumnNewId.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("specialitemName"));
         OfferTableColumn.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("offer"));
+        PriceTableColumnOfSpecialAndPromotionNewId.setCellValueFactory(new PropertyValueFactory<SpecialAndPromotionA,String>("price"));
+        
         
         
         
         // Special And promotion end
         
-        /*
+        
         // Seasonal Menu Update start
         
         // Array crate kora hoice
-        menuArray = new ArrayList<>(); 
+        seasonalArray = new ArrayList<>(); 
         
         // ComboBox a value add korar kaj
-        MenuCreationSelectStallComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
+        SeasonalMenuSelectAStallComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
         
         
         // Read code start
-        ObjectInputStream ois = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        ObjectInputStream oisc = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
         try{
-            MenuCreation e;
+            SeasonalMenuA e;
             
-            ois = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            oisc = new ObjectInputStream(new FileInputStream("seasonalFile.bin"));
             while(true){
-               e =  (MenuCreation) ois.readObject();
-               menuArray.add(e);
+               e =  (SeasonalMenuA) oisc.readObject();
+               seasonalArray.add(e);
             }   
             
         }
@@ -271,12 +281,12 @@ public class ChefController implements Initializable {
         
         
         // table er column golor kaj korar code
-        StallNameTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("stallName"));
-        ItemNameTableColumn.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("itemName"));
-        PriceTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("price"));
+        SeasonalMenuStallNameTableColumn.setCellValueFactory(new PropertyValueFactory<SeasonalMenuA,String>("stallNameA"));
+        SeasonalMenuNewSeasonalItemTableColumn.setCellValueFactory(new PropertyValueFactory<SeasonalMenuA,String>("newSeasonalItemName"));
+        SeasonalMenuNewSeasonalItemPriceTableColumn.setCellValueFactory(new PropertyValueFactory<SeasonalMenuA,String>("priceA"));
         
         // Seasonal Menu Update End
-        */
+        
         
     }
 
@@ -407,7 +417,7 @@ public class ChefController implements Initializable {
         
         // write code start
         try{
-            FileOutputStream fos = new FileOutputStream("menuObject.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            FileOutputStream fos = new FileOutputStream("menuCreationFile.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             
             for(MenuCreation r:menuArray){
@@ -436,54 +446,20 @@ public class ChefController implements Initializable {
     
     
 
-    @FXML
-    private void SpecailAndPromotionsSaveButton(ActionEvent event) {
-        SpecialAndPromotionA sp = new SpecialAndPromotionA(SpecailAndPromotionsSelectAStallComboBox.getValue(), SpecailAndPromotionsSpecialItemTextField.getText(),SpecailAndPromotionsOfferTextField.getText(), Integer.parseInt(SpecailAndPromotionsPriceTextField.getText()));
-        //System.out.println(MenuCreationItemNameTextField.getText());
-        specialArray.add(sp);
-        
-        
-        // write code start
-        try{
-            FileOutputStream fos = new FileOutputStream("menuObject.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            
-            for(SpecialAndPromotionA r:specialArray){
-                oos.writeObject(r);
-            }
-            oos.close();
-            
-        }
-        catch(Exception ex){
-            System.out.println(ex);
-        }
-        // write code end
-        
-        
-        // table View add korar kaj
-        for(SpecialAndPromotionA e:specialArray){
-            if(SpecailAndPromotionsTableView.getItems().contains(e)){
-                System.out.println("Already Contain");
-            }
-            else{
-                SpecailAndPromotionsTableView.getItems().add(e);
-            }
-        }
-    }
 
     @FXML
     private void SeasonalMenuUpdatesSaveButton(ActionEvent event) {
-     /*   SeasonalMenuA mn = new SeasonalMenuA(MenuCreationSelectStallComboBox.getValue(), MenuCreationItemNameTextField.getText(), Integer.parseInt(MenuCreationPriceTextField.getText()));
+        SeasonalMenuA mn = new SeasonalMenuA(SeasonalMenuSelectAStallComboBox.getValue(), NewSeasonalItemTextField.getText(), Integer.parseInt(NewSeasonalItemPriceTextField.getText()));
         //System.out.println(MenuCreationItemNameTextField.getText());
-        menuArray.add(mn);
+        seasonalArray.add(mn);
         
         
         // write code start
         try{
-            FileOutputStream fos = new FileOutputStream("menuObject.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            FileOutputStream fos = new FileOutputStream("seasonalFile.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             
-            for(SeasonalMenuA r:menuArray){
+            for(SeasonalMenuA r:seasonalArray){
                 oos.writeObject(r);
             }
             oos.close();
@@ -496,15 +472,15 @@ public class ChefController implements Initializable {
         
         
         // table View add korar kaj
-        for(SeasonalMenuA e:menuArray){
-            if(MenuCreationTableView.getItems().contains(e)){
+        for(SeasonalMenuA e:seasonalArray){
+            if(SeasonalMenuUpdateTableView.getItems().contains(e)){
                 System.out.println("Already Contain");
             }
             else{
-                MenuCreationTableView.getItems().add(e);
+                SeasonalMenuUpdateTableView.getItems().add(e);
             }
         }
-        */
+       
     }
 
     @FXML
@@ -537,6 +513,42 @@ public class ChefController implements Initializable {
 
     @FXML
     private void InventoryAlertsLoadButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SpecailAndPromotionsSaveButtonNewId(ActionEvent event) {
+        SpecialAndPromotionA mn = new SpecialAndPromotionA(SpecailAndPromotionsSelectAStallComboBoxNewId.getValue(), SpecailAndPromotionsSpecialItemTextFieldNewId.getText(), SpecailAndPromotionsOfferTextFieldNewId.getText(), Integer.parseInt(SpecailAndPromotionsPriceTextFieldNewId.getText()));
+        //System.out.println(MenuCreationItemNameTextField.getText());
+        specialArray.add(mn);
+        
+        
+        // write code start
+        try{
+            FileOutputStream fos = new FileOutputStream("menuCreationFile.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(SpecialAndPromotionA r:specialArray){
+                oos.writeObject(r);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // write code end
+        
+        
+        // table View add korar kaj
+        for(SpecialAndPromotionA e:specialArray){
+            if(SpecailAndPromotionTableViewNewId.getItems().contains(e)){
+                System.out.println("Already Contain");
+            }
+            else{
+                SpecailAndPromotionTableViewNewId.getItems().add(e);
+            }
+        }
+        
     }
     
 }
