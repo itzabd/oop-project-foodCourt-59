@@ -600,8 +600,8 @@ public class CreateAccLogInAndForgotPassController implements Initializable {
     }
 
     // Validating DOB
-    if (DOB_DP.getValue().isAfter(LocalDate.now().minusYears(18))) {
-        Alert a = new Alert(Alert.AlertType.ERROR, "You must be at least 18 years old to register");
+    if (DOB_DP.getValue().isAfter(LocalDate.now().minusYears(15))) {
+        Alert a = new Alert(Alert.AlertType.ERROR, "You must be at least 15 years old to register");
         a.show();
         return;
     }
