@@ -137,39 +137,100 @@ public class FoodCourtManagerController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         stallManagerTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("name"));
-        contactNoTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("contNo"));
-        newSignedStallManagerTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        ObjectInputStream ois1 = null;
+    contactNoTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("contNo"));
+    newSignedStallManagerTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    ObjectInputStream ois1 = null;
+    try {
+        ObservableList<StallManager> stallManager = FXCollections.observableArrayList();
+
+        //if the file exists before attempting to open it
+        File stallObjectsFile = new File("StallObjects.bin");
+        if (!stallObjectsFile.exists()) {
+            System.out.println("StallObjects.bin does not exist.");
+            return;
+        }
+
+       
+        ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream(stallObjectsFile));
+        ArrayList<Stall> stallList = new ArrayList<>();
         try {
-            ObservableList<StallManager> stallManager = FXCollections.observableArrayList();
-
-            ois1 = new ObjectInputStream(new FileInputStream("StallManagerList.bin"));
-
             while (true) {
                 try {
-                    StallManager f = (StallManager) ois1.readObject();
-                    stallManager.add(f);
-                    newSignedStallManagerTableView.setItems(stallManager);
-                   
-
+                    Stall s = (Stall) ois2.readObject();
+                    stallList.add(s);
                 } catch (EOFException e) {
-                    // Reached end of file, exit the loop
                     break;
                 }
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         } finally {
-            if (ois1 != null) {
-                try {
-                    ois1.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            ois2.close();
+        }
+
+        //Load stall managers from StallManagerList.bin
+        ois1 = new ObjectInputStream(new FileInputStream("StallManagerList.bin"));
+        while (true) {
+            try {
+                StallManager f = (StallManager) ois1.readObject();
+                boolean exists = false;
+                for (Stall stall : stallList) {
+                    if (stall.getStallManagerName().equals(f.getName())) {
+                        exists = true;
+                        break;
+                    }
                 }
+                if (!exists) {
+                    stallManager.add(f);
+                }
+            } catch (EOFException e) {
+                break;
             }
         }
+        
+        newSignedStallManagerTableView.setItems(stallManager);
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    } finally {
+        if (ois1 != null) {
+            try {
+                ois1.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+//        stallManagerTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("name"));
+//        contactNoTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("contNo"));
+//        newSignedStallManagerTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        ObjectInputStream ois1 = null;
+//        try {
+//            ObservableList<StallManager> stallManager = FXCollections.observableArrayList();
+//
+//            ois1 = new ObjectInputStream(new FileInputStream("StallManagerList.bin"));
+//
+//            while (true) {
+//                try {
+//                    StallManager f = (StallManager) ois1.readObject();
+//                    stallManager.add(f);
+//                    newSignedStallManagerTableView.setItems(stallManager);
+//                   
+//
+//                } catch (EOFException e) {
+//                    // Reached end of file, exit the loop
+//                    break;
+//                }
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (ois1 != null) {
+//                try {
+//                    ois1.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
         
         //#for Scene 1 Start
         stallTypeCB.getItems().addAll("Fast Food", "Restaurant",
@@ -338,6 +399,7 @@ public class FoodCourtManagerController implements Initializable {
     
     @FXML
     private void ApproveButtonOnClick(ActionEvent event) {
+        
         StallManager selectedManager = newSignedStallManagerTableView.getSelectionModel().getSelectedItem();
 
     // Check if an item is selected
@@ -355,6 +417,9 @@ public class FoodCourtManagerController implements Initializable {
         
         // Clear the selected manager from the table
         newSignedStallManagerTableView.getItems().remove(selectedManager);
+        
+        // Remove the selected manager from the file
+        removeStallManagerFromFile(selectedManager);
     } else {
         // If no item is selected, show an alert
         Alert alert = new Alert(AlertType.WARNING);
@@ -362,14 +427,24 @@ public class FoodCourtManagerController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Please select a Stall Manager from the table.");
         alert.showAndWait();
-    }
+    }  
 //        StallManager selectedManager = newSignedStallManagerTableView.getSelectionModel().getSelectedItem();
-//    
+//
 //    // Check if an item is selected
 //    if (selectedManager != null) {
 //        // Set the Stall Manager Name and Contact in the text fields
 //        StallManagerNameTF.setText(selectedManager.getName());
 //        contactNumberTF.setText(selectedManager.getContNo());
+//        
+//        // Show message that the new manager has been approved
+//        Alert alert = new Alert(AlertType.INFORMATION);
+//        alert.setTitle("Manager Approved");
+//        alert.setHeaderText(null);
+//        alert.setContentText("The new manager has been approved.");
+//        alert.showAndWait();
+//        
+//        // Clear the selected manager from the table
+//        newSignedStallManagerTableView.getItems().remove(selectedManager);
 //    } else {
 //        // If no item is selected, show an alert
 //        Alert alert = new Alert(AlertType.WARNING);
@@ -377,10 +452,39 @@ public class FoodCourtManagerController implements Initializable {
 //        alert.setHeaderText(null);
 //        alert.setContentText("Please select a Stall Manager from the table.");
 //        alert.showAndWait();
-//    }
-//        
+//    }  
         
     }
+    private void removeStallManagerFromFile(StallManager selectedManager) {
+    List<StallManager> updatedManagerList = new ArrayList<>();
+
+    // Read all Stall Managers from the file
+    try (ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("StallManagerList.bin"))) {
+        while (true) {
+            try {
+                StallManager f = (StallManager) ois1.readObject();
+                // If the current manager is not the selected one, add it to the updated list
+                if (!f.equals(selectedManager)) {
+                    updatedManagerList.add(f);
+                }
+            } catch (EOFException e) {
+                // Reached end of file, exit the loop
+                break;
+            }
+        }
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+
+    // Write the updated list back to the file
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("StallManagerList.bin"))) {
+        for (StallManager manager : updatedManagerList) {
+            oos.writeObject(manager);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     @FXML
     private void addButton_regStallOnClick(ActionEvent event) {
