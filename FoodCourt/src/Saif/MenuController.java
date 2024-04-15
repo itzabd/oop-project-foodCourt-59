@@ -47,7 +47,8 @@ public class MenuController implements Initializable {
     private ComboBox<String> timeSelectionCB;
     @FXML
     private TableView<Menu> tableVIewId;
-    File menuManageFile = new File("Menu1.bin");
+    File menuManageFile1 = new File("Menu.bin");
+    
     ArrayList<MenuManagement> itemsList = new ArrayList<MenuManagement >();
     ObservableList <MenuManagement> menuListNow = FXCollections.observableArrayList();
     ObservableList <Menu> addToCartList = FXCollections.observableArrayList();
@@ -81,7 +82,7 @@ public class MenuController implements Initializable {
         
         
         
-        
+        File menuManageFile = new File("Menu1.bin");
         ArrayList<MenuManagement> itemsList = new ArrayList<MenuManagement >();
       
         // reading file . .
@@ -89,7 +90,7 @@ public class MenuController implements Initializable {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         MenuManagement menuObject = null;
-        itemsList = null;
+        
 //        ObservableList<MenuManagement> menuList = menuManageTableView.getItems();
 
         
@@ -116,11 +117,17 @@ public class MenuController implements Initializable {
             }
             // adding stallNames in the comboBox ..
             ObservableList stallNameArr = FXCollections.observableArrayList();
-            for(MenuManagement m :itemsList){  
+            for(MenuManagement m :itemsList){ 
+                if(stallNameArr.isEmpty()){
+                    stallNameArr.add(m.getStallName());
+                }
+                else
+                    if(! stallNameArr.contains(m.getStallName())){
                 stallNameArr.add(m.getStallName());
+                }
+                
             }
             stallSelectionCB.setItems(stallNameArr);
-       
             ois.close();      
         }
 
