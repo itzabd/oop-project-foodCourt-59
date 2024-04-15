@@ -36,7 +36,7 @@ public class SeqAlerts  implements Serializable{
 
     @Override
     public String toString() {
-        return "Reciver = " + alertReciver +"\n"+ "Message = " + alertMsg;
+        return "Message = " + alertMsg;
     }
     
     

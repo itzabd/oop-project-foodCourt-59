@@ -4,20 +4,22 @@
  */
 package Shahrier;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author $abit
  */
-public class TakeOrder {
-    String orderID,stallName,itemName,delivetyTime;
+public class TakeOrder implements Serializable{
+    String orderID,stallName,itemName;
     LocalDate orderTakingDate;
-    int itemQuantity,perItemPrice,totalPrice;
+    int itemQuantity,perItemPrice,totalPrice,delivetyTime;
 
     public TakeOrder() {
     }
-
+    
+    /**
     public TakeOrder(String orderID, String stallName, String itemName, String delivetyTime, LocalDate orderTakingDate, int itemQuantity, int perItemPrice, int totalPrice) {
         this.orderID = orderID;
         this.stallName = stallName;
@@ -26,12 +28,12 @@ public class TakeOrder {
         this.orderTakingDate = orderTakingDate;
         this.itemQuantity = itemQuantity;
         this.perItemPrice = perItemPrice;
-        this.totalPrice = totalPrice;
+        this.totalPrice = totalPriceCalculation();
     }
+    */
+     
     
-    
-    
-    public TakeOrder(String orderID, String stallName, String itemName, String delivetyTime, LocalDate orderTakingDate, int itemQuantity, int perItemPrice) {
+    public TakeOrder(String orderID, String stallName, String itemName, int delivetyTime, LocalDate orderTakingDate, int itemQuantity, int perItemPrice) {
         this.orderID = orderID;
         this.stallName = stallName;
         this.itemName = itemName;
@@ -39,6 +41,18 @@ public class TakeOrder {
         this.orderTakingDate = orderTakingDate;
         this.itemQuantity = itemQuantity;
         this.perItemPrice = perItemPrice;
+        this.totalPrice = totalPriceCalculation();
+    }
+            
+    public TakeOrder(String stallName, String itemName, int delivetyTime, LocalDate orderTakingDate, int itemQuantity, int perItemPrice) {
+        this.orderID = orderID;
+        this.stallName = stallName;
+        this.itemName = itemName;
+        this.delivetyTime = delivetyTime;
+        this.orderTakingDate = orderTakingDate;
+        this.itemQuantity = itemQuantity;
+        this.perItemPrice = perItemPrice;
+        this.totalPrice = totalPriceCalculationWithDiscount();
     }
 
     public int getTotalPrice() {
@@ -73,13 +87,15 @@ public class TakeOrder {
         this.itemName = itemName;
     }
 
-    public String getDelivetyTime() {
+    public int getDelivetyTime() {
         return delivetyTime;
     }
 
-    public void setDelivetyTime(String delivetyTime) {
+    public void setDelivetyTime(int delivetyTime) {
         this.delivetyTime = delivetyTime;
     }
+
+    
 
     public LocalDate getOrderTakingDate() {
         return orderTakingDate;
@@ -111,9 +127,20 @@ public class TakeOrder {
         return r;
     }
     
+    public int totalPriceCalculationWithDiscount(){
+        int t = 0;
+        t=(itemQuantity*perItemPrice)*(5/100);
+        return t;
+    }
+    
     @Override
     public String toString() {
-        return "TakeOrder{" + "orderID=" + orderID + ", stallName=" + stallName + ", itemName=" + itemName + ", delivetyTime=" + delivetyTime + ", orderTakingDate=" + orderTakingDate + ", itemQuantity=" + itemQuantity + ", perItemPrice=" + perItemPrice + ", totalPrice=" + totalPrice + '}';
+        return "Date = " + orderTakingDate +"\n"+
+               "Stall Name = " + stallName +"\n"+
+               "Item Name = " + itemName +"\n" +
+               "Quantity = " + itemQuantity +"\n"+
+               "Total = " + totalPrice +"\n"+
+               "Delevery Time = " + delivetyTime +"\n"+"\n";
     }
     
     

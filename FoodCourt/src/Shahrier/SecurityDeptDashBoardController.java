@@ -793,7 +793,7 @@ public class SecurityDeptDashBoardController implements Initializable {
             while(true){
                p =  (ParkingAreaVechileData) oisForParkingData.readObject();
                if(p.getInfoTakingDate().equals(generateReportDailyVechileDatepicker.getValue())){
-                   generateReportDailyVechileResultArea.setText(p.toString());
+                   generateReportDailyVechileResultArea.appendText(p.toString());
                }
             }   
             
@@ -805,6 +805,7 @@ public class SecurityDeptDashBoardController implements Initializable {
 
     @FXML
     private void sendEmgMsgBtn(ActionEvent event) {
+        
         if(foodSupplierEmgMsgCheckBox.isSelected()){
             SeqAlerts sq = new SeqAlerts("Food Supplier",alertMsgTextArea.getText()); 
             seqAlertsArr.add(sq);
@@ -856,10 +857,25 @@ public class SecurityDeptDashBoardController implements Initializable {
             System.out.println(ex);
         }
         
-        for(SeqAlerts s:seqAlertsArr){
-            System.out.println(s.toString());
-        }
+        //for(SeqAlerts s:seqAlertsArr){
+            //System.out.println(s.toString());
+        //}
         
+        ObjectInputStream oisForParkingData = null;
+        try{
+            SeqAlerts p;
+            
+            oisForParkingData = new ObjectInputStream(new FileInputStream("allAlertsobj.bin"));
+            while(true){
+               p =  (SeqAlerts) oisForParkingData.readObject();
+                System.out.println(p.toString());
+               }
+            }   
+            
+        
+        catch(Exception ex){
+            System.out.println(ex);
+        }
         
         
     }
