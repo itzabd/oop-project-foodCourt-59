@@ -429,21 +429,17 @@ public class FoodCourtManagerController implements Initializable {
         alert.showAndWait();
     }  
 //        StallManager selectedManager = newSignedStallManagerTableView.getSelectionModel().getSelectedItem();
-//
-//    // Check if an item is selected
 //    if (selectedManager != null) {
 //        // Set the Stall Manager Name and Contact in the text fields
 //        StallManagerNameTF.setText(selectedManager.getName());
 //        contactNumberTF.setText(selectedManager.getContNo());
-//        
-//        // Show message that the new manager has been approved
+
 //        Alert alert = new Alert(AlertType.INFORMATION);
 //        alert.setTitle("Manager Approved");
 //        alert.setHeaderText(null);
 //        alert.setContentText("The new manager has been approved.");
 //        alert.showAndWait();
-//        
-//        // Clear the selected manager from the table
+
 //        newSignedStallManagerTableView.getItems().remove(selectedManager);
 //    } else {
 //        // If no item is selected, show an alert
