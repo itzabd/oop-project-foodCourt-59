@@ -159,6 +159,8 @@ public class ChefController implements Initializable {
     private TableView<?> SpecailAndPromotionTableView;
     
     private ArrayList<MenuCreation> menuArray;
+    
+    private ArrayList<SpecialAndPromotionA> specialArray;
 
     /**
      * Initializes the controller class.
@@ -213,13 +215,13 @@ public class ChefController implements Initializable {
         
         
         // Read code start
-        ObjectInputStream sp = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        ObjectInputStream spaa = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
         try{
             SpecialAndPromotionA e;
             
-            sp = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            spaa = new ObjectInputStream(new FileInputStream("menuObject.bin"));
             while(true){
-               e =  (SpecialAndPromotionA) sp.readObject();
+               e =  (SpecialAndPromotionA) spaa.readObject();
                specialArray.add(e);
             }   
             
@@ -240,6 +242,41 @@ public class ChefController implements Initializable {
         
         // Special And promotion end
         
+        /*
+        // Seasonal Menu Update start
+        
+        // Array crate kora hoice
+        menuArray = new ArrayList<>(); 
+        
+        // ComboBox a value add korar kaj
+        MenuCreationSelectStallComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
+        
+        
+        // Read code start
+        ObjectInputStream ois = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            MenuCreation e;
+            
+            ois = new ObjectInputStream(new FileInputStream("menuObject.bin"));
+            while(true){
+               e =  (MenuCreation) ois.readObject();
+               menuArray.add(e);
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end 
+        
+        
+        // table er column golor kaj korar code
+        StallNameTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("stallName"));
+        ItemNameTableColumn.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("itemName"));
+        PriceTableColumnOfMenuCreation.setCellValueFactory(new PropertyValueFactory<MenuCreation,String>("price"));
+        
+        // Seasonal Menu Update End
+        */
         
     }
 
@@ -436,6 +473,38 @@ public class ChefController implements Initializable {
 
     @FXML
     private void SeasonalMenuUpdatesSaveButton(ActionEvent event) {
+     /*   SeasonalMenuA mn = new SeasonalMenuA(MenuCreationSelectStallComboBox.getValue(), MenuCreationItemNameTextField.getText(), Integer.parseInt(MenuCreationPriceTextField.getText()));
+        //System.out.println(MenuCreationItemNameTextField.getText());
+        menuArray.add(mn);
+        
+        
+        // write code start
+        try{
+            FileOutputStream fos = new FileOutputStream("menuObject.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(SeasonalMenuA r:menuArray){
+                oos.writeObject(r);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // write code end
+        
+        
+        // table View add korar kaj
+        for(SeasonalMenuA e:menuArray){
+            if(MenuCreationTableView.getItems().contains(e)){
+                System.out.println("Already Contain");
+            }
+            else{
+                MenuCreationTableView.getItems().add(e);
+            }
+        }
+        */
     }
 
     @FXML
