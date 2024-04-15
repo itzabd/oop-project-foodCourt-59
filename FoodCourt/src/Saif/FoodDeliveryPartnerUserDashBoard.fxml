@@ -27,7 +27,7 @@
          <children>
             <AnchorPane fx:id="notifyCustomerAPane" layoutX="9.0" layoutY="89.0" prefHeight="459.0" prefWidth="904.0" style="-fx-background-color: #a7cfff;">
                <children>
-                  <TableView layoutX="87.0" layoutY="54.0" prefHeight="169.0" prefWidth="772.0" style="-fx-background-color: #356ec4;">
+                  <TableView fx:id="notifyCustomerTableView" layoutX="87.0" layoutY="54.0" prefHeight="169.0" prefWidth="772.0" style="-fx-background-color: #356ec4;">
                     <columns>
                         <TableColumn fx:id="notifyCustomerCustomerIdTableColumnId" prefWidth="88.33334350585938" text="Customer  ID" />
                       <TableColumn fx:id="notifyCustomerCustomerNameTableColumnId" prefWidth="161.6666259765625" text="Customer Name" />
