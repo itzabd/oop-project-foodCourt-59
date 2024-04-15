@@ -474,51 +474,48 @@ public class OnlineCustomerController implements Initializable {
 
     @FXML
     private void saveAddressButtonOnClick(ActionEvent event) {
-    String houseNo = HouseNo_Address.getText();
-    String blockNo = bloclNo_Address.getText();
-    String streetNo = streetNo_Address.getText();
-    String postalCode = postalCode_Address1.getText();
-    String selectedArea = selectArea_Address.getValue();
-    String note = NoteAddresscene1.getText();
-    String username1 = usernameAddress.getText();
+        String houseNo = HouseNo_Address.getText();
+        String blockNo = bloclNo_Address.getText();
+        String streetNo = streetNo_Address.getText();
+        String postalCode = postalCode_Address1.getText();
+        String selectedArea = selectArea_Address.getValue();
+        String note = NoteAddresscene1.getText();
+        String username1 = usernameAddress.getText();
 
-    
-    if (username1.isEmpty() || houseNo.isEmpty() || blockNo.isEmpty() || streetNo.isEmpty() ||
-            postalCode.isEmpty() || selectedArea == null || note.isEmpty()) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Incomplete Address");
+        if (username1.isEmpty() || houseNo.isEmpty() || blockNo.isEmpty() || streetNo.isEmpty()
+                || postalCode.isEmpty() || selectedArea == null || note.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Incomplete Address");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all address details.");
+            alert.showAndWait();
+            return;
+        }
+
+        Address address = new Address(houseNo, blockNo, streetNo,
+                selectedArea, note, postalCode, username1);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream("CustomerAddressFile.bin", true))) {
+            oos.writeObject(address);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to save address.");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Address Saved");
         alert.setHeaderText(null);
-        alert.setContentText("Please fill in all address details.");
+        alert.setContentText("Address saved successfully.");
         alert.showAndWait();
-        return;
+
     }
 
-    Address address = new Address(houseNo, blockNo, streetNo,
-            selectedArea, note,postalCode, username1);
-
-    try (ObjectOutputStream oos = new ObjectOutputStream(
-                                 new FileOutputStream("CustomerAddressFile.bin", true))) {
-        oos.writeObject(address);
-        oos.flush();
-    } catch (IOException e) {
-        e.printStackTrace();
-
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText("Failed to save address.");
-        alert.showAndWait();
-        return;
-    }
-
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Address Saved");
-    alert.setHeaderText(null);
-    alert.setContentText("Address saved successfully.");
-    alert.showAndWait();
- 
-    }
-
-   
- 
 }

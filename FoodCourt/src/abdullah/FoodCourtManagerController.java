@@ -1,5 +1,6 @@
 package abdullah;
 
+import Saif.StallManager;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -89,7 +90,6 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private TextField stallNameTF;
     @FXML    private DatePicker RentFromTF;
     @FXML    private DatePicker RentTToTF;
-    @FXML    private TextField stallManagerNameTF;
     @FXML    private TextField contactNumberTF;
     @FXML    private TableView<Stall> tableView;
     @FXML    private TableColumn<Stall, String> StallName_TC;
@@ -124,10 +124,53 @@ public class FoodCourtManagerController implements Initializable {
     @FXML    private TableColumn<Complaint, LocalDate> complaint_dateTC;
     @FXML    private TextArea complaintDetailsTextArea;
              private ObservableList<Complaint> complaintList = FXCollections.observableArrayList();
+    private ComboBox<String> stallManagerNameComboBox;
+    @FXML
+    private TextField StallManagerNameTF;
+    @FXML
+    private TableView<StallManager> newSignedStallManagerTableView;
+    @FXML
+    private TableColumn<StallManager, String> stallManagerTC;
+    @FXML
+    private TableColumn<StallManager, String> contactNoTC;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        stallManagerTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("name"));
+        contactNoTC.setCellValueFactory(new PropertyValueFactory<StallManager, String>("contNo"));
+        newSignedStallManagerTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        ObjectInputStream ois1 = null;
+        try {
+            ObservableList<StallManager> stallManager = FXCollections.observableArrayList();
+
+            ois1 = new ObjectInputStream(new FileInputStream("StallManagerList.bin"));
+
+            while (true) {
+                try {
+                    StallManager f = (StallManager) ois1.readObject();
+                    stallManager.add(f);
+                    newSignedStallManagerTableView.setItems(stallManager);
+                   
+
+                } catch (EOFException e) {
+                    // Reached end of file, exit the loop
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (ois1 != null) {
+                try {
+                    ois1.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
         //#for Scene 1 Start
         stallTypeCB.getItems().addAll("Fast Food", "Restaurant",
                 "Pizza and Italian Cuisine", "Coffee and Tea");
@@ -135,8 +178,6 @@ public class FoodCourtManagerController implements Initializable {
         contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("contactNo"));
         stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
         stallType_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallType"));
-        //This part allows to edit in Table
-       
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -174,17 +215,7 @@ public class FoodCourtManagerController implements Initializable {
         S2_StallName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
         S2_stallManagerName_TC.setCellFactory(TextFieldTableCell.forTableColumn());
         S2_contactNo_TC.setCellFactory(TextFieldTableCell.forTableColumn());
-//        S2_rentExpired.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-//            @Override
-//            public String toString(LocalDate object) {
-//                return object != null ? object.toString() : "";
-//            }
-//
-//            @Override
-//            public LocalDate fromString(String string) {
-//                return string != null && !string.isEmpty() ? LocalDate.parse(string) : null;
-//            }
-//        }));
+
         S2_StallName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallName"));
         S2_contactNo_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("contactNo"));
         S2_stallManagerName_TC.setCellValueFactory(new PropertyValueFactory<Stall, String>("StallManagerName"));
@@ -304,12 +335,58 @@ public class FoodCourtManagerController implements Initializable {
             addNewPolicy_scene.setVisible(false);    //ResolvePaymentDispute_btn
         }
     }
+    
+    @FXML
+    private void ApproveButtonOnClick(ActionEvent event) {
+        StallManager selectedManager = newSignedStallManagerTableView.getSelectionModel().getSelectedItem();
+
+    // Check if an item is selected
+    if (selectedManager != null) {
+        // Set the Stall Manager Name and Contact in the text fields
+        StallManagerNameTF.setText(selectedManager.getName());
+        contactNumberTF.setText(selectedManager.getContNo());
+        
+        // Show message that the new manager has been approved
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Manager Approved");
+        alert.setHeaderText(null);
+        alert.setContentText("The new manager has been approved.");
+        alert.showAndWait();
+        
+        // Clear the selected manager from the table
+        newSignedStallManagerTableView.getItems().remove(selectedManager);
+    } else {
+        // If no item is selected, show an alert
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("No Selection");
+        alert.setHeaderText(null);
+        alert.setContentText("Please select a Stall Manager from the table.");
+        alert.showAndWait();
+    }
+//        StallManager selectedManager = newSignedStallManagerTableView.getSelectionModel().getSelectedItem();
+//    
+//    // Check if an item is selected
+//    if (selectedManager != null) {
+//        // Set the Stall Manager Name and Contact in the text fields
+//        StallManagerNameTF.setText(selectedManager.getName());
+//        contactNumberTF.setText(selectedManager.getContNo());
+//    } else {
+//        // If no item is selected, show an alert
+//        Alert alert = new Alert(AlertType.WARNING);
+//        alert.setTitle("No Selection");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Please select a Stall Manager from the table.");
+//        alert.showAndWait();
+//    }
+//        
+        
+    }
 
     @FXML
     private void addButton_regStallOnClick(ActionEvent event) {
 
         //check if all data fields are entered or not
-        if (stallNameTF.getText().isEmpty() || stallManagerNameTF.getText().isEmpty()
+        if (stallNameTF.getText().isEmpty() || StallManagerNameTF.getText().isEmpty()
                 || stallTypeCB.getValue() == null || RentFromTF.getValue() == null
                 || RentTToTF.getValue() == null || contactNumberTF.getText().isEmpty()) {
 
@@ -363,7 +440,7 @@ public class FoodCourtManagerController implements Initializable {
                 oos = new ObjectOutputStream(fos);
             }
             Stall s = new Stall(stallNameTF.getText(),
-                    stallManagerNameTF.getText(), stallTypeCB.getValue(),
+                    StallManagerNameTF.getText(), stallTypeCB.getValue(),
                     RentFromTF.getValue(), RentTToTF.getValue(),
                     contactNumberTF.getText()
             );
@@ -373,7 +450,7 @@ public class FoodCourtManagerController implements Initializable {
             tableView.setItems(stalllist);
 
             stallNameTF.clear();
-            stallManagerNameTF.clear();
+            StallManagerNameTF.clear();
             stallTypeCB.setValue(null);
             RentFromTF.setValue(null);
             RentTToTF.setValue(null);
@@ -759,6 +836,8 @@ public class FoodCourtManagerController implements Initializable {
         }
 
     }
+
+    
     
 
 }

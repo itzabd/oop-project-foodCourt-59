@@ -77,6 +77,11 @@ public class OnlineCustomer extends User implements Serializable {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "OnlineCustomer{" + '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }

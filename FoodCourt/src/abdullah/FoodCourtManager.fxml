@@ -136,40 +136,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="stall_managementScene" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Button layoutX="62.0" layoutY="225.0" mnemonicParsing="false" onAction="#addButton_regStallOnClick" prefHeight="27.0" prefWidth="413.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
-                              <Button layoutX="228.0" layoutY="454.0" mnemonicParsing="false" onAction="#removeButtonOnclick" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="6.0" prefHeight="38.0" prefWidth="216.0" text="Register Stall" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="25.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="61.0" layoutY="69.0" prefHeight="28.0" prefWidth="62.0" text="Stall Name:" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="53.0" layoutY="97.0" prefHeight="28.0" prefWidth="128.0" text="Stall Manager Name:" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="60.0" layoutY="130.0" prefHeight="28.0" prefWidth="108.0" text="Rental Agreement :" textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="57.0" layoutY="161.0" prefHeight="28.0" prefWidth="106.0" text="Contact Number:" textAlignment="CENTER" />
-                              <TextField fx:id="stallNameTF" layoutX="216.0" layoutY="70.0" prefHeight="25.0" prefWidth="259.0" promptText="Stall Name" />
-                              <Label alignment="CENTER" layoutX="166.0" layoutY="130.0" prefHeight="28.0" prefWidth="62.0" text="From -" textAlignment="CENTER" />
-                              <DatePicker fx:id="RentFromTF" layoutX="218.0" layoutY="132.0" prefHeight="25.0" prefWidth="118.0" promptText="DD/MM/YYYYY" />
-                              <DatePicker fx:id="RentTToTF" layoutX="367.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" promptText="DD/MM/YYYYY" />
-                              <Label alignment="CENTER" layoutX="336.0" layoutY="131.0" prefHeight="28.0" prefWidth="30.0" text="To -" textAlignment="CENTER" />
-                              <TextField fx:id="stallManagerNameTF" layoutX="216.0" layoutY="99.0" prefHeight="25.0" prefWidth="259.0" promptText="Manager Name" />
-                              <TextField fx:id="contactNumberTF" layoutX="217.0" layoutY="163.0" prefHeight="25.0" prefWidth="259.0" promptText="01X-XXXX-XXXX" />
-                              <Label alignment="CENTER" layoutX="40.0" layoutY="193.0" prefHeight="28.0" prefWidth="106.0" text="Stall Type:" textAlignment="CENTER" />
-                              <TableView fx:id="tableView" layoutX="25.0" layoutY="299.0" prefHeight="146.0" prefWidth="491.0">
-                                 <columns>
-                                    <TableColumn fx:id="StallName_TC" onEditCommit="#ChangeStallNameCellEvent" prefWidth="92.0" text="Stall Name" />
-                                    <TableColumn fx:id="contactNo_TC" onEditCommit="#ChangeContactNumberTC" prefWidth="142.0" text="Contact Number" />
-                                    <TableColumn fx:id="stallManagerName_TC" onEditCommit="#ChangeStallManagerName" prefWidth="149.0" text="Stall Manager Name" />
-                                    <TableColumn fx:id="stallType_TC" prefWidth="88.0" text="Stall Type" />
-                                 </columns>
-                              </TableView>
-                              <ComboBox fx:id="stallTypeCB" layoutX="217.0" layoutY="192.0" prefHeight="25.0" prefWidth="259.0" promptText="Select Type" />
-                              <Line endX="406.0" layoutX="130.0" layoutY="283.0" startX="-130.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="stall_detailsScene" layoutX="1.0" layoutY="6.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="stall_detailsScene" layoutX="1.0" layoutY="6.0" prefHeight="514.0" prefWidth="546.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="38.0" prefWidth="216.0" text="Stall Details" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -294,7 +261,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="complaintsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;">
+                        <AnchorPane fx:id="complaintsScene" prefHeight="504.0" prefWidth="536.0" style="-fx-background-color: #c1c4c9;" visible="false">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="13.0" prefHeight="38.0" prefWidth="301.0" text="Complaints" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -391,6 +358,46 @@
                                  </columns>
                               </TableView>
                               <Button layoutX="239.0" layoutY="63.0" mnemonicParsing="false" onAction="#S2_loadButton" prefHeight="27.0" prefWidth="58.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Load" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="stall_managementScene" prefHeight="504.0" prefWidth="537.0" style="-fx-background-color: #c1c4c9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button layoutX="39.0" layoutY="239.0" mnemonicParsing="false" onAction="#addButton_regStallOnClick" prefHeight="27.0" prefWidth="218.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Add" />
+                              <Button layoutX="228.0" layoutY="454.0" mnemonicParsing="false" onAction="#removeButtonOnclick" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Remove" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="6.0" prefHeight="38.0" prefWidth="216.0" text="Register Stall" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="36.0" layoutY="97.0" prefHeight="28.0" prefWidth="62.0" text="Stall Name:" textAlignment="CENTER" />
+                              <Label alignment="CENTER" layoutX="271.0" layoutY="69.0" prefHeight="28.0" prefWidth="128.0" text="Stall Manager Name:" textAlignment="CENTER" />
+                              <Label alignment="CENTER" layoutX="34.0" layoutY="124.0" prefHeight="28.0" prefWidth="108.0" text="Rental Agreement :" textAlignment="CENTER" />
+                              <Label alignment="CENTER" layoutX="273.0" layoutY="97.0" prefHeight="28.0" prefWidth="106.0" text="Contact Number:" textAlignment="CENTER" />
+                              <TextField fx:id="stallNameTF" layoutX="136.0" layoutY="99.0" prefHeight="25.0" prefWidth="121.0" promptText="Stall Name" />
+                              <Label alignment="CENTER" layoutX="25.0" layoutY="146.0" prefHeight="28.0" prefWidth="62.0" text="From -" textAlignment="CENTER" />
+                              <DatePicker fx:id="RentFromTF" layoutX="138.0" layoutY="145.0" prefHeight="25.0" prefWidth="118.0" promptText="DD/MM/YYYYY" />
+                              <DatePicker fx:id="RentTToTF" layoutX="138.0" layoutY="173.0" prefHeight="25.0" prefWidth="119.0" promptText="DD/MM/YYYYY" />
+                              <Label alignment="CENTER" layoutX="35.0" layoutY="172.0" prefHeight="28.0" prefWidth="30.0" text="To -" textAlignment="CENTER" />
+                              <TextField fx:id="contactNumberTF" layoutX="393.0" layoutY="99.0" prefHeight="25.0" prefWidth="132.0" promptText="01X-XXXX-XXXX" />
+                              <Label alignment="CENTER" layoutX="12.0" layoutY="208.0" prefHeight="28.0" prefWidth="106.0" text="Stall Type:" textAlignment="CENTER" />
+                              <TableView fx:id="tableView" layoutX="25.0" layoutY="299.0" prefHeight="146.0" prefWidth="491.0">
+                                 <columns>
+                                    <TableColumn fx:id="StallName_TC" onEditCommit="#ChangeStallNameCellEvent" prefWidth="92.0" text="Stall Name" />
+                                    <TableColumn fx:id="contactNo_TC" onEditCommit="#ChangeContactNumberTC" prefWidth="142.0" text="Contact Number" />
+                                    <TableColumn fx:id="stallManagerName_TC" onEditCommit="#ChangeStallManagerName" prefWidth="149.0" text="Stall Manager Name" />
+                                    <TableColumn fx:id="stallType_TC" prefWidth="88.0" text="Stall Type" />
+                                 </columns>
+                              </TableView>
+                              <ComboBox fx:id="stallTypeCB" layoutX="138.0" layoutY="209.0" prefHeight="25.0" prefWidth="114.0" promptText="Select Type" />
+                              <Line endX="406.0" layoutX="130.0" layoutY="283.0" startX="-130.0" />
+                              <TextField fx:id="StallManagerNameTF" layoutX="393.0" layoutY="71.0" prefHeight="25.0" prefWidth="132.0" promptText="Stall Manager Name" />
+                              <TableView fx:id="newSignedStallManagerTableView" layoutX="271.0" layoutY="135.0" prefHeight="97.0" prefWidth="259.0">
+                                <columns>
+                                  <TableColumn fx:id="stallManagerTC" prefWidth="128.0" text="Stall Manager" />
+                                  <TableColumn fx:id="contactNoTC" prefWidth="114.0" text="Contact No" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="284.0" layoutY="239.0" mnemonicParsing="false" onAction="#ApproveButtonOnClick" prefHeight="27.0" prefWidth="218.0" style="-fx-background-color: f38a65; -fx-border-color: black;" text="Approve" />
                            </children>
                         </AnchorPane>
                      </children>
