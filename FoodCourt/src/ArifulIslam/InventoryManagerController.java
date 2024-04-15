@@ -130,6 +130,12 @@ public class InventoryManagerController implements Initializable {
     private TableColumn<ManageStockA, String> ManageStockLevelTableViewQuantityTableColumn;
     
     private ArrayList<ManageStockA> stockArray;
+    @FXML
+    private ComboBox<?> SupportTeamStallNameComboBox;
+    @FXML
+    private TextArea SupportTeamViewSupportRequestTextArea;
+    @FXML
+    private TextArea SupportTeamCreateAssignTextArea;
     
 
     /**
@@ -378,6 +384,14 @@ public class InventoryManagerController implements Initializable {
             }
         }
         
+    }
+
+    @FXML
+    private void SupportTeamViewSupportRequestsButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void SupportTeamAssignTaskButton(ActionEvent event) {
     }
 }
     

@@ -111,9 +111,9 @@ public class ChefController implements Initializable {
     @FXML
     private TableColumn<?, ?> CustomerFeedbackAnalysisReviewTableColumn;
     @FXML
-    private ComboBox<?> MenuCustomizationStallNameComboBox;
+    private ComboBox<String> MenuCustomizationStallNameComboBox;
     @FXML
-    private ComboBox<?> MenuCustomizationItemsComboBox;
+    private ComboBox<String> MenuCustomizationItemsComboBox;
     @FXML
     private TextField MenuCustomizationAvailableQuantityTextField;
     @FXML
@@ -162,6 +162,22 @@ public class ChefController implements Initializable {
     private ArrayList<SeasonalMenuA> seasonalArray;
     @FXML
     private TextArea IngredientManagementTextArea;
+    @FXML
+    private ComboBox<String> ListOfDessetItemsStallNameComboBox;
+    @FXML
+    private TextField DessetItemsTextField;
+    @FXML
+    private TextField ListOfDessetItemsPriceTextField;
+    @FXML
+    private TableView<Dessert> ListOfDessetItemsTableView;
+    @FXML
+    private TableColumn<Dessert, String> ListOfDessetItemsTableViewStallNameTableColumn;
+    @FXML
+    private TableColumn<Dessert, String> ListOfDessetItemsTableViewDessertItemTableColumn;
+    @FXML
+    private TableColumn<Dessert, String> ListOfDessetItemsTableViewPriceTableColumn;
+    
+    private ArrayList<Dessert> dessertArray;
     
     
 
@@ -296,6 +312,32 @@ public class ChefController implements Initializable {
                e =  (ManageStockA) oisIngredient.readObject();
                 System.out.println(e.toString());
                IngredientManagementSelectStallComboBox.getItems().add(e.getStallName());
+               MenuCustomizationStallNameComboBox.getItems().add(e.getStallName());
+               MenuCustomizationItemsComboBox.getItems().add(e.getProductName());
+               
+       
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end
+        
+        
+        
+        // Menu Customization er Initialization part start
+        
+         // Read code start
+        ObjectInputStream oisMenuCustomization = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            MenuCreation e;
+            
+            oisMenuCustomization = new ObjectInputStream(new FileInputStream("menuCreationFile.bin"));
+            while(true){
+               e =  (MenuCreation) oisMenuCustomization.readObject();
+                System.out.println(e.toString());
+               
                
        
             }   
@@ -309,6 +351,42 @@ public class ChefController implements Initializable {
         
         
         
+        // Dessert part Start
+        
+        // Array crate kora hoice
+        dessertArray = new ArrayList<>(); 
+        
+        // ComboBox a value add korar kaj
+        ListOfDessetItemsStallNameComboBox.getItems().addAll("ABC1", "ABC2", "ABC3");
+        
+        
+        // Read code start
+        ObjectInputStream oiskk = null;      // ei khane ois holo variable name, onno read a abar different name dhite hobe
+        try{
+            Dessert e;
+            
+            oiskk = new ObjectInputStream(new FileInputStream("menuCreationFile.bin"));
+            while(true){
+               e =  (Dessert) oiskk.readObject();
+               dessertArray.add(e);
+            }   
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // Read code end 
+        
+       
+        
+        
+        // table er column golor kaj korar code
+        ListOfDessetItemsTableViewStallNameTableColumn.setCellValueFactory(new PropertyValueFactory<Dessert,String>("stallName"));
+        ListOfDessetItemsTableViewDessertItemTableColumn.setCellValueFactory(new PropertyValueFactory<Dessert,String>("itemName"));
+        ListOfDessetItemsTableViewPriceTableColumn.setCellValueFactory(new PropertyValueFactory<Dessert,String>("price"));
+        
+        
+        // Dessert part End
         
     }
 
@@ -590,6 +668,41 @@ public class ChefController implements Initializable {
             }
         }
         
+    }
+
+    @FXML
+    private void ListOfDessetItemsCreateButton(ActionEvent event) {
+        Dessert mn = new Dessert(ListOfDessetItemsStallNameComboBox.getValue(), DessetItemsTextField.getText(), Integer.parseInt(ListOfDessetItemsPriceTextField.getText()));
+        //System.out.println(MenuCreationItemNameTextField.getText());
+        dessertArray.add(mn);
+        
+        
+        // write code start
+        try{
+            FileOutputStream fos = new FileOutputStream("menuCreationFile.bin");     // Write a object name change korte hobe nah, Class name R array name change korte hobe
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            for(Dessert r:dessertArray){
+                oos.writeObject(r);
+            }
+            oos.close();
+            
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+        // write code end
+        
+        
+        // table View add korar kaj
+        for(Dessert e:dessertArray){
+            if(ListOfDessetItemsTableView.getItems().contains(e)){
+                System.out.println("Already Contain");
+            }
+            else{
+                ListOfDessetItemsTableView.getItems().add(e);
+            }
+        }
     }
     
 }
